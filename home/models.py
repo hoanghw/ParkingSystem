@@ -20,3 +20,4 @@ class UID_Transaction(models.Model):
     end=models.DateTimeField
     loc=models.ForeignKey(Location)
 
+class Person():
