@@ -9,9 +9,9 @@
     <p>Please correct the following fields:</p>
 {% endif %}
 <div class="register_div">
-    {% if form.name.errors %}<p class="error">{{ form.name.errors }}</p>{% endif %}
-    <p><label for="name"{% if form.name.errors %} class="error"{% endif %}>Username:</label></p>
-    <p>{{ form.name }}</p>
+    {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+    <p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label></p>
+    <p>{{ form.username }}</p>
 </div>
 <div class="register_div">
     {% if form.userId.errors %}<p class="error">{{ form.userId.errors }}</p>{% endif %}
