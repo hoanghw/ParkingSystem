@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43a797dc-ea21-4097-9329-c6b02ab5a150" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/home/parkingstatus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/models.py" afterPath="$PROJECT_DIR$/home/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/views.py" afterPath="$PROJECT_DIR$/home/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/settings.py" afterPath="$PROJECT_DIR$/parkingsystem/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/urls.py" afterPath="$PROJECT_DIR$/parkingsystem/urls.py" />
     </list>
     <ignored path="parkingsystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -358,6 +351,11 @@
       <created>1357935249507</created>
       <updated>1357935249507</updated>
     </task>
+    <task id="LOCAL-00001" summary="done with Parking Status. http://127.0.0.1:8000/parking/">
+      <created>1358138573962</created>
+      <updated>1358138573962</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
