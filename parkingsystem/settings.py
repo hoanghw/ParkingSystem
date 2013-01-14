@@ -90,7 +90,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-AUTH_PROFILE_MODULE = 'drinker.Drinker'
+AUTH_PROFILE_MODULE = 'parker.Parker'
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

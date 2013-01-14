@@ -4,7 +4,6 @@ from django.forms import ModelForm
 from parker.models import Parker
 
 class RegistrationForm(ModelForm):
-    username    = forms.CharField(label=(u'User Name'))
     userId      = forms.CharField(label=(u'User Id'))
     email       = forms.EmailField(label=(u'Email Address'))
     password    = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
