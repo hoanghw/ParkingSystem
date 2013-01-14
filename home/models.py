@@ -28,3 +28,4 @@ class UID_Transaction(models.Model):
     def __unicode__(self):
         return self.user.username+" - Start:"+self.start.ctime()+" - End:"+self.end.ctime()
 
+class Person():
