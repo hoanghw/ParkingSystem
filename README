@@ -1,0 +1,16 @@
+This README is to keep track of what functions have been implemented:
+
+1) To check the parking status of all garages:
+	/parking/
+2) Users check out:
+	/ucheckout/?user=username
+3) Guests check out:
+	/gcheckout/?g=garagename&s=spacenumber
+4) Users check in:
+	/ucheckin/?user=username&g=garagename&s=spacenumber&h=hours
+5) Guests check in:
+	/gcheckin/?p=paymenttype&g=garagename&s=spacenumber&h=hours
+
+
+Disclaimer: I have not yet checked for corner cases nor handle conflicting requests!!!
+	
