@@ -1,4 +1,4 @@
-This README is to keep track of what functions have been implemented:
+This README is to document the features that have been implemented and/or will be implemented:
 
 1) To check the parking status of all garages:
 	/parking/
@@ -12,5 +12,7 @@ This README is to keep track of what functions have been implemented:
 	/gcheckin/?p=paymenttype&g=garagename&s=spacenumber&h=hours
 
 
-Disclaimer: I have not yet checked for corner cases nor handle conflicting requests!!!
+DISCLAIMER: 
+	1) I have not yet checked for corner cases nor handle conflicting requests!!! 
+	2) No Authorization and Authentication yet!!!
 	
