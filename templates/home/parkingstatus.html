@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parking Status</title>
+</head>
+<body>
+<h1>This is Parking Status</h1>
+<script language="javascript">
+    <!--
+    today = new Date();
+    document.write("<br>As of: ",today.getHours(),":",today.getMinutes());
+    document.write("<br>",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
+    //-->
+</script>
+
+{% for i in LocStatus %}
+    <p>{{ i }}</p>
+{% endfor %}
+
+</body>
+</html>
