@@ -13,4 +13,8 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     (r'^register/$', 'parker.views.ParkerRegistration'),
+    (r'^login/$', 'parker.views.LoginRequest'),
+    (r'^logout/$', 'parker.views.LogoutRequest'),
+    url(r'^profile/', 'parker.views.Profile')
+
 )

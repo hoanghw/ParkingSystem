@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43a797dc-ea21-4097-9329-c6b02ab5a150" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parker/forms.py" afterPath="$PROJECT_DIR$/parker/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/settings.py" afterPath="$PROJECT_DIR$/parkingsystem/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/urls.py" afterPath="$PROJECT_DIR$/parkingsystem/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/register.html" afterPath="$PROJECT_DIR$/templates/register.html" />
     </list>
     <ignored path="parkingsystem.iws" />
@@ -33,16 +36,16 @@
       <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parker/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="26" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0">
+            <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-8.454545">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parker/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="836" selection-end="836" vertical-scroll-proportion="0.49001816">
+            <state line="60" column="46" selection-start="2649" selection-end="2649" vertical-scroll-proportion="-18.961538">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -50,10 +53,46 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="19" selection-start="226" selection-end="226" vertical-scroll-proportion="-4.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="26" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="-5.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="7" selection-start="304" selection-end="304" vertical-scroll-proportion="0.28">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="30" selection-start="215" selection-end="215" vertical-scroll-proportion="-3.125">
+            <state line="5" column="20" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.5">
               <folding />
             </state>
           </provider>
@@ -62,7 +101,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parker/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="28" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
+            <state line="9" column="33" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -71,7 +110,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parkingsystem/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="1" selection-start="3351" selection-end="3351" vertical-scroll-proportion="0.0">
+            <state line="92" column="37" selection-start="3390" selection-end="3390" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,14 +139,16 @@
         <option value="db-console:/e97e3a/7e8f1a06-b029-4044-8d53-3783f511d37d/" />
         <option value="$PROJECT_DIR$/parkinguser/models.py" />
         <option value="$PROJECT_DIR$/parker/admin.py" />
-        <option value="$PROJECT_DIR$/parkingsystem/urls.py" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="/Library/Python/2.7/site-packages/django/contrib/auth/models.py" />
-        <option value="$PROJECT_DIR$/parker/models.py" />
-        <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/parkingsystem/settings.py" />
+        <option value="$PROJECT_DIR$/templates/register.html" />
+        <option value="$PROJECT_DIR$/parker/models.py" />
         <option value="$PROJECT_DIR$/parker/forms.py" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/parkingsystem/urls.py" />
         <option value="$PROJECT_DIR$/parker/views.py" />
+        <option value="$PROJECT_DIR$/templates/profile.html" />
       </list>
     </option>
   </component>
@@ -211,6 +252,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="web.server" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.searchVisible" value="true" />
@@ -358,29 +400,33 @@
       <created>1358032932065</created>
       <updated>1358032932065</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="OK! So this is the official version that ensures the user if not logged in, goes to a registration page. If the user is logged in, it goes to a profile page. Which I will not create!">
+      <created>1358142014626</created>
+      <updated>1358142014626</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32855093" sideWeight="0.7378277" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.7378277" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15208034" sideWeight="0.7378277" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26217228" sideWeight="0.35868007" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26217228" sideWeight="0.6362984" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26217228" sideWeight="0.6362984" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -421,7 +467,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Form working but sloppy looking and code" />
+    <option name="LAST_COMMIT_MESSAGE" value="OK! So this is the official version that ensures the user if not logged in, goes to a registration page. If the user is logged in, it goes to a profile page. Which I will not create!" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -437,23 +483,12 @@
     <MESSAGE value="nachi test&#10;" />
     <MESSAGE value="About to change form details" />
     <MESSAGE value="Form working but sloppy looking and code" />
+    <MESSAGE value="OK! So this is the official version that ensures the user if not logged in, goes to a registration page. If the user is logged in, it goes to a profile page. Which I will not create!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/parker/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/django_manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="0.5319149" />
-      </provider>
-    </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/core/management/commands/runserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="13" selection-start="3839" selection-end="3839" vertical-scroll-proportion="2.31383" />
@@ -462,13 +497,6 @@
     <entry file="dbDummy://db-console:/e97e3a/7e8f1a06-b029-4044-8d53-3783f511d37d/">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="7" selection-start="302" selection-end="302" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/forms/models.py">
@@ -506,47 +534,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parkingsystem/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="1" selection-start="3351" selection-end="3351" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="30" selection-start="215" selection-end="215" vertical-scroll-proportion="-3.125">
+        <state line="92" column="37" selection-start="3390" selection-end="3390" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="28" selection-start="337" selection-end="337" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parker/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0">
+        <state line="9" column="33" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="836" selection-end="836" vertical-scroll-proportion="0.49001816">
+        <state line="60" column="46" selection-start="2649" selection-end="2649" vertical-scroll-proportion="-18.961538">
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parker/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-8.454545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="19" selection-start="226" selection-end="226" vertical-scroll-proportion="-4.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="-5.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="20" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="26" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="7" selection-start="304" selection-end="304" vertical-scroll-proportion="0.28">
+          <folding />
         </state>
       </provider>
     </entry>

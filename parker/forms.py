@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from parker.models import Parker
 
 class RegistrationForm(ModelForm):
+    username = forms.CharField(label=(u'Username'))
     userId      = forms.CharField(label=(u'User Id'))
     email       = forms.EmailField(label=(u'Email Address'))
     password    = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
@@ -28,3 +29,7 @@ class RegistrationForm(ModelForm):
             if password == verifypassword:
                 return verifypassword
         raise forms.ValidationError('The passwords you entered do not match.')
+
+class LoginForm(forms.Form):
+    username        = forms.CharField(label=(u'Username'))
+    password        = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
