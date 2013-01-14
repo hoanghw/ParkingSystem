@@ -15,6 +15,11 @@ urlpatterns = patterns('',
     (r'^register/$', 'parker.views.ParkerRegistration'),
     (r'^login/$', 'parker.views.LoginRequest'),
     (r'^logout/$', 'parker.views.LogoutRequest'),
-    url(r'^profile/', 'parker.views.Profile')
-
+    url(r'^profile/', 'parker.views.Profile'),
+    url(r'^parking/','home.views.parking_status'),
+    url(r'^gcheckout/','home.views.guest_check_out'),
+    url(r'^ucheckout/','home.views.user_check_out'),
+    url(r'^response/','home.views.response'),
+    url(r'^ucheckin/','home.views.user_check_in'),
+    url(r'^gcheckin/','home.views.guest_check_in')
 )

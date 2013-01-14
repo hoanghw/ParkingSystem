@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43a797dc-ea21-4097-9329-c6b02ab5a150" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parker/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parker/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parker/tests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parker/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/settings.py" afterPath="$PROJECT_DIR$/parkingsystem/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingsystem/urls.py" afterPath="$PROJECT_DIR$/parkingsystem/urls.py" />
     </list>
     <ignored path="parkingsystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,16 +32,16 @@
       <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parker/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-8.454545">
+            <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parker/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="45" selection-start="527" selection-end="527" vertical-scroll-proportion="0.3345725">
+            <state line="21" column="33" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -51,46 +49,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="19" selection-start="226" selection-end="226" vertical-scroll-proportion="-4.375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="26" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="-5.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="6" selection-start="228" selection-end="228" vertical-scroll-proportion="-5.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="20" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.5">
+            <state line="18" column="50" selection-start="767" selection-end="767" vertical-scroll-proportion="0.4787234">
               <folding />
             </state>
           </provider>
@@ -108,7 +70,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parkingsystem/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="33" selection-start="4269" selection-end="4269" vertical-scroll-proportion="0.0">
+            <state line="123" column="11" selection-start="4469" selection-end="4469" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,15 +100,15 @@
         <option value="$PROJECT_DIR$/parkinguser/models.py" />
         <option value="$PROJECT_DIR$/parker/admin.py" />
         <option value="/Library/Python/2.7/site-packages/django/contrib/auth/models.py" />
-        <option value="$PROJECT_DIR$/parkingsystem/settings.py" />
         <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/parker/models.py" />
         <option value="$PROJECT_DIR$/parker/forms.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/parkingsystem/urls.py" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/parker/views.py" />
+        <option value="$PROJECT_DIR$/parkingsystem/settings.py" />
+        <option value="$PROJECT_DIR$/parkingsystem/urls.py" />
       </list>
     </option>
   </component>
@@ -236,7 +198,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="parker" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -248,14 +210,14 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="web.server" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -421,19 +383,22 @@
       <created>1358187280304</created>
       <updated>1358187280304</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added files properly">
+      <created>1358189655474</created>
+      <updated>1358189655474</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.7378277" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15208034" sideWeight="0.7378277" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15423243" sideWeight="0.7378277" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26217228" sideWeight="0.35868007" order="7" side_tool="true" content_ui="tabs" />
@@ -444,6 +409,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -484,7 +450,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile page started and authentication complete." />
+    <option name="LAST_COMMIT_MESSAGE" value="added files properly" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -502,21 +468,15 @@
     <MESSAGE value="Form working but sloppy looking and code" />
     <MESSAGE value="OK! So this is the official version that ensures the user if not logged in, goes to a registration page. If the user is logged in, it goes to a profile page. Which I will not create!" />
     <MESSAGE value="Profile page started and authentication complete." />
+    <MESSAGE value="added files properly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbDummy://db-console:/e97e3a/7e8f1a06-b029-4044-8d53-3783f511d37d/">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/forms/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="301" column="8" selection-start="12467" selection-end="12467" vertical-scroll-proportion="4.7080293">
-          <folding />
-        </state>
+        <state line="301" column="8" selection-start="12467" selection-end="12467" vertical-scroll-proportion="4.7080293" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/admin.py">
@@ -530,7 +490,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file:///Library/Python/2.7/site-packages/django/contrib/auth/models.py">
@@ -542,9 +504,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parkingsystem/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="16" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/models.py">
@@ -556,49 +516,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="-5.625">
+        <state line="9" column="28" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="228" selection-end="228" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parkingsystem/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="33" selection-start="4269" selection-end="4269" vertical-scroll-proportion="0.0">
+        <state line="8" column="6" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.5">
+        <state line="5" column="20" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="-8.454545">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="26" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+        <state line="34" column="106" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="226" selection-end="226" vertical-scroll-proportion="-4.375">
+        <state line="7" column="19" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -612,10 +558,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parker/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="45" selection-start="527" selection-end="527" vertical-scroll-proportion="0.3345725">
+        <state line="21" column="33" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingsystem/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="11" selection-start="4469" selection-end="4469" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingsystem/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="50" selection-start="767" selection-end="767" vertical-scroll-proportion="0.4787234">
+          <folding />
         </state>
       </provider>
     </entry>
