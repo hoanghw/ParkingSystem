@@ -1,5 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render_to_response
 from django.template import loader,Context
 from django.contrib.auth.models import User
 from home.models import UID_Transaction,Pub_Transaction,Location
@@ -14,6 +15,8 @@ def pricing(request):
         template=loader.get_template('home/pricing.html')
         context=Context({'loc':loc,'start':start.ctime(),'end':end.ctime()})
         return HttpResponse(template.render(context))
+    if 'detail' in request.GET:
+        return render_to_response('home/Price_Detail.htm')
 
 def extend_parking(request):
     if request.user.is_authenticated():

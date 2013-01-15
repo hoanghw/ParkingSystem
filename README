@@ -1,4 +1,4 @@
-This README is to document the features that have been implemented and/or will be implemented:
+This README is to document the API' that have been implemented and/or will be implemented:
 
 1) To check the parking status of all garages:
 	/parking/
@@ -12,6 +12,8 @@ This README is to document the features that have been implemented and/or will b
 	/gcheckin/?p=paymenttype&g=garagename&s=spacenumber&h=hours
 6) Calculate cost:
     /pricing/?psi=ParkingSpaceIdentifier&h=hours
+7) Show parking rates information:
+    /pricing/?detail
 
 DISCLAIMER: 
 	1) I have not yet checked for corner cases nor handle conflicting requests!!! 
