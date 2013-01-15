@@ -4,6 +4,17 @@ from django.template import loader,Context
 from django.contrib.auth.models import User
 from home.models import UID_Transaction,Pub_Transaction,Location
 
+def pricing(request):
+    if 'psi' in request.GET and 'h' in request.GET:
+        import datetime
+        start=datetime.datetime.now()
+        interval=datetime.timedelta(hours=int(request.GET['h']))
+        end= start+interval
+        loc=Location.objects.get(id=int(request.GET['psi']))
+        template=loader.get_template('home/pricing.html')
+        context=Context({'loc':loc,'start':start.ctime(),'end':end.ctime()})
+        return HttpResponse(template.render(context))
+
 def extend_parking(request):
     if request.user.is_authenticated():
         template=loader.get_template('home/extend.html')
@@ -68,6 +79,7 @@ def guest_check_in(request):
 
         return HttpResponse(message)
     else: return HttpResponseForbidden()
+
 #/?user=userName
 def user_check_out(request):
     import datetime
@@ -104,7 +116,6 @@ def guest_check_out(request):
     #template=loader.get_template('home/checkout.html')
     #context=Context({'message':message})
     return HttpResponse(message)
-
 
 
 def parking_status(request):

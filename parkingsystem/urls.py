@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^response/','home.views.response'),
     url(r'^ucheckin/','home.views.user_check_in'),
     url(r'^gcheckin/','home.views.guest_check_in'),
+    url(r'^pricing/','home.views.pricing'),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )
