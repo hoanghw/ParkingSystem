@@ -1,8 +1,22 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render_to_response
 from django.template import loader,Context
 from django.contrib.auth.models import User
 from home.models import UID_Transaction,Pub_Transaction,Location
+
+def pricing(request):
+    if 'psi' in request.GET and 'h' in request.GET:
+        import datetime
+        start=datetime.datetime.now()
+        interval=datetime.timedelta(hours=int(request.GET['h']))
+        end= start+interval
+        loc=Location.objects.get(id=int(request.GET['psi']))
+        template=loader.get_template('home/pricing.html')
+        context=Context({'loc':loc,'start':start.ctime(),'end':end.ctime()})
+        return HttpResponse(template.render(context))
+    if 'detail' in request.GET:
+        return render_to_response('home/Price_Detail.htm')
 
 def extend_parking(request):
     if request.user.is_authenticated():
@@ -12,12 +26,6 @@ def extend_parking(request):
         return HttpResponse(template.render(context))
     else:
         return HttpResponseForbidden()
-
-def response(request):
-    import datetime
-    now=datetime.datetime.now()
-    message='You have checked out at '+now.ctime()+'.  The total cost of $6 will be deducted from your account.'
-    return HttpResponse(message)
 
 #/?user=userName&g=garageName&s=spaceNumber&h=hours
 def user_check_in(request):
@@ -68,6 +76,7 @@ def guest_check_in(request):
 
         return HttpResponse(message)
     else: return HttpResponseForbidden()
+
 #/?user=userName
 def user_check_out(request):
     import datetime
@@ -86,7 +95,7 @@ def user_check_out(request):
     message='You have checked out at '+now.ctime()+'.  The total cost of $6 will be deducted from your account.'
     #template=loader.get_template('home/checkout.html')
     #context=Context({'message':message})
-    return  HttpResponse(message)
+    return  HttpResponseRedirect('/profile/')
 
 
 #/?g=garageName&s=spaceNumber
@@ -104,7 +113,6 @@ def guest_check_out(request):
     #template=loader.get_template('home/checkout.html')
     #context=Context({'message':message})
     return HttpResponse(message)
-
 
 
 def parking_status(request):

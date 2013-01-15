@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from parker.forms import RegistrationForm, LoginForm
 from parker.models import Parker
+from home.models import UID_Transaction,Pub_Transaction,Location
 
 def ParkerRegistration(request):
     if request.user.is_authenticated():
@@ -59,7 +60,19 @@ def LogoutRequest(request):
 
 def Profile(request):
     if request.user.is_authenticated():
-        variables = RequestContext(request, {'user': request.user })
+        history = UID_Transaction.objects.filter(user=request.user)
+        parker = Parker.objects.get(user = request.user)
+        import datetime
+        now = datetime.datetime.now()
+
+        isCurrentlyParked = history.filter(end__gte=now)
+
+        if isCurrentlyParked:
+            parking_status = isCurrentlyParked[0]
+        else:
+            parking_status = "You are not currently parked"
+
+        variables = RequestContext(request, {'parking_history': history, 'parker': parker, 'parking_status': parking_status})
         return render_to_response('profile.html', variables)
     else:
         return HttpResponseRedirect('/login/')

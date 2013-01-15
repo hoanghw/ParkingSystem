@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% block content %}
-    Welcome to your profile, {{ user.username }}!
-    <p>Your email is: {{ user.email }}</p>
-    <p>Your userID is: {{ user.userId }}</p>
-{% endblock %}
 <html>
 <head>
     <title>Parking System - Profile</title>
 </head>
 <body>
-
+<div id="pageContainer">
+    {% block content %}
+    Welcome to your profile, {{ parker.user.username }}!
+    <p>Your email is: {{ parker.user.email }}</p>
+    <p>Your userID is: {{ parker.userId }}</p>
+    <p>You parking status is: {{ parking_status }} - {{ parking_status.loc }}</p>
+    <p>Your parking history is: {% for i in parking_history %}</p><p>{{ i }}</p>{% endfor %}
+    <div id="buttons">
+    <p><a href="/ucheckout/">Check Out</a></p>
+    </div>
+    {% endblock %}
+</div>
 </body>
 </html>
