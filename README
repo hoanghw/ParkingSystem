@@ -10,7 +10,8 @@ This README is to document the features that have been implemented and/or will b
 	/ucheckin/?user=username&g=garagename&s=spacenumber&h=hours
 5) Guests check in:
 	/gcheckin/?p=paymenttype&g=garagename&s=spacenumber&h=hours
-
+6) Calculate cost:
+    /pricing/?psi=ParkingSpaceIdentifier&h=hours
 
 DISCLAIMER: 
 	1) I have not yet checked for corner cases nor handle conflicting requests!!! 
