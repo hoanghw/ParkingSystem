@@ -95,8 +95,7 @@ def user_check_out(request):
     message='You have checked out at '+now.ctime()+'.  The total cost of $6 will be deducted from your account.'
     #template=loader.get_template('home/checkout.html')
     #context=Context({'message':message})
-    return  HttpResponseRedirect('/profile/')
-
+    return  HttpResponse(message)
 
 #/?g=garageName&s=spaceNumber
 def guest_check_out(request):

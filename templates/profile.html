@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 <html>
 <head>
-    <title>Parking System - Profile</title>
+    <title>Parking System - Profile</title
 </head>
 <body>
 <div id="pageContainer">
@@ -10,12 +10,26 @@
     Welcome to your profile, {{ parker.user.username }}!
     <p>Your email is: {{ parker.user.email }}</p>
     <p>Your userID is: {{ parker.userId }}</p>
-    <p>You parking status is: {{ parking_status }} - {{ parking_status.loc }}</p>
+    <p id="parking_status">Your parking status is: 
+	{% if parking_status.loc %}
+	{{ parking_status }} - {{ parking_status.loc }}</p>
+	<button type="buttons" onclick="checkout()" id="checkout">Check Out</button>
+	{% else %}
+	NONE</p>
+	{% endif %}
     <p>Your parking history is: {% for i in parking_history %}</p><p>{{ i }}</p>{% endfor %}
-    <div id="buttons">
-    <p><a href="/ucheckout/">Check Out</a></p>
-    </div>
-    {% endblock %}
+    
 </div>
+<script>
+function checkout(){
+  var checkout="http://127.0.0.1:8000/ucheckout/?user="+"{{parker.user.username}}";
+  $.get(checkout,function(data){
+    alert(data);
+    location.reload();
+  });
+  
+}; 
+</script>
+    {% endblock %}
 </body>
 </html>
