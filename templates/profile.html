@@ -1,25 +1,52 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
-<html>
-<head>
-    <title>Parking System - Profile</title
-</head>
-<body>
-<div id="pageContainer">
-    {% block content %}
-    Welcome to your profile, {{ parker.user.username }}!
+{% block content %}
+    <div class="navbar">
+    <div class="navbar-inner">
+    <h1> Welcome to your profile, {{ parker.user.username }}!</h1>
+    </div>
+    </div>
+
+    <div class="row-fluid">
+    <div class="span6">
+    <div class="navbar">
+    <div class="navbar-inner">
+    <div class="brand">Account Information</div>
+    </div></div>
     <p>Your email is: {{ parker.user.email }}</p>
     <p>Your userID is: {{ parker.userId }}</p>
-    <p id="parking_status">Your parking status is: 
+    </div>
+    </div>
+
+
+    <div class="row-fluid" style="margin-top: 20px;">
+    <div class="span6">
+    <div class="navbar">
+    <div class="navbar-inner">
+
+    <div class="brand"  id="parking_status">Your Parking Status</div></div></div>
 	{% if parking_status.loc %}
-	{{ parking_status }} - {{ parking_status.loc }}</p>
-	<button type="buttons" onclick="checkout()" id="checkout">Check Out</button>
+	<p>{{ parking_status }} - {{ parking_status.loc }}</p>
+	<p><button class="btn btn-danger" type="buttons" onclick="checkout()" id="checkout">Check Out</button></p>
 	{% else %}
-	NONE</p>
+	<p>NONE</p>
 	{% endif %}
-    <p>Your parking history is: {% for i in parking_history %}</p><p>{{ i }}</p>{% endfor %}
+    </div></div>
+
+
+    <div class="row-fluid" style="margin-top: 20px;">
+    <div class="span6">
+    <div class="navbar">
+    <div class="navbar-inner">
+
+    <div class="brand"  id="parking_status">Your Parking History</div></div></div>
+    {% if parking_history %}
+    {% for i in parking_history %}<p>{{ i }}</p>{% endfor %}
+    {% else %}
+    <p>NONE</p>
+    {% endif %}
     
-</div>
+    </div>
+    </div>
 <script>
 function checkout(){
   var checkout="http://127.0.0.1:8000/ucheckout/?user="+"{{parker.user.username}}";
@@ -30,6 +57,5 @@ function checkout(){
   
 }; 
 </script>
-    {% endblock %}
-</body>
-</html>
+{% endblock %}
+

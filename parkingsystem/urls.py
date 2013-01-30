@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -12,9 +12,9 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^register/$', 'parker.views.ParkerRegistration'),
-    (r'^login/$', 'parker.views.LoginRequest'),
-    (r'^logout/$', 'parker.views.LogoutRequest'),
+    url(r'^register/$', 'parker.views.ParkerRegistration'),
+    url(r'^login/$', 'parker.views.LoginRequest'),
+    url(r'^logout/$', 'parker.views.LogoutRequest'),
     url(r'^profile/', 'parker.views.Profile'),
     url(r'^parking/','home.views.parking_status'),
     url(r'^gcheckout/','home.views.guest_check_out'),
@@ -22,4 +22,7 @@ urlpatterns = patterns('',
     url(r'^ucheckin/','home.views.user_check_in'),
     url(r'^gcheckin/','home.views.guest_check_in'),
     url(r'^pricing/', 'home.views.pricing'),
+    url(r'^enforcement/','home.views.enforcement'),
 )
+
+urlpatterns += staticfiles_urlpatterns()

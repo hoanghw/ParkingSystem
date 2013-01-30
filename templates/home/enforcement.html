@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Law Enforcers' View</title>
+    <style>
+td
+{
+vertical-align:top;
+width: 460px;
+}
+    </style>
+</head>
+<body>
+<h1>Law Enforcers' View</h1>
+<script language="javascript">
+    <!--
+    var today = new Date();
+    var hour=today.getHours();
+    var minute=today.getMinutes();
+    minute=minute+"";
+    if (minute.length == 1)
+	{minute = "0"+minute;}
+    document.write("<br>As of: ",hour,":",minute);
+    document.write("<br>",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
+    //-->
+</script>
+<table>
+<tr>
+<td><h4>List of Occupied Spaces</h4></td>
+<td><h4>List of Available Spaces</h4></td>
+</tr>
+<tr>
+<td><div>
+{% if LocOccupied|length == 0 %}
+    <p>NONE</p>
+{% else %}
+{% for i in LocOccupied %}
+    <p>{{ i }}</p>
+{% endfor %}
+{% endif %}
+</div></td>
+<td><div>
+{% if LocAvailable|length == 0 %}
+    <p>NONE</p>
+{% else %}
+{% for i in LocAvailable %}
+    <p>{{ i }}</p>
+{% endfor %}
+{% endif %}
+</div></td>
+</tr>   
+</body>
+</html>

@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/parkingsystem.css" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css"/>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
     {% block extrahead %}{% endblock %}
     <title>Parking System Interface</title>
 </head>
 <body>
-<div id="pageContainer">
-    <div id="nav_top_right">
-        {% if user.is_authenticated %}<p><a href="/logout/">Logout</a></p>
-        {% else %}<p><a href="/login/">Login</a></p>
-        {% endif %}
-    </div>
-    {% block content %}
-    {% endblock %}
-</div>
+{% block content %}
+{% endblock %}
 </body>
 </html>

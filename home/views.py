@@ -119,35 +119,66 @@ def parking_status(request):
     now= datetime.datetime.now()
     from home.models import Location, UID_Transaction, Pub_Transaction
 
-    if request.user.is_authenticated and request.user.is_staff:
-        locs=Location.objects.all()
+    if 'g' in request.GET and request.GET['g']:
+
+        locs=Location.objects.filter(garage=request.GET['g'])
         locs_status=[]
+        available=0
+        occupied=0
         #Should implement better queryset if have enough time
         for i in locs:
             is_in_UID=UID_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
             is_in_Pub=Pub_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
             if is_in_UID:
                 locs_status.append([i,is_in_UID[0]])
+                occupied+=1
             elif is_in_Pub:
                 locs_status.append([i,is_in_Pub[0]])
+                occupied+=1
             else:
-                locs_status.append([i,''])
+                locs_status.append([i,'Available'])
+                available+=1
+        percentFull='{0:.0%}'.format(float(occupied)/(occupied+available))
         template= loader.get_template('home/parkingstatus.html')
-        context=Context({'LocStatus':locs_status})
+        context=Context({'LocStatus':locs_status,'Garage':request.GET['g'],'PercentFull':percentFull})
         return HttpResponse(template.render(context))
     else:
+
         locs=Location.objects.all()
         locs_status=[]
+         
         #Should implement better queryset if have enough time
         for i in locs:
             is_in_UID=UID_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
             is_in_Pub=Pub_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
             if is_in_UID:
-                locs_status.append([i,is_in_UID[0]])
+                locs_status.append([i,is_in_UID[0]]) 
             elif is_in_Pub:
-                locs_status.append([i,is_in_Pub[0]])
+	        locs_status.append([i,is_in_Pub[0]])             
             else:
                 locs_status.append([i,'Available'])
         template= loader.get_template('home/parkingstatus.html')
-        context=Context({'LocStatus':locs_status})
+        context=Context({'LocStatus':locs_status,'Garage':''})
         return HttpResponse(template.render(context))
+def enforcement(request):
+    import datetime
+    now= datetime.datetime.now()
+    from home.models import Location, UID_Transaction, Pub_Transaction
+    locs=Location.objects.all()
+    locs_occupied=[]
+    locs_available=[]
+    #Should implement better queryset if have enough time
+    for i in locs:
+       	is_in_UID=UID_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
+       	is_in_Pub=Pub_Transaction.objects.filter(end__gte=now).filter(loc=i.id)
+       	if is_in_UID:
+        	locs_occupied.append([i])
+	elif is_in_Pub:
+        	locs_occupied.append([i])
+	else:
+		locs_available.append([i])
+    occupancy_stat=len(locs_occupied)/(len(locs_occupied)+len(locs_available))*100
+    template= loader.get_template('home/enforcement.html')
+    context=Context({'LocOccupied':locs_occupied,'LocAvailable':locs_available,'OccupancyStatus':occupancy_stat})
+    return HttpResponse(template.render(context))
+	    

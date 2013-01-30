@@ -4,15 +4,24 @@
     <title>Parking Status</title>
 </head>
 <body>
-<h1>This is Parking Status</h1>
+{% if Garage %}
+<h1>Parking Status of Garage {{Garage}} </h1>
+<h4>% Full: {{PercentFull}}</h4>
+{% else %}
+<h1>Parking Status</h1>
+{% endif %}
 <script language="javascript">
     <!--
-    today = new Date();
-    document.write("<br>As of: ",today.getHours(),":",today.getMinutes());
+    var today = new Date();
+    var hour=today.getHours();
+    var minute=today.getMinutes();
+    minute=minute+"";
+    if (minute.length == 1)
+	{minute = "0"+minute;}
+    document.write("<br>As of: ",hour,":",minute);
     document.write("<br>",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
     //-->
 </script>
-
 {% for i in LocStatus %}
     <p>{{ i }}</p>
 {% endfor %}
