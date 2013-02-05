@@ -40,7 +40,7 @@
 
     <div class="brand"  id="parking_status">Your Parking History</div></div></div>
     {% if parking_history %}
-    {% for i in parking_history %}<p>{{ i }}</p>{% endfor %}
+    {% for i in parking_history %}<p>{{ i }} - {{i.loc}}</p>{% endfor %}
     {% else %}
     <p>NONE</p>
     {% endif %}
