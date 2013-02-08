@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block extrahead %}
+<link type="text/css" rel="stylesheet"  href="{{STATIC_URL}}css/bootstrap-timepicker.min.css" />
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-timepicker.min.js"></script>
+{% endblock %}
 {% block content %}
     <div class="navbar">
     <div class="navbar-inner">
@@ -28,7 +32,22 @@
 	<p>{{ parking_status }} - {{ parking_status.loc }}</p>
 	<p><button class="btn btn-danger" type="buttons" onclick="checkout()" id="checkout">Check Out</button></p>
 	{% else %}
-	<p>NONE</p>
+	<p>You're not currently parking. Please follow these steps to check in:</p>
+        <div> 	<select id="garage">
+		<option value="0">Please Select Garage...</option>
+		<option value="Hearst">Hearst</option>
+		<option value="RSF">RSF</option>
+		</select>
+		<input id="space" type="text" placeholder="Please Enter Space Number"/>
+	</div>
+
+<div>How long do you want to park?<div class="input-append bootstrap-timepicker"><input id="timepicker1" type="text" class="input-small"><span class="add-on"><i class="icon-time"></i></span>
+</div></div>
+
+	<br/>
+	<div><strong id="cost">Total Cost: $3</strong></div>
+	<div><button class="btn btn-primary" type="buttons" onclick="checkin()" id="checkin">Check In</button></div>
+	
 	{% endif %}
     </div></div>
 
@@ -42,7 +61,7 @@
     {% if parking_history %}
     {% for i in parking_history %}<p>{{ i }} - {{i.loc}}</p>{% endfor %}
     {% else %}
-    <p>NONE</p>
+    <p>You don't have any parking history.</p>
     {% endif %}
     
     </div>
@@ -52,10 +71,38 @@ function checkout(){
   var checkout="http://127.0.0.1:8000/ucheckout/?user="+"{{parker.user.username}}";
   $.get(checkout,function(data){
     alert(data);
-    location.reload();
+    window.location="../profile/";
   });
   
+};
+function checkin(){
+  var garage= $("#garage").val();
+  var space= $("#space").val();
+  var hour=$("#timepicker1").val().split(":")[0]; 
+  var checkin="http://127.0.0.1:8000/ucheckin/?user="+"{{parker.user.username}}"+"&g="+garage+"&s="+space+"&h="+hour;
+  
+  $.get(checkin,function(data){
+    alert(data);
+    location.reload();
+  });
 }; 
+</script>
+<script type="text/javascript">
+$('#timepicker1').timepicker({
+showSeconds: false,
+defaultTime: '1:00',
+minuteStep: 15,
+showMeridian: false,
+});
+$('#timepicker1').timepicker().on('changeTime.timepicker', function(e) {
+    //console.log('The time is ' + e.time.value);
+    //console.log('The hour is ' + e.time.hour);
+    //console.log('The minute is ' + e.time.minute);
+    //console.log('The meridian is ' + e.time.meridian);
+    var hour=e.time.value.split(":")[0];
+    $("#cost").html("Total cost: $"+parseInt(hour)*3);
+});
+
 </script>
 {% endblock %}
 
