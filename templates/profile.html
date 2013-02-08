@@ -68,7 +68,7 @@
     </div>
 <script>
 function checkout(){
-  var checkout="http://127.0.0.1:8000/ucheckout/?user="+"{{parker.user.username}}";
+  var checkout="../ucheckout/?user="+"{{parker.user.username}}";
   $.get(checkout,function(data){
     alert(data);
     window.location="../profile/";
@@ -79,7 +79,7 @@ function checkin(){
   var garage= $("#garage").val();
   var space= $("#space").val();
   var hour=$("#timepicker1").val().split(":")[0]; 
-  var checkin="http://127.0.0.1:8000/ucheckin/?user="+"{{parker.user.username}}"+"&g="+garage+"&s="+space+"&h="+hour;
+  var checkin="../ucheckin/?user="+"{{parker.user.username}}"+"&g="+garage+"&s="+space+"&h="+hour;
   
   $.get(checkin,function(data){
     alert(data);
