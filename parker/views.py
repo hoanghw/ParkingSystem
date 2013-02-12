@@ -56,7 +56,7 @@ def LoginRequest(request):
 
 def LogoutRequest(request):
     logout(request)
-    return HttpResponseRedirect('/register/')
+    return HttpResponseRedirect('/login/')
 
 def Profile(request):
     if request.user.is_authenticated():

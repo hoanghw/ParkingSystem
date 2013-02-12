@@ -1,7 +1,47 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
+{% block extrahead %}
+<style type="text/css">
+body{
+position: relative;
+padding-top:40px;
+padding-bottom:40px;
+background-color: #f5f5f5;
+}
+
+.form-signin {
+        max-width: 350px;
+        padding: 19px 29px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+.form-signin-heading{
+	margin-bottom: 10px;
+	font-family: 'Telex',sans-serif;
+	color: rgb(49,126,172);
+}
+.form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px 9px 7px;
+      }
+#id_username, #id_password{
+	width:90%;
+}
+</style>
+{% endblock %}
 {% block content %}
-    <form action="" method="POST">
+
+    <form class="form-signin" action="" method="POST">
+	<h2 class="form-signin-heading">Please sign in</h2>
         {% csrf_token %}
         {% if form.errors %}
             <p>Please correct the following fields:</p>
@@ -17,6 +57,9 @@
             <p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label></p>
             <p>{{ form.password }}</p>
         </div>
-        <p><input type="submit" alt="login" value="Log In"/></p>
+	<div class="row-fluid">
+        <input class="btn btn-large btn-primary span4" type="submit" alt="login" value="Log In"/>
+	<input class="btn btn-large span7" type="button" onclick="window.location='../register/'" value="Create New Account"/>
+	</div>
     </form>
 {% endblock %}

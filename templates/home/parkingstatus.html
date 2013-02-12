@@ -1,15 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Parking Status</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style type="text/css">
+.garage{
+border: 3px solid black;
+width:60%;
+table-layout: fixed;
+}
+.garage  td{
+text-align:center;
+font-size:24px;
+height:100px;
+}
+.available{
+background-color:green;
+color:yellow;
+}
+.parked{
+background-color:pink;
+color:red;
+}
+</style>
+{% endblock %}
+{% block content %}
 {% if Garage %}
-<h1>Parking Status of Garage {{Garage}} </h1>
-<h4>% Full: {{PercentFull}}</h4>
+<div class="navbar">
+<div class="navbar-inner">
+<div class="brand"><h1>Occupancy Status of Garage {{Garage}} </h1></div>
+</div></div>
+<div>
+<h1 class="full" style="margin:10px 10px;">% Full: {{PercentFull}}</h1>
+</div>
 {% else %}
 <h1>Parking Status</h1>
 {% endif %}
+<div id="time" style="margin:10px 10px;">
 <script language="javascript">
     <!--
     var today = new Date();
@@ -19,12 +44,46 @@
     if (minute.length == 1)
 	{minute = "0"+minute;}
     document.write("<br>As of: ",hour,":",minute);
-    document.write("<br>",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
+    document.write(" ",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
     //-->
 </script>
+</div>
+
+<div style="margin:10px 10px;">
 {% for i in LocStatus %}
     <p>{{ i }}</p>
 {% endfor %}
+</div>
 
-</body>
-</html>
+<div class="navbar" style="margin-top:20px;">
+<div class="navbar-inner">
+<div class="brand"><h1> Real Time Visualization </h1></div>
+</div></div>
+
+<div style="margin: 10px 10px;">
+<table class="table table-bordered garage">
+<tr>
+	{% for i in LocStatus %}
+	<td id="{{forloop.counter0}}" class="available">#{{forloop.counter}}</td>
+	{% endfor %}
+</tr>
+</table>
+</div>
+<script>
+$(document).ready(function(){
+	var LocStatus=[];
+	{% for i in LocStatus %}
+    		LocStatus.push("{{i.1}}");
+	{% endfor %}
+    	for (var i=0; i<LocStatus.length; i++){
+		if (LocStatus[i] == "Available"){
+		var s='#'+i;
+		$(s).attr('class','available');
+		}else {
+		var s='#'+i;
+		$(s).attr('class','parked');
+		}	
+	}
+})
+</script>
+{% endblock %}

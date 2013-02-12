@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Law Enforcers' View</title>
-    <style>
+{% extends "base.html" %}
+{% block extrahead %}
+   <style>
 td
 {
 vertical-align:top;
 width: 460px;
 }
     </style>
-</head>
-<body>
-<h1>Law Enforcers' View</h1>
+{% endblock %}
+{% block content %}
+<h1>Enforcers' View</h1>
 <script language="javascript">
     <!--
     var today = new Date();
@@ -21,7 +19,7 @@ width: 460px;
     if (minute.length == 1)
 	{minute = "0"+minute;}
     document.write("<br>As of: ",hour,":",minute);
-    document.write("<br>",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
+    document.write(" ",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
     //-->
 </script>
 <table>
@@ -49,5 +47,4 @@ width: 460px;
 {% endif %}
 </div></td>
 </tr>   
-</body>
-</html>
+{% endblock %}

@@ -122,7 +122,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'home',
     'parker',
-    'django.contrib.staticfiles',
 )
 
 # A sample logging configuration. The only tangible logging

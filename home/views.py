@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render_to_response
-from django.template import loader,Context
+from django.template import loader,Context,RequestContext
 from django.contrib.auth.models import User
 from home.models import UID_Transaction,Pub_Transaction,Location
 
@@ -12,11 +12,13 @@ def pricing(request):
         interval=datetime.timedelta(hours=int(request.GET['h']))
         end= start+interval
         loc=Location.objects.get(id=int(request.GET['psi']))
-        template=loader.get_template('home/pricing.html')
-        context=Context({'loc':loc,'start':start.ctime(),'end':end.ctime()})
-        return HttpResponse(template.render(context))
+        #template=loader.get_template('home/pricing.html')
+        #context=Context({'loc':loc,'start':start.ctime(),'end':end.ctime()})
+        #return HttpResponse(template.render(context))
+	context={'loc':loc,'start':start.ctime(),'end':end.ctime()}
+	return render_to_response('home/pricing.html',context,RequestContext(request))
     if 'detail' in request.GET:
-        return render_to_response('home/Price_Detail.htm')
+        return render_to_response('home/Price_Detail.htm',RequestContext(request))
 
 def extend_parking(request):
     if request.user.is_authenticated():
@@ -48,7 +50,7 @@ def user_check_in(request):
             end=now+interval)
         t.save()
 
-        message="Parking info: "+unicode(l)+ " "+unicode(t)
+        message="Thanks for parking at "+unicode(l)+ " "+unicode(t)
         return HttpResponse(message)
     else: return HttpResponseForbidden()
 
@@ -72,7 +74,7 @@ def guest_check_in(request):
             end=now+interval)
         t.save()
 
-        message="Parking info: "+unicode(l)+ " "+unicode(t)
+        message="Thanks for parking at  "+unicode(l)+ " "+unicode(t)
 
         return HttpResponse(message)
     else: return HttpResponseForbidden()
@@ -139,9 +141,8 @@ def parking_status(request):
                 locs_status.append([i,'Available'])
                 available+=1
         percentFull='{0:.0%}'.format(float(occupied)/(occupied+available))
-        template= loader.get_template('home/parkingstatus.html')
-        context=Context({'LocStatus':locs_status,'Garage':request.GET['g'],'PercentFull':percentFull})
-        return HttpResponse(template.render(context))
+        context={'LocStatus':locs_status,'Garage':request.GET['g'],'PercentFull':percentFull}
+        return render_to_response('home/parkingstatus.html',context,RequestContext(request))
     else:
 
         locs=Location.objects.all()
@@ -157,9 +158,12 @@ def parking_status(request):
 	        locs_status.append([i,is_in_Pub[0]])             
             else:
                 locs_status.append([i,'Available'])
-        template= loader.get_template('home/parkingstatus.html')
-        context=Context({'LocStatus':locs_status,'Garage':''})
-        return HttpResponse(template.render(context))
+        #template= loader.get_template('home/parkingstatus.html')
+        #context=Context({'LocStatus':locs_status,'Garage':''})
+        #return HttpResponse(template.render(context))
+	context={'LocStatus':locs_status,'Garage':''}
+	return render_to_response('home/parkingstatus.html',context,RequestContext(request))
+
 def enforcement(request):
     import datetime
     now= datetime.datetime.now()
@@ -178,7 +182,5 @@ def enforcement(request):
 	else:
 		locs_available.append([i])
     occupancy_stat=len(locs_occupied)/(len(locs_occupied)+len(locs_available))*100
-    template= loader.get_template('home/enforcement.html')
-    context=Context({'LocOccupied':locs_occupied,'LocAvailable':locs_available,'OccupancyStatus':occupancy_stat})
-    return HttpResponse(template.render(context))
-	    
+    context={'LocOccupied':locs_occupied,'LocAvailable':locs_available,'OccupancyStatus':occupancy_stat}
+    return render_to_response('home/enforcement.html',context,RequestContext(request))    
