@@ -103,9 +103,11 @@ $('#timepicker1').timepicker().on('changeTime.timepicker', function(e) {
     //console.log('The minute is ' + e.time.minute);
     //console.log('The meridian is ' + e.time.meridian);
     var hour=e.time.value.split(":")[0];
-    $("#cost").html("Total cost: $"+parseInt(hour)*3);
+    $('#cost').html("Total Cost: $"+parseInt(hour,10)*3);
 });
-
+window.onload=function() {
+$('#timepicker1').val("01:00");
+}
 </script>
 {% endblock %}
 
