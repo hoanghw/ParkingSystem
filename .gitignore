@@ -2,4 +2,4 @@
 *.pyc
 *.pyo
 .idea/
-
+settings.py
