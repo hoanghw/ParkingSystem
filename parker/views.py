@@ -60,19 +60,26 @@ def LogoutRequest(request):
 
 def Profile(request):
     if request.user.is_authenticated():
-        history = UID_Transaction.objects.filter(user=request.user)
-        parker = Parker.objects.get(user = request.user)
         import datetime
         now = datetime.datetime.now()
 
-        isCurrentlyParked = history.filter(end__gte=now)
-
+	history = UID_Transaction.objects.filter(user=request.user).filter(end__lte=now)
+	current=UID_Transaction.objects.filter(user=request.user).filter(end__gte=now)
+        parker = Parker.objects.get(user = request.user)
+        
+	isCurrentlyParked = current.filter(rate="REGULAR")
         if isCurrentlyParked:
             parking_status = isCurrentlyParked[0]
         else:
             parking_status = "You are not currently parked"
 
-        variables = RequestContext(request, {'parking_history': history, 'parker': parker, 'parking_status': parking_status})
+	isPremParking=current.filter(rate="PREMIUM")
+	if isPremParking:
+	    prem_status=isPremParking[0]
+	else:
+	    prem_status ="" 
+
+        variables = RequestContext(request, {'parking_history': history, 'parker': parker, 'parking_status': parking_status, 'prem_status':prem_status})
         return render_to_response('profile.html', variables)
     else:
         return HttpResponseRedirect('/login/')

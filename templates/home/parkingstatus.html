@@ -20,6 +20,10 @@ color:yellow;
 background-color:pink;
 color:red;
 }
+.premium{
+background-color:yellow;
+color:red;
+}
 </style>
 {% endblock %}
 {% block content %}
@@ -76,11 +80,13 @@ $(document).ready(function(){
     		LocStatus.push("{{i.1}}");
 	{% endfor %}
     	for (var i=0; i<LocStatus.length; i++){
+		var s='#'+i;
 		if (LocStatus[i] == "Available"){
-		var s='#'+i;
 		$(s).attr('class','available');
+		}else if (LocStatus[i].indexOf("eserved")!=-1){
+		$(s).attr('class','premium');
+		$(s).append("<br/>"+LocStatus[i].replace("erved","."));
 		}else {
-		var s='#'+i;
 		$(s).attr('class','parked');
 		}	
 	}

@@ -28,5 +28,5 @@ for i in range(1,3):
 
 for i in range(3,7):
    start_time=datetime.datetime.now()
-   u=UID_Transaction.objects.create(user=User.objects.get(id=i-2),date=datetime.date.today(),start=start_time,end=start_time+interval,loc=Location.objects.get(id=i))
+   u=UID_Transaction.objects.create(user=User.objects.get(id=i-2),date=datetime.date.today(),start=start_time,end=start_time+interval,loc=Location.objects.get(id=i),rate='REGULAR')
    u.save()

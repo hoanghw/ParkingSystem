@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     # url(r'^parkingsystem/', include('parkingsystem.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^$','parker.views.Profile'),
+    url(r'^$','parker.views.LoginRequest'),
+    url(r'^checkticket/$','home.views.check_ticket'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^register/$', 'parker.views.ParkerRegistration'),

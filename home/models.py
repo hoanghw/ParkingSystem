@@ -25,7 +25,7 @@ class UID_Transaction(models.Model):
     start=models.DateTimeField()
     end=models.DateTimeField()
     loc=models.ForeignKey(Location)
+    rate_choices=(('PREMIUM','Premium'),('REGULAR','Regular'),)
+    rate=models.CharField(max_length=7,choices=rate_choices,default='REGULAR')
     def __unicode__(self):
         return self.user.username+" - Start:"+self.start.ctime()+" - End:"+self.end.ctime()
-
-

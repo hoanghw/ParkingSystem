@@ -6,16 +6,16 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
-
+ADMIN_PASSWORD='sha1$4e987$afbcf42e21bd417fb71db8c66b321e9fc33051de'
 MANAGERS = ADMINS
-
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend','home.authenticate.SettingsBackend',)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'parkdb',                      # Or path to database file if using sqlite3.
         'USER': 'parker',                      # Not used with sqlite3.
         'PASSWORD': 'parker',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'home',
     'parker',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -34,7 +34,10 @@ background-color: #f5f5f5;
         padding: 7px 9px 9px 7px;
       }
 #id_username, #id_password{
-	width:90%;
+	width:95%;
+}
+.row-fluid{
+text-align:center;
 }
 </style>
 {% endblock %}
@@ -60,6 +63,9 @@ background-color: #f5f5f5;
 	<div class="row-fluid">
         <input class="btn btn-large btn-primary span4" type="submit" alt="login" value="Log In"/>
 	<input class="btn btn-large span7" type="button" onclick="window.location='../register/'" value="Create New Account"/>
+	</div>
+	<div class="row-fluid" style="margin-top:12px;">
+	<input class="btn btn-primary btn-large span11" type="button" value="Use CalNet" onclick="window.location='../checkticket/'"/>
 	</div>
     </form>
 {% endblock %}
