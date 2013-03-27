@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Location(models.Model):
     garage=models.CharField(max_length=30)
     space=models.IntegerField(default=0)
+
     def __unicode__(self):
         return self.garage+" #"+unicode(self.space)
 
@@ -15,9 +16,9 @@ class Pub_Transaction(models.Model):
     start=models.DateTimeField()
     end=models.DateTimeField()
     loc=models.ForeignKey(Location)
+
     def __unicode__(self):
         return self.method+" - Start:"+self.start.ctime()+" - End:"+self.end.ctime()
-
 
 class UID_Transaction(models.Model):
     user=models.ForeignKey(User)
@@ -27,5 +28,6 @@ class UID_Transaction(models.Model):
     loc=models.ForeignKey(Location)
     rate_choices=(('PREMIUM','Premium'),('REGULAR','Regular'),)
     rate=models.CharField(max_length=7,choices=rate_choices,default='REGULAR')
+
     def __unicode__(self):
         return self.user.username+" - Start:"+self.start.ctime()+" - End:"+self.end.ctime()

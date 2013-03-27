@@ -15,7 +15,7 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "parkingsystem.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "parkingsystem.local_settings")
 
 SITE_DIR = '/opt/django-trunk/parking_system'
 import site

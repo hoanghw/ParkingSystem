@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     url(r'^gcheckin/','home.views.guest_check_in'),
     url(r'^pricing/', 'home.views.pricing'),
     url(r'^enforcement/','home.views.enforcement'),
+    url(r'^getmessages/','qt.views.get_messages')
 )
 
 urlpatterns += staticfiles_urlpatterns()

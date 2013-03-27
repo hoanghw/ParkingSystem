@@ -220,6 +220,7 @@ def enforcement(request):
     locs=Location.objects.all()
     locs_occupied=[]
     locs_available=[]
+    lp=[]
     #Should implement better queryset if have enough time
     for i in locs:
        	is_in_UID=UID_Transaction.objects.filter(end__gte=now).filter(start__lte=now).filter(loc=i.id)
@@ -231,7 +232,8 @@ def enforcement(request):
 	else:
 		locs_available.append([i])
     occupancy_stat=len(locs_occupied)/(len(locs_occupied)+len(locs_available))*100
-    context={'LocOccupied':locs_occupied,'LocAvailable':locs_available,'OccupancyStatus':occupancy_stat}
+
+    context={'LocOccupied':locs_occupied,'LocAvailable':locs_available,'OccupancyStatus':occupancy_stat, 'LP':lp}
     return render_to_response('home/enforcement.html',context,RequestContext(request))    
 
 from django.contrib.auth import authenticate,login
