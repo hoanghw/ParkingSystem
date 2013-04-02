@@ -3,8 +3,10 @@ import os,csv, inspect
 
 allMessages = Qt_Message.objects.all()
 for i in allMessages:
-    i.line1="No Update"
-    i.line2="No Update"
+    i.line1=""
+    i.line2=""
+    i.line3=""
+    i.line4=""
     i.save()
 
 currentFrame =inspect.getfile(inspect.currentframe())
@@ -23,8 +25,10 @@ for i in listDir:
                     if m:
                         m[0].line1 = row[1]
                         m[0].line2 = row[2]
+                        m[0].line3 = row[3]
+                        m[0].line4 = row[4]
                         m[0].save()
                     else:
-                        newDevice = Qt_Message.objects.create(deviceId=row[0],line1=row[1],line2=row[2])
+                        newDevice = Qt_Message.objects.create(deviceId=row[0],line1=row[1],line2=row[2],line3=row[3],line4=row[4])
                         newDevice.save()
 

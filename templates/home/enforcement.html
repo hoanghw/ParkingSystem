@@ -10,8 +10,9 @@ width: 460px;
 {% endblock %}
 {% block content %}
 <h1>Enforcers' View</h1>
+
 <script language="javascript">
-    <!--
+   <!--
     var today = new Date();
     var hour=today.getHours();
     var minute=today.getMinutes();
@@ -22,7 +23,12 @@ width: 460px;
     document.write(" ",today.getMonth()+1,"/",today.getDate(),"/",today.getFullYear());
     //-->
 </script>
-<table>
+<br><br>
+
+<div class="well">
+<input id="lp" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="2"/>
+</div> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <table>
 <tr>
 <td><h4>List of Occupied Spaces</h4></td>
 <td><h4>List of Available Spaces</h4></td>
@@ -47,4 +53,31 @@ width: 460px;
 {% endif %}
 </div></td>
 </tr>   
+</table>
+
+<script>
+    var source = ["7LAX678", "6SFO123", "4OAK456"];
+    $(document).ready(function() {
+        $('#lp').typeahead({
+            source: function(query, process){
+                var results=[];
+                for (i in source)
+                {
+                    if (source[i].toUpperCase().indexOf(query.toUpperCase()) == 0)
+                        results.push(source[i]);
+                }
+                if (results.length == 0)
+                    results.push("not found");
+                return results;
+            },
+
+            matcher: function(item) {
+                return true;
+            },
+            highlighter: function(item){
+                return item;
+            }
+        });
+    });
+</script>
 {% endblock %}

@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'home',
     'parker',
     'south',
+    'qt',
 )
 
 # A sample logging configuration. The only tangible logging
