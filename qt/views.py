@@ -1,7 +1,7 @@
 from qt.models import Qt_Message
 import simplejson
 from django.http import HttpResponse,HttpResponseForbidden
-from parkingsystem.settings import STATICFILES_DIRS as STATIC_DIRS
+from parkingsystem.local_settings import STATICFILES_DIRS as STATIC_DIRS
 
 def get_messages(request):
     if 'id' in request.GET and request.GET['id']:
@@ -12,12 +12,21 @@ def get_messages(request):
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
     else: return HttpResponseForbidden
 
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt #testing purposes
 def get_time_trigger(request):
     if 'id' in request.GET and request.GET['id']:
         message = {}
         with open(STATIC_DIRS[0]+'file/timetrigger.txt','r') as f:
             for l in f.readlines():
-                t = l.split(" ")
+                t = l.split(":")
                 message[t[0].strip()]=t[1].strip()
-
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
+    if request.method=='POST' and request.POST['data']:
+        message = ''
+        lines = request.POST['data'].split(',')
+        with open(STATIC_DIRS[0]+'file/timetrigger.txt','w') as f:
+           for l in lines:
+               f.write(l.strip()+'\n')
+               message+=l.strip()+'\n'
+        return HttpResponse(message)
