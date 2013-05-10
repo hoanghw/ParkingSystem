@@ -10,3 +10,12 @@ def get_messages(request):
         else: message = {'ERROR': 'This device has not been registered'}
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
     else: return HttpResponseForbidden
+
+def get_time_trigger(request):
+    if 'id' in request.GET and request.GET['id']:
+        times = []
+        with open('timetrigger.txt','r') as f:
+            times = f.read()
+
+        message = {'time1': times[0], 'time2': times[1]}
+        return HttpResponse(simplejson.dumps(message), mimetype='application/json')

@@ -27,7 +27,8 @@ urlpatterns = patterns('',
     url(r'^enforcement/','home.views.enforcement'),
     url(r'^getmessages/','qt.views.get_messages'),
     url(r'^trigger/','trigger.views.index'),
-    url(r'^check/','home.returnlp.check')
+    url(r'^check/','home.returnlp.check'),
+    url(r'^gettime/','qt.views.get_time_trigger'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
