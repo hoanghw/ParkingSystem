@@ -29,6 +29,9 @@ urlpatterns = patterns('',
     url(r'^trigger/','trigger.views.index'),
     url(r'^check/','home.returnlp.check'),
     url(r'^gettime/','qt.views.get_time_trigger'),
+    url(r'^settime/','qt.views.set_time_trigger'),
+    url(r'^setforms/','qt.views.set_available_forms'),
+    url(r'^getforms/','qt.views.get_available_forms')
 )
 
 urlpatterns += staticfiles_urlpatterns()

@@ -12,8 +12,7 @@ def get_messages(request):
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
     else: return HttpResponseForbidden
 
-from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt #testing purposes
+
 def get_time_trigger(request):
     if 'id' in request.GET and request.GET['id']:
         message = {}
@@ -22,6 +21,10 @@ def get_time_trigger(request):
                 t = l.split(":")
                 message[t[0].strip()]=t[1].strip()
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
+
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt #without form
+def set_time_trigger(request):
     if request.method=='POST' and request.POST['data']:
         message = ''
         lines = request.POST['data'].split(',')
@@ -29,4 +32,23 @@ def get_time_trigger(request):
            for l in lines:
                f.write(l.strip()+'\n')
                message+=l.strip()+'\n'
+        return HttpResponse(message)
+
+def get_available_forms(request):
+    if 'id' in request.GET and request.GET['id']:
+        message = {}
+        with open(STATIC_DIRS[0]+'file/forms.txt','r') as f:
+            for i,l in enumerate(f.readlines()):
+                message['form_'+str(i)]=l.strip()
+        return HttpResponse(simplejson.dumps(message), mimetype='application/json')
+
+@csrf_exempt #without form
+def set_available_forms(request):
+    if request.method=='POST' and request.POST['data']:
+        message = ''
+        lines = request.POST['data'].split(',')
+        with open(STATIC_DIRS[0]+'file/forms.txt','w') as f:
+            for l in lines:
+                f.write(l.strip()+'\n')
+                message+=l.strip()+'\n'
         return HttpResponse(message)
