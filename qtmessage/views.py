@@ -9,7 +9,7 @@ def get_time_trigger(request):
         message = {}
         user = Message.objects.filter(user__username=request.GET['u'])
         if user:
-            triggers = user[0].timetrigger.split('\n')
+            triggers = user[0].timetrigger.split(',')
             for t in triggers:
                 if t:
                     j = t.split(":")
@@ -20,17 +20,13 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt #without form
 def set_time_trigger(request):
     if request.method=='POST' and request.POST['data']:
-        message = ''
-        user = Message.objects.filter(user__username=request.POST['user'])
-        if user:
-            lines = request.POST['data'].split(',')
-            for l in lines:
-                message+=l.strip()+'\n'
-            u = user[0]
+        message = request.POST['data']
+        users = Message.objects.all()
+        for u in users:
             u.timetrigger = message
             u.save()
 
-        message = request.POST['user'] + ' ' + message
+        message = message
         return HttpResponse(message)
 
 def check_user(request):
