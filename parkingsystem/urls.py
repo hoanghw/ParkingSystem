@@ -28,9 +28,11 @@ urlpatterns = patterns('',
     url(r'^getmessages/','qt.views.get_messages'),
     url(r'^trigger/','trigger.views.index'),
     url(r'^check/','home.returnlp.check'),
-    url(r'^gettime/','qtmessage.views.get_time_trigger'),
-    url(r'^settime/','qtmessage.views.set_time_trigger'),
+    url(r'^gettime/','qt.views.get_time_trigger'),
+    url(r'^settime/','qt.views.set_time_trigger'),
     url(r'^checkuser/','qtmessage.views.check_user'),
+    url(r'^gettrigger/','qtmessage.views.get_time_trigger'),
+    url(r'^settrigger/','qtmessage.views.set_time_trigger'),
     url(r'^setforms/','qt.views.set_available_forms'),
     url(r'^getforms/','qt.views.get_available_forms')
 )
