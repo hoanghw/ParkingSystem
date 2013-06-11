@@ -2,7 +2,34 @@ from django.contrib.auth.models import User
 from qtmessage.models import Message
 from django.http import HttpResponse
 import simplejson
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
+@csrf_exempt
+def set_loc_trigger(request):
+    if request.method=='POST':
+        json = simplejson.loads(request.body)
+        if 'group' in json:
+            users = Message.objects.filter(group=json['group'])
+            for u in users:
+                u.loctrigger = simplejson.dumps(json['data'])
+                u.save()
+            message = json['group']+' '+simplejson.dumps(json['data'])
+        else:
+            users = Message.objects.all()
+            for u in users:
+                u.loctrigger = simplejson.dumps(json['data'])
+                u.save()
+            message = 'All Groups '+simplejson.dumps(json['data'])
+        return HttpResponse(message)
+
+def get_loc_trigger(request):
+    if 'u' in request.GET and request.GET['u']:
+        message = {}
+        user = Message.objects.filter(user__username=request.GET['u'])
+        if user and user[0].loctrigger:
+            message = simplejson.loads(user[0].loctrigger)
+        return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
 def get_time_trigger(request):
     if 'u' in request.GET and request.GET['u']:
@@ -12,7 +39,6 @@ def get_time_trigger(request):
             message = simplejson.loads(user[0].timetrigger)
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt #without form
 def set_time_trigger(request):
     if request.method=='POST':
