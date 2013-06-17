@@ -21,14 +21,14 @@ for i in listDir:
             reader=csv.reader(f)
             for row in reader:
                 if row:
-                    m=Qt_Message.objects.filter(deviceId=row[0])
+                    m=Qt_Message.objects.filter(user__username=row[0])
                     if m:
                         m[0].line1 = row[1]
                         m[0].line2 = row[2]
                         m[0].line3 = row[3]
                         m[0].line4 = row[4]
                         m[0].save()
-                    else:
-                        newDevice = Qt_Message.objects.create(deviceId=row[0],line1=row[1],line2=row[2],line3=row[3],line4=row[4])
-                        newDevice.save()
+                    #else:
+                        #newDevice = Qt_Message.objects.create(deviceId=row[0],line1=row[1],line2=row[2],line3=row[3],line4=row[4])
+                        #newDevice.save()
 
