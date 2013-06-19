@@ -104,7 +104,7 @@ def create_experiment(request):
                 m.save()
 
             for i in tree.findall('survey'):
-                surveyname= i.attrib['description']
+                #surveyname= i.attrib['description']
                 xform = i.find('xform').attrib['id']
                 trigger_list=TriggerParser.collectXMLTriggers(i)
 
@@ -183,3 +183,11 @@ def to_json(s):
             j = t.split(":")
             message[j[0].strip()] = j[1].strip()
     return message
+
+@csrf_exempt
+def clear_experiment(request):
+    if request.method == 'POST':
+        if 'admin' in request.POST and 'password' in request.POST:
+            if request.POST['admin'] == 'hoang' and request.POST['password'] == 'hoang':
+                User.objects.all().delete()
+                Message.objects.all().delete()

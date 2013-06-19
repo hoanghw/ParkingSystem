@@ -1,4 +1,5 @@
 from qt.models import Qt_Message
+from django.contrib.auth.models import User
 import os,csv, inspect
 
 allMessages = Qt_Message.objects.all()
@@ -28,7 +29,8 @@ for i in listDir:
                         m[0].line3 = row[3]
                         m[0].line4 = row[4]
                         m[0].save()
-                    #else:
-                        #newDevice = Qt_Message.objects.create(deviceId=row[0],line1=row[1],line2=row[2],line3=row[3],line4=row[4])
-                        #newDevice.save()
+                    else:
+                        u = User.objects.get(username=row[0])
+                        newDevice = Qt_Message.objects.create(user=u,line1=row[1],line2=row[2],line3=row[3],line4=row[4])
+                        newDevice.save()
 

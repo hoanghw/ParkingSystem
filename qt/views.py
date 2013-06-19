@@ -2,6 +2,7 @@ from qt.models import Qt_Message
 import simplejson
 from django.http import HttpResponse,HttpResponseForbidden
 from parkingsystem.local_settings import STATICFILES_DIRS as STATIC_DIRS
+from django.views.decorators.csrf import csrf_exempt
 
 def get_messages_id(request):
     if 'id' in request.GET and request.GET['id']:
@@ -21,7 +22,6 @@ def get_messages(request):
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
     else: return HttpResponseForbidden
 
-
 def get_time_trigger(request):
     if 'id' in request.GET and request.GET['id']:
         message = {}
@@ -31,7 +31,7 @@ def get_time_trigger(request):
                 message[t[0].strip()]=t[1].strip()
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-from django.views.decorators.csrf import csrf_exempt
+
 @csrf_exempt #without form
 def set_time_trigger(request):
     if request.method=='POST' and request.POST['data']:
