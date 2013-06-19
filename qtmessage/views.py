@@ -186,8 +186,12 @@ def to_json(s):
 
 @csrf_exempt
 def clear_experiment(request):
+    message="Nothing happened"
     if request.method == 'POST':
         if 'admin' in request.POST and 'password' in request.POST:
             if request.POST['admin'] == 'hoang' and request.POST['password'] == 'hoang':
                 User.objects.all().delete()
                 Message.objects.all().delete()
+                message="Success"
+
+    return HttpResponse(message)

@@ -36,14 +36,14 @@ def collectXMLTriggers(survey):
                 else:
                     for hour_of_day in recurType:
                         hours.append(hour_of_day.attrib['byhour'])
-                        recur_dict["freq"] = {"type": 'byhour', "hours": hours}
-                        count = freq.attrib['count']
-                        recur_dict["count"] = count
-                        trigger_dict[child.tag] = {"time": start_date_time, "recur": recur_dict}
-            elif child.tag == "ASA":
-                trigger_dict[child.tag] = child.text
-            else:
-                pass #Unknown Trigger
+                recur_dict["freq"] = {"type": 'byhour', "hours": hours}
+            count = freq.attrib['count']
+            recur_dict["count"] = count
+            trigger_dict[child.tag] = {"time": start_date_time, "recur": recur_dict}
+        elif child.tag == "ASA":
+            trigger_dict[child.tag] = child.text
+        else:
+            pass #Unknown Trigger
         trigger_list.append(trigger_dict)
         trigger_dict={}
 
