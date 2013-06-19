@@ -1,3 +1,11 @@
+#from django.core.management import setup_environ
+#from parkingsystem import local_settings
+#setup_environ(local_settings)
+#from django.conf import settings
+#settings.configure()
+import os
+os.environ['DJANGO_SETTINGS_MODULE']='parkingsystem.local_settings'
+
 import qtmessage.TriggerParser as TriggerParser
 import simplejson
 import datetime
@@ -8,6 +16,23 @@ def main():
     f = InitFile.objects.latest('id')
     tree = ET.parse(f.doc)
     if tree:
+        userset = tree.find('allusers')
+        for i in userset.findall('group'):
+            group = i.attrib['id']
+            for j in i.findall('user'):
+                username = j.attrib['id']
+                m = Message.objects.get(user__username=username)
+                m.timetrigger=''
+                m.loctrigger=''
+                m.save()
+
+        for i in userset.findall('user'):
+            username = i.attrib['id']
+            m = Message.objects.get(user__username=username)
+            m.timetrigger=''
+            m.loctrigger=''
+            m.save()
+
         for i in tree.findall('survey'):
             #surveyname= i.attrib['description']
             xform = i.find('xform').attrib['id']
@@ -40,7 +65,7 @@ def main():
                     if t.loctrigger:
                         current = simplejson.loads(t.loctrigger)
                         if xform in current:
-                            current[xform] = current[xform].update(loctriggers[xform])
+                            current[xform].update(loctriggers[xform])
                         else:
                             current[xform] = loctriggers[xform]
                         t.loctrigger = simplejson.dumps(current)
@@ -67,7 +92,7 @@ def main():
                     if t.loctrigger:
                         current = simplejson.loads(t.loctrigger)
                         if xform in current:
-                            current[xform] = current[xform].update(loctriggers[xform])
+                            current[xform].update(loctriggers[xform])
                         else:
                             current[xform] = loctriggers[xform]
                         t.loctrigger = simplejson.dumps(current)

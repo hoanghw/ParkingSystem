@@ -135,7 +135,7 @@ def create_experiment(request):
                         if t.loctrigger:
                             current = simplejson.loads(t.loctrigger)
                             if xform in current:
-                                current[xform] = current[xform].update(loctriggers[xform])
+                                current[xform].update(loctriggers[xform])
                             else:
                                 current[xform] = loctriggers[xform]
                             t.loctrigger = simplejson.dumps(current)
@@ -162,7 +162,7 @@ def create_experiment(request):
                         if t.loctrigger:
                             current = simplejson.loads(t.loctrigger)
                             if xform in current:
-                                current[xform] = current[xform].update(loctriggers[xform])
+                                current[xform].update(loctriggers[xform])
                             else:
                                 current[xform] = loctriggers[xform]
                             t.loctrigger = simplejson.dumps(current)
@@ -184,14 +184,14 @@ def to_json(s):
             message[j[0].strip()] = j[1].strip()
     return message
 
-@csrf_exempt
 def clear_experiment(request):
     message="Nothing happened"
-    if request.method == 'POST':
-        if 'admin' in request.POST and 'password' in request.POST:
-            if request.POST['admin'] == 'hoang' and request.POST['password'] == 'hoang':
+    if request.method == 'GET':
+        if 'admin' in request.GET and 'password' in request.GET:
+            if request.GET['admin'] == 'hoang' and request.GET['password'] == 'hoang':
                 User.objects.all().delete()
                 Message.objects.all().delete()
+                InitFile.objects.all().delete()
                 message="Success"
 
     return HttpResponse(message)
