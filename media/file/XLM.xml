@@ -1,0 +1,30 @@
+<experiment>
+	<administrator adminIdent="raja" />
+
+	<survey>
+		<xform id="mobile_survey_25" />
+		<trigger>
+			<timeTrigger>
+				<time datetime="2013-06-19T16:30:00" />
+				<recur>
+					<freq count="1">
+					<DAILY><byweekday weekdays="WE" /></DAILY>
+					</freq>
+				</recur>
+			</timeTrigger>
+		</trigger>
+
+		<trigger>
+			<geoTrigger name="Haas" lat="37.871469" lon="-122.253631" radius="500" event="enter"/>
+		</trigger>
+
+		<user ref="sid" />
+	</survey>
+
+	<allusers>
+		<user id="hoang" password="pw" />
+		<user id="nachi" password="pw" />
+		<user id="sid" password="pw" />
+		<user id="andre" password="pw" />
+	</allusers>
+</experiment>
