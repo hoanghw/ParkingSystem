@@ -17,7 +17,7 @@ def ParkerRegistration(request):
             password = form.cleaned_data['password']
             user = User.objects.create_user(username=username, email= form.cleaned_data['email'], password=password)
             user.save()
-            parker = Parker(user=user, userId=form.cleaned_data['userId'], wwtoken="", cctoken="")
+            parker = Parker(user=user, userId=form.cleaned_data['userId'],)
             parker.save()
             user1 = authenticate(username = username, password = password)
             login(request, user1)
@@ -60,15 +60,12 @@ def LogoutRequest(request):
 
 def Profile(request):
     if request.user.is_authenticated():
-	parker = Parker.objects.get(user = request.user)
-	if not parker.wwtoken:
-		HttpResponseRedirect('http://yahoo.com')
-	
         import datetime
         now = datetime.datetime.now()
 
 	history = UID_Transaction.objects.filter(user=request.user).filter(end__lte=now)
 	current=UID_Transaction.objects.filter(user=request.user).filter(end__gte=now)
+        parker = Parker.objects.get(user = request.user)
         
 	isCurrentlyParked = current.filter(rate="REGULAR")
         if isCurrentlyParked:

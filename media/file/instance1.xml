@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/mac/Documents/Grad%20School/Scholarship/Development/A.%20Documentation/1.%20Models/XLab.xsd">
+    <administrator adminIdent="jw04"/>
+
+    <survey description="mobile_survey_32 for allgroups at 9am and 5pm and at Ici ice cream on College">
+	<xform id="mobile_survey_32" link="http://xformstores.com/mobile_survey_32" />
+        <trigger>
+            <geoTrigger name="ici" lat="37.852858" lon="-122.252598" radius="1000" event="enter" repeats="3" constraint="Lg2"/>
+        </trigger>
+        <trigger>
+            <timeTrigger>
+                <time datetime="2013-06-12T00:00:00Z"/>
+                <recur>
+                    <freq count="10">
+                        <HOURLY>
+                            <byhour byhour="17"/>
+                        </HOURLY>
+                    </freq>
+                </recur>
+            </timeTrigger>
+        </trigger>
+	<trigger>
+            <timeTrigger>
+                <time datetime="2013-06-13T00:00:00Z"/>
+                <recur>
+                    <freq count="10">
+                        <HOURLY>
+                            <byhour byhour="9"/>
+                        </HOURLY>
+                    </freq>
+                </recur>
+            </timeTrigger>
+        </trigger>
+
+        <group ref="g0544" />
+	<group ref="g132" />
+	<group ref="testers" />
+	<user ref="raja" />
+    </survey>
+
+
+    <survey description="mobile_survey_25 for testers at Raja's office">
+	<xform id="mobile_survey_25"/>
+	<trigger>
+            <geoTrigger name="home" lat="37.884733" lon="-122.278301" radius="500" event="enter" repeats="3" constraint="Lg2"/>
+        </trigger>
+        <trigger>
+            <geoTrigger name="office" lat="37.874672" lon="-122.258493" radius="500" event="enter" repeats="1" constraint="qe"/>
+        </trigger>
+	<trigger>
+            <timeTrigger>
+                <time datetime="2013-06-13T00:00:00Z"/>
+                <recur>
+                    <freq count="10">
+                        <HOURLY>
+                            <byhour byhour="12"/>
+			    <byhour byhour="6"/>
+                        </HOURLY>
+                    </freq>
+                </recur>
+            </timeTrigger>
+        </trigger>
+        <group ref="testers" />
+    </survey>
+
+
+    <survey description="mobile_survey_25 for raja at Raja's office">
+	<xform id="mobile_survey_25"/>
+        <trigger>
+            <geoTrigger name="office" lat="37.874672" lon="-122.258493" radius="500" event="enter" repeats="1" constraint="qe"/>
+        </trigger>
+        <user ref="raja"/>
+    </survey>
+
+
+    <allusers>
+	<group id="g0544">
+            <user id="u65"/>
+            <user id="u3"/>
+            <user id="u753"/>
+            <user id="u4919"/>
+        </group>
+        
+	<group id="testers">
+	    <user id="hoang" password="hoang"/>
+	    <user id="sid" password="sid"/>
+	    <user id="nachi" password="nachi"/>
+	</group>
+
+	<user id="raja" password="raja"/>
+    </allusers>
+    
+</experiment>

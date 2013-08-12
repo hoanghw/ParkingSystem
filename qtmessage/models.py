@@ -14,4 +14,4 @@ class Message(models.Model):
     password=models.CharField(max_length=60)
 
 class InitFile(models.Model):
-    doc = models.FileField(upload_to=STATIC_DIRS[0]+'file/')
+    doc = models.FileField(upload_to='file/')
