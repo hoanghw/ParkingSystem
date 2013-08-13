@@ -69,7 +69,7 @@ def check_user(request):
             message["user"] = "false"
         return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-from lxml import etree as ET
+from xml import etree as ET
 @csrf_exempt
 def create_experiment(request):
     message =''

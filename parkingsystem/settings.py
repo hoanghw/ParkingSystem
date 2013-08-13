@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'parker',
     'south',
     'qt',
+    'dummyAPIs',
 )
 
 # A sample logging configuration. The only tangible logging

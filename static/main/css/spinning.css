@@ -1,0 +1,20 @@
+/* CSS Document */
+#icon img {
+	margin: 0px auto; 
+	display: block;
+}
+#spinning img {
+	margin: 0px auto;
+	display: block;
+	height:64px;
+	width:64px;
+}
+#logo {
+	clear: both;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -313px; /* negative value of footer height */
+	height: 313px;
+	z-index:-7;
+}
