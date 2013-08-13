@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     url(r'^settime/','qt.views.set_time_trigger'),
     url(r'^getmessages/','qt.views.get_messages'),
     url(r'^setforms/','qt.views.set_available_forms'),
-    url(r'^getforms/','qt.views.get_available_forms')
+    url(r'^getforms/','qt.views.get_available_forms'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

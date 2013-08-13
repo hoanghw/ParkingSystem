@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- An interfacing page that sends form data to PHP side of server -->
+<html>
+<head>
+    <title></title>
+     <script type="text/javascript">
+     function load()
+     {
+          window.document.phpforward.submit();
+          return;
+     }
+     </script>
+</head>
+<body onload="load()">
+<form name="phpforward" method="post" action="http://23.23.166.34:81/checkout.php">
+    <input type="hidden" name="user" value={{ user }} />
+</form>
+</body>
+</html>

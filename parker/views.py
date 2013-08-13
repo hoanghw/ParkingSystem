@@ -60,9 +60,10 @@ def LogoutRequest(request):
 
 def Profile(request):
     if request.user.is_authenticated():
-	parker = Parker.objects.get(user = request.user)
-	if not parker.wwtoken:
-		HttpResponseRedirect('http://yahoo.com')
+        parker = Parker.objects.get(user=request.user)
+
+    if not parker.cctoken:
+        return render_to_response('redirect.html', {'user': parker.user.username})
 	
         import datetime
         now = datetime.datetime.now()
