@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext
 from parker.forms import RegistrationForm, LoginForm
 from parker.models import Parker
@@ -62,8 +63,8 @@ def Profile(request):
     if request.user.is_authenticated():
         parker = Parker.objects.get(user=request.user)
 
-    if not parker.cctoken:
-        return render_to_response('redirect.html', {'user': parker.user.username})
+        if not parker.cctoken:
+            return render_to_response('redirect.html', {'user': parker.user.username})
 	
         import datetime
         now = datetime.datetime.now()
@@ -87,3 +88,22 @@ def Profile(request):
         return render_to_response('profile.html', variables)
     else:
         return HttpResponseRedirect('/login/')
+
+@csrf_exempt
+def Receipt(request):
+    if request.method == 'POST':
+        user = request.POST['merchantDefinedData2']
+	try: u = User.objects.get(username=user)
+	except User.DoesNotExist: u = None
+	if not u: return HttpResponse("User Does Not Exist")
+
+	parker = Parker.objects.get(user=u)
+        if request.POST['merchantDefinedData1'] == 'wwtoken':
+            parker.wwtoken=request.POST['paySubscriptionCreateReply_subscriptionID']
+
+	elif request.POST['merchantDefinedData1'] == 'cctoken':
+	    parker.cctoken=request.POST['paySubscriptionCreateReply_subscriptionID']
+
+	parker.save()
+	login(request, parker)
+	return HttpResponseRedirect('/profile/')
