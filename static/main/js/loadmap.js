@@ -41,7 +41,7 @@ function initialize() {
 				+'<span id="rate">Fetching</span>'
 				+'<br/>'
 
-				+'<div id="selectDuration" style="display:none;">'
+				+'<div id="select-duration" style="display:none;">'
 
 				+'<font color="#3366ff">Pick Duration: </font>'
 
@@ -84,7 +84,7 @@ function initialize() {
 					switch (jsonObj.granularity){
 						case PER_HOUR:
 							console.log('per hour');
-							$("#selectDuration").show();
+							$("#select-duration").show();
                             $("#slider").width(width*60/100);
                             rate = jsonObj.magnitude;
                             granularity = PER_HOUR;

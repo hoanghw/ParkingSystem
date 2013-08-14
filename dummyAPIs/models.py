@@ -10,6 +10,11 @@ class Participant(models.Model):
     address = models.CharField(max_length=100)
     parkingStatus = models.BooleanField(default=False)
 
+class LicensePlate(models.Model):
+    text = models.CharField(max_length=10)
+    participant = models.ForeignKey(Participant)
+    isActive = models.BooleanField()
+
 class Garage(models.Model):
     garageId = models.IntegerField()
     isFPermit = models.BooleanField()

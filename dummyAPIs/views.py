@@ -102,3 +102,20 @@ def ulogin(request):
 
 def uprofile(request):
     return render_to_response('main/profile.html',context_instance=RequestContext(request))
+
+def parkinghistory(request):
+    if request.method=='POST':
+        u = Participant.objects.filter(username=request.POST.get('username',''))
+        if u:
+            h = HistoryTransaction.objects.filter(participant=u[0])
+            return render_to_response('main/history.html',{'history':h},context_instance=RequestContext(request))
+    #return HttpResponseRedirect('/ulogin')
+        return HttpResponse("no user: " + request.POST.get('username',''))
+    return HttpResponse("fail")
+
+def ugethistory(request):
+    message={}
+    if request.method=='GET' and 'username' in request.GET:
+        u = Participant.objects.filter(username=request.GET['username'])
+        if u:
+            h = HistoryTransaction.objects.filter(participant=u[0])
