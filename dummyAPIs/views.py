@@ -76,8 +76,9 @@ def getrate(request):
     message['granularity'] = PER_HOUR
 
     #Quick hack
-    if 'username' in request.GET and request.GET['username']:
-        u = Participant.objects.filter(username=request.GET['username'])
+    if request.method == 'GET' and 'data' in request.GET:
+        json = simplejson.loads(request.GET['data'])
+        u = Participant.objects.filter(username=json['username'])
         if u:
             message['token'] = u[0].cctoken
 

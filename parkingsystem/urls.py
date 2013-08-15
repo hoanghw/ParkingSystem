@@ -49,6 +49,7 @@ urlpatterns = patterns('',
     url(r'^uprofile','dummyAPIs.views.uprofile'),
     url(r'^usignin','dummyAPIs.views.usignin'),
     url(r'^uhistory','dummyAPIs.views.parkinghistory'),
+    url(r'^receipt','dummyAPIs.views.ureceipt'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
