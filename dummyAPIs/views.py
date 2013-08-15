@@ -74,6 +74,13 @@ def getrate(request):
     message = {}
     message['magnitude'] = 7
     message['granularity'] = PER_HOUR
+
+    #Quick hack
+    if 'username' in request.GET and request.GET['username']:
+        u = Participant.objects.filter(username=request.GET['username'])
+        if u:
+            message['token'] = u[0].cctoken
+
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json');
     res[ACCESS]= ALLOW
     return res
@@ -119,3 +126,21 @@ def ugethistory(request):
         u = Participant.objects.filter(username=request.GET['username'])
         if u:
             h = HistoryTransaction.objects.filter(participant=u[0])
+
+@csrf_exempt
+def ureceipt(request):
+    if request.method == 'POST' and 'merchantDefinedData2' in request.POST :
+
+        if request.POST['orderPage_transactionType'] == "subscription_authorization":
+            return HttpResponseRedirect('/uhistory/')
+
+        user = request.POST['merchantDefinedData2']
+        u = Participant.objects.filter(username=user)
+        if u:
+            if request.POST['merchantDefinedData1'] == 'wwtoken':
+                u[0].wwtoken = request.POST['paySubscriptionCreateReply_subscriptionID']
+            elif request.POST['merchantDefinedData1'] == 'cctoken':
+                u[0].cctoken = request.POST['paySubscriptionCreateReply_subscriptionID']
+        u[0].save()
+        return render_to_response('main/profile.html',context_instance=RequestContext(request))
+    return HttpResponseRedirect('/uprofile/')

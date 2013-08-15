@@ -49,9 +49,10 @@ function handleLogin() {
     console.log("click");
     if(u != '' || p != '') {
         $.get(SERVER_URL+"usignin/", {username:u,password:p}, function(data, textStatus, jqXHR) {
-            if(data.user) {
+            if(data.user && data.token) {
                 window.localStorage["username"] = u;
                 window.localStorage["password"] = p;
+                window.localStorage["token"] = data.token;
 				window.localStorage["isLoggedIn"] = true;            
                 window.location.href="/uprofile";
             } else {

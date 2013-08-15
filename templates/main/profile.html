@@ -38,14 +38,20 @@
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <div class="nav-collapse collapse navbar-responsive-collapse">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2">
                 <form action="/uhistory" method="POST">{% csrf_token %}
                     <input type="hidden" id="username" name="username" value="">
                     <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
                 </form>
             </div>
-            <div class="col-3"><button type="button" class="btn btn-primary navbar-btn">Edit Account</button></div>
-		    <div class="col-3"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
+            <div class="col-2"><button type="button" class="btn btn-primary navbar-btn">Edit Account</button></div>
+            <div class="col-2">
+                <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+                    <input type="hidden" id="user-check" name="user" value="">
+                    <button type="submit" class="btn btn-primary navbar-btn">Register Payment</button>
+                </form>
+            </div>
+		    <div class="col-2"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
         </div>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
@@ -72,8 +78,18 @@
         Park at <strong id="conf-garage"></strong> for <strong id="conf-rate"></strong>.<br>
       </div>
       <div class="modal-footer">
+
         <button type="button" class="btn btn-default" class="close" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="confirmed">Confirm</button>
+
+            <form name="transaction" target="_blank" action="http://54.224.3.167:81/transaction.php" method="POST">
+                <input type="hidden" id="user-trans" name="user" value="">
+                <input type="hidden" id="token-trans" name="token" value="">
+                <input type="hidden" id="amount" name="amount" value="">
+                <button type="submit" id="confirmed" class="btn btn-primary navbar-btn">Go to HOP</button>
+            </form>
+
+
+        <!-- <button type="button" class="btn btn-primary" id="confirmed">Confirm</button> -->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -94,10 +110,14 @@ A product of xmobile.berkeley.edu
 <script type="text/javascript" src="{{STATIC_URL}}main/js/confirmed.js"></script>
 <script>
 var u = window.localStorage['username']
+var t = window.localStorage['token']
+//Find better approach for syncing token
+
 if (u && window.localStorage['isLoggedIn']){
     $("#username").val(u);
+    $("#user-check").val(u);
+    $("#user-trans").val(u);
+    $("#token-trans").val(t);
 }
-
-
 </script>
 {% endblock %}

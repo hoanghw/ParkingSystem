@@ -113,6 +113,9 @@ function initialize() {
 					tempStorage[garageName+"_rate"] = rate;
 					tempStorage[garageName+"_totalCost"] = totalCost;
 					tempStorage[garageName]="was fetched at...";
+
+                    //Quick hack
+                    window.localStorage['token']=jsonObj.token;
 				}
 				else {
 					console.log('cannot parse');
@@ -131,6 +134,10 @@ function initialize() {
 	$('#confirming').on('show.bs.modal', function () {
 		$('#conf-garage').html(garageName);
 		$('#conf-rate').html("$"+totalCost);
+
+        //HOP
+        $('#amount').val(""+totalCost);
+
 		$('#confirmed').click({rate: rate, garageName: garageName, totalCost: totalCost, duration: duration, granularity: granularity},confirmed);
 	});
 
