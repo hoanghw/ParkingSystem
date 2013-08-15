@@ -109,15 +109,12 @@ A product of xmobile.berkeley.edu
 <script type="text/javascript" src="{{STATIC_URL}}main/js/loadmap.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/confirmed.js"></script>
 <script>
-var u = window.localStorage['username']
-var t = window.localStorage['token']
+var u = window.localStorage['username'];
 //Find better approach for syncing token
 
 if (u && window.localStorage['isLoggedIn']){
     $("#username").val(u);
     $("#user-check").val(u);
-    $("#user-trans").val(u);
-    $("#token-trans").val(t);
 }
 </script>
 {% endblock %}

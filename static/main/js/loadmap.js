@@ -136,8 +136,9 @@ function initialize() {
 		$('#conf-rate').html("$"+totalCost);
 
         //HOP
+        $("#user-trans").val(window.localStorage['username']);
+        $("#token-trans").val(window.localStorage['token']);
         $('#amount').val(""+totalCost);
-
 		$('#confirmed').click({rate: rate, garageName: garageName, totalCost: totalCost, duration: duration, granularity: granularity},confirmed);
 	});
 
