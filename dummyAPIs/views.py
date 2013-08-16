@@ -131,11 +131,10 @@ def ugethistory(request):
 
 @csrf_exempt
 def ureceipt(request):
+    if request.method =='POST' and request.POST['orderPage_transactionType'] == "subscription_authorization":
+            return render_to_response('main/close.html',context_instance=RequestContext(request))
+
     if request.method == 'POST' and 'merchantDefinedData2' in request.POST :
-
-        if request.POST['orderPage_transactionType'] == "subscription_authorization":
-            return HttpResponseRedirect('/uhistory/')
-
         user = request.POST['merchantDefinedData2']
         u = Participant.objects.filter(username=user)
         if u:
