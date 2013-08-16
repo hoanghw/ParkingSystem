@@ -8,12 +8,13 @@ class Participant(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     parkingStatus = models.BooleanField(default=False)
     wwtoken = models.CharField(max_length=22, blank=True, null=True)
     cctoken = models.CharField(max_length=22, blank=True, null=True)
 
 class LicensePlate(models.Model):
-    text = models.CharField(max_length=10)
+    text = models.CharField(max_length=100)
     participant = models.ForeignKey(Participant)
     isActive = models.BooleanField()
 

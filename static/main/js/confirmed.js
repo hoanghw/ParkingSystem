@@ -9,11 +9,11 @@ function confirmed(event){
     var today = new Date();
     var timestamp = today.getTime();
 
-	$.get(SERVER_URL+"ucheckin/", {data:JSON.stringify({garage:garageName,rate:rate,totalCost:totalCost,username:u,timestamp:timestamp,granularity:granularity,duration:duration})}, function(data, textStatus, jqXHR) {
+	$.get(SERVER_URL+"ucheckin/", {data:JSON.stringify({garage:garageName,rate:rate,totalCost:totalCost,username:u,timestamp:timestamp,granularity:granularity,duration:duration,space:space})}, function(data, textStatus, jqXHR) {
         },"json")
         .done(function(){
             $('#confirming').modal('hide');
-	        $('#content-window').html(changeToParked(garageName));
+	        $('#content-window').html(changeToParked(garageName,null));
         })
         .fail(function(){
             $('#confirming').modal('hide');
@@ -72,9 +72,15 @@ function signOut(){
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("password");
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem('parkingGarage');
+    window.localStorage.removeItem('parkingEndTime');
+    window.localStorage.removeItem('parkingRate');
 	window.location.href= "ulogin";
 }
 
 function checkOut(){
+    window.localStorage.removeItem('parkingRate');
+    window.localStorage.removeItem('parkingGarage');
+    window.localStorage.removeItem('parkingEndTime');
 	$('#content-window').html(changeToNotParked());
 }

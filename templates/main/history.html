@@ -32,7 +32,7 @@
     </button>
 
     <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Welcome <span id="welcome-user">{{ i.username }}</span></a>
+    <a class="navbar-brand" href="#">Welcome <span id="welcome-user"></span></a>
 
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <div class="nav-collapse collapse navbar-responsive-collapse">
@@ -107,5 +107,6 @@ function signOut(){
     window.localStorage.removeItem("token");
 	window.location.href= "ulogin";
 }
+$("#welcome-user").text(window.localStorage["username"]);
 </script>
 {% endblock %}

@@ -1,0 +1,50 @@
+body {
+	background-image:url('../img/UC-Berkeley-151.jpg');
+}
+
+.brand-logo {
+	height: 50px;
+}
+
+/*
+li #signup button .btn .btn-primary{
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+*/
+li #inactive{
+    background-color: #CCC;
+	opacity: 0.7;
+    border-color: #269abc;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	margin-right: 2px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:2px solid #357ebd;
+	font-size: 20px;
+}
+
+li #active{
+	color: white;
+	background-color: #f0ad4e;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:2px solid #eea236;
+	font-size: 20px;
+	text-align: center;
+}
+
+a{
+	color: #f0ad4e;
+}
+
+a:hover{
+	color: #ed9c28;
+	text-decoration: none;
+}

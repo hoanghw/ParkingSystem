@@ -1,21 +1,47 @@
 // JavaScript Document
-function changeToParked(garageName){
+function changeToParked(garageName,endTime){
 	var text = '<div class="well well-sm">'
 			+'You are currently parking at '
             +'<strong>'
 			+garageName
-            +'</strong>'
-			+'</div>'
-			+'<div class="well well-sm">'
-			+'<input id="check-out-btn" class="btn btn-danger" type="button" value="Check Out" onclick="checkOut();"/>'
-			+'</div>'
-			+'<br/>';
+            +'</strong>';
+    if (endTime){
+        text +=' until '
+            + formatTime(endTime);
+    }
+
+    text +='</div>'
+	    //+'<div class="well well-sm">'
+		//+'<input id="check-out-btn" class="btn btn-danger" type="button" value="Check Out" onclick="checkOut();"/>'
+		//+'</div>'
+		+'<br/>';
+
 	$('html,body').scrollTop(0);
 	return text;
 }
+var formatTime = function(unixTimestamp) {
+    var dt = new Date(unixTimestamp * 1000);
+
+    var hours = dt.getHours();
+    var minutes = dt.getMinutes();
+    var ampm;
+
+    if (hours < 12)
+     ampm = 'a.m.'
+    else
+     ampm = 'p.m.'
+
+    if (hours > 12 )
+     hours -= 12;
+
+    if (minutes < 10)
+     minutes = '0' + minutes;
+
+    return hours + ":" + minutes + ' ' + ampm;
+}
 
 function changeToNotParked(){
-	var text = '<div class="well well-sm"><strong>Please pick a garage on the map</strong></div>';
+	var text = '<div class="well well-sm"><strong>Please pick a garage on the map</strong> - by tapping the P icon</div>';
 	$('html,body').scrollTop(0);
 	return text;
 }
@@ -35,13 +61,13 @@ function changeToParkFav(garageName){
 
             +'<form class="form-horizontal">'
             +'<div class="form-group row" id="select-duration">'
-            +'<label for="duration" class="col-lg-3 col-md-3 col-sx-6  control-label">Enter Duration: </label>'
+            +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label">Enter Duration (hour)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
-            +'<input type="number" class="form-control" id="duration-value" value="2" min="0" max="24">'
+            +'<input type="number" class="form-control" id="duration-value" value="2" min="1" max="24">'
             +'</div>'
             +'</div>'
             +'<div class="form-group row" id="select-space">'
-            +'<label for="space" class="col-lg-3 col-md-3 col-sx-6 control-label">Enter Space # (Optional): </label>'
+            +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (optional)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="number" class="form-control" id="space-value" value="0" min="0">'
             +'</div>'
@@ -50,11 +76,10 @@ function changeToParkFav(garageName){
             +'</div>'
 
             +'<div class="well well-sm">'
-            +'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>&nbsp &nbsp'
-            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-warning" value="Change Garage"/>&nbsp &nbsp'
+            +'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>&nbsp'
+            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-warning" value="Change Garage"/>&nbsp'
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn" value="Mark as favorite"/>'
-            +'</div>'
-            +'<br/>';
+            +'</div>';
     $('html,body').scrollTop(0);
     return text;
 

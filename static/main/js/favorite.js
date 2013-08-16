@@ -1,11 +1,22 @@
 var favorite = new Array();
-function loadFavoriteAndToken(){
+function loadFavoriteAndTokenAndStatus(){
     $.get(SERVER_URL+"ugetfav/", {data:JSON.stringify({username: window.localStorage['username']})}, function(data, textStatus, jqXHR) {
         if (data){
             window.localStorage['token'] = data.token;
             $("#favorite-list").html("");
             for (var i=0; i<data.favorite.length; i++){
                 favorite.push(data.favorite[i]);
+            }
+            if (Object.keys(data.isParking).length != 0){
+                window.localStorage['parkingGarage'] = data.isParking.garage;
+                window.localStorage['parkingEndTime'] = data.isParking.endTime;
+                window.localStorage['parkingRate'] = data.isParking.rate;
+                $('#content-window').html(changeToParked(data.isParking.garage,data.isParking.endTime));
+            }else{
+                window.localStorage.removeItem('parkingGarage');
+                window.localStorage.removeItem('parkingEndTime');
+                window.localStorage.removeItem('parkingRate');
+                $('#content-window').html(changeToNotParked());
             }
         }
         },"json")
@@ -28,7 +39,7 @@ function updateFavorite(garages){
             +'" onclick="parkFav(this.id);"/>&nbsp';
     }
     if (garages.length == 0)
-        $("#favorite-list").html("None");
+        $("#favorite-list").html("None. Please pick your favorite garage and click 'Mark as favorite'");
     else
         $("#favorite-list").html(text);
 }
@@ -59,14 +70,17 @@ function fetchPrice(){
 		                    totalCost = duration*rate;
                             $("#rate").text("$"+rate+"/hour");
 							setTimePicker(rate);
+                            setSpacePicker();
 							break
 						case PER_DAY:
 							console.log('per day');
+                            $("#select-space").show();
 							rate = jsonObj.magnitude;
 							totalCost = jsonObj.magnitude;
                             granularity = PER_DAY;
                             duration = 1;
                             $("#rate").text("$"+rate+"/day");
+                            setSpacePicker();
 							break;
 						default:
 							console.log('default');
@@ -103,7 +117,12 @@ function fetchPrice(){
 
 function setTimePicker(r){
     $('#duration-value').on('keyup change', function(){
-        duration = this.value;
-        totalCost = parseInt(duration,10)*r;
+        duration = parseInt(this.value,10);
+        totalCost = duration*r;
+    });
+}
+function setSpacePicker(){
+    $('#space-value').on('keyup change', function(){
+        space = parseInt(this.value,10);
     });
 }
