@@ -22,9 +22,7 @@ def verifyuser(request):
         message['user'] = True
     return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-
 import datetime, time
-
 
 def checkout(username):
     u = Participant.objects.filter(username=username)
@@ -118,10 +116,8 @@ def getrate(request):
 def changelp(request):
     return HttpResponse('success')
 
-
 def changebilling(request):
     return HttpResponse('success')
-
 
 def usignin(request):
     message = {}
@@ -136,14 +132,12 @@ def usignin(request):
     res[ACCESS] = ALLOW
     return res
 
-
 def ulogin(request):
     return render_to_response('main/login.html', context_instance=RequestContext(request))
 
 
 def uprofile(request):
     return render_to_response('main/profile.html', context_instance=RequestContext(request))
-
 
 def parkinghistory(request):
     if request.method == 'POST':
@@ -155,7 +149,6 @@ def parkinghistory(request):
         return HttpResponse("no user: " + request.POST.get('username', ''))
     return HttpResponse("fail")
 
-
 def ugethistory(request):
     message = {}
     if request.method == 'GET' and 'username' in request.GET:
@@ -163,11 +156,10 @@ def ugethistory(request):
         if u:
             h = HistoryTransaction.objects.filter(participant=u[0])
 
-
 @csrf_exempt
 def ureceipt(request):
-    #if request.method =='POST' and request.POST['orderPage_transactionType'] == "subscription_authorization":
-    #        return render_to_response('main/close.html',context_instance=RequestContext(request))
+    if request.method =='POST' and request.POST['orderPage_transactionType'] == "subscription_authorization":
+        return render_to_response('main/profile.html',context_instance=RequestContext(request))
 
     if request.method == 'POST' and 'merchantDefinedData2' in request.POST:
         user = request.POST['merchantDefinedData2']
@@ -177,10 +169,9 @@ def ureceipt(request):
                 u[0].wwtoken = request.POST['paySubscriptionCreateReply_subscriptionID']
             elif request.POST['merchantDefinedData1'] == 'cctoken':
                 u[0].cctoken = request.POST['paySubscriptionCreateReply_subscriptionID']
-        u[0].save()
-        return render_to_response('main/profile.html', context_instance=RequestContext(request))
-    return HttpResponseRedirect('/uprofile/')
-
+            u[0].save()
+            return render_to_response('main/login.html', context_instance=RequestContext(request))
+    return HttpResponseRedirect('/uregistration/')
 
 def ugetfavandtokenandstatus(request):
     message = {}
@@ -226,38 +217,48 @@ def uupdatefav(request):
     return res
 
 def uregistration(request):
+    return render_to_response('main/registration.html', context_instance=RequestContext(request))
+
+def uverifyreg(request):
     error = {}
     hasError = False
-    if request.method == 'POST':
-        pw1 = request.POST.get('password1', '')
-        pw2 = request.POST.get('password2', '')
+
+    if request.method == 'GET':
+        un = request.GET.get('username', '')
+        pw1 = request.GET.get('password1', '')
+        pw2 = request.GET.get('password2', '')
+
+        if not un:
+            hasError = True
+            error['unEmpty'] = "Please enter a username"
         if not pw1 or not pw2:
             hasError = True
-            error['pwEmpty'] = "Please enter valid passord"
+            error['pwEmpty'] = "Please enter valid password"
         if pw1 != pw2:
             hasError = True
             error['pwMatch'] = "Please verify password again"
-        u = Participant.objects.filter(username=request.POST.get('username', ''))
+
+        u = Participant.objects.filter(username=un)
         if u:
             hasError = True
             error['username'] = "This username is already taken"
 
-        if not request.POST.get('licenceplate', ''):
+        if not request.GET.get('licenseplate', ''):
             hasError = True
             error['lpEmpty'] = "Please enter your license plate"
 
         if hasError:
-            render_to_response('main/registration.html', {'error':error}, context_instance=RequestContext(request))
-
+            return HttpResponse(simplejson.dumps(error), mimetype='application/json')
         else:
-            u = Participant.objects.create(username=request.GET['username'], uid=6677)
+            u = Participant.objects.create(username=un, uid=6677)
             u.password = pw1
-            u.firstName = request.POST.get('firstname','')
-            u.lastName = request.POST.get('lastname','')
-            u.email = request.POST.get('email','')
+            u.firstName = request.GET.get('firstname','')
+            u.lastName = request.GET.get('lastname','')
+            u.email = request.GET.get('email','')
             u.save()
-            l = LicensePlate.objects.create(text=request.POST.get('licenseplate',''), participant= u, isActive=True)
+            l = LicensePlate.objects.create(text=request.GET.get('licenseplate',''), participant= u, isActive=True)
             l.save()
-            HttpResponseRedirect('/ulogin/')
+            error['noerror'] = True
+            return HttpResponse(simplejson.dumps(error), mimetype='application/json')
 
-    return render_to_response('main/registration.html', context_instance=RequestContext(request))
+    return HttpResponse(simplejson.dumps(error), mimetype='application/json')

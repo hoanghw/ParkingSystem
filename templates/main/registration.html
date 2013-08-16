@@ -18,13 +18,11 @@
 		</div>
 
 		<div class="container">
-            <div>
-                {% for key, value in error.items %}
-                <p>{{ key }}:{{ value }}</p>
-                {% endfor %}
+            <div id="error-message">
             </div>
-			<form class="form-horizontal" role="form" action="/uregistration" method="POST">{% csrf_token %}
+			<form class="form-horizontal" role="form" id="check-out" name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
 			  <fieldset>
+                <input type="hidden" id="user" name="user" value="">
 				<div class="col-md-offset-1 col-md-11">  
 			    <legend><p><h1>Welcome to the Berkeley VPP Project!</h1></p>
 					<ol id="crumbs" class="list-inline">
@@ -79,7 +77,7 @@
 		    
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-10">
-						<button type="submit" class="btn btn-warning">Continue</button>
+						<button id = "continue" class="btn btn-warning">Continue</button>
 					</div>
 				</div>
 			  </fieldset>
@@ -87,5 +85,30 @@
 		</div>
 		<div id="footer">
 		</div>
+
+    <script>
+        $("#continue").on('click',function(e){
+            e.preventDefault();
+            verify();
+        });
+        function verify(){
+            var username=$("#username").val();
+            var password1=$("#password1").val();
+            var password2=$("#password2").val();
+            var firstname=$("#firstname").val();
+            var lastname=$("#lastname").val();
+            var email=$("#email").val();
+            var licenseplate=$("#licenseplate").val();
+            $.get("/uverifyreg/",{username:username,password1:password1,password2:password2,firstname:firstname,lastname:lastname,email:email,licenseplate:licenseplate},function(data, textStatus, jqXHR) {
+                if ("noerror" in data){
+                    $("#user").val(username);
+                    $("#check-out").submit();
+                }else{
+                    //TODO:  FIX these display errors
+                    alert(JSON.stringify(data));
+                }
+            },"json");
+        };
+    </script>
 	</body>
 </html>
