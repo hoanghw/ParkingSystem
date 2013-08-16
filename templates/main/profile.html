@@ -1,9 +1,7 @@
 {% extends "main/base.html" %}
 {% block extrahead %}
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/spinning.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/slider.css"/>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/bootstrap-slider.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
 #header-brand{
@@ -33,33 +31,40 @@
     </button>
 
     <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Cal Parking</a>
+    <a class="navbar-brand" href="#">Welcome <span id="welcome-user"></span></a>
 
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <div class="nav-collapse collapse navbar-responsive-collapse">
         <div class="row">
-            <div class="col-2">
+            <div class="col-lg-3 col-md-3 col-sx-6">
                 <form action="/uhistory" method="POST">{% csrf_token %}
                     <input type="hidden" id="username" name="username" value="">
                     <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
                 </form>
             </div>
-            <div class="col-2"><button type="button" class="btn btn-primary navbar-btn">Edit Account</button></div>
-            <div class="col-2">
+            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" class="btn btn-primary navbar-btn">Edit Account</button></div>
+            <!--
+            <div class="col-lg-3 col-md-3 col-sx-6">
                 <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
                     <input type="hidden" id="user-check" name="user" value="">
                     <button type="submit" class="btn btn-primary navbar-btn">Register Payment</button>
                 </form>
             </div>
-		    <div class="col-2"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
+            -->
+		    <div class="col-lg-3 col-md-3 col-sx-6"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
         </div>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
 </div><!-- /.navbar -->
 
 <div class="container">
+  <div id="content-fav">
+    <div id="favorite" class="well well-sm"><strong>Your favorite parking lot(s): </strong><span id="favorite-list"></span>
+    </div>
+  </div>
+
   <div id="content-window">
-  	<div class="well well-sm"><strong>Please pick a garage on the map</strong> </div>
+    <div class="well well-sm"><strong>Please pick a garage on the map</strong></div>
   </div>
   <div class="row">
   	<div id="map-canvas"></div>
@@ -81,15 +86,14 @@
 
         <button type="button" class="btn btn-default" class="close" data-dismiss="modal">Cancel</button>
 
-            <form name="transaction" target="_blank" action="http://54.224.3.167:81/transaction.php" method="POST">
+            <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
                 <input type="hidden" id="user-trans" name="user" value="">
                 <input type="hidden" id="token-trans" name="token" value="">
                 <input type="hidden" id="amount" name="amount" value="">
-                <button type="submit" id="confirmed" class="btn btn-primary navbar-btn">Go to HOP</button>
+                <button type="submit" id="confirmed1" class="btn btn-primary navbar-btn">Go to HOP</button>
             </form>
 
-
-        <!-- <button type="button" class="btn btn-primary" id="confirmed">Confirm</button> -->
+        <button type="button" class="btn btn-primary" id="confirmed">Confirm</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -106,15 +110,17 @@ A product of xmobile.berkeley.edu
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/messages.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}main/js/favorite.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/loadmap.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/confirmed.js"></script>
 <script>
 var u = window.localStorage['username'];
-//Find better approach for syncing token
 
 if (u && window.localStorage['isLoggedIn']){
     $("#username").val(u);
     $("#user-check").val(u);
+    $("#welcome-user").text(u);
 }
+
 </script>
 {% endblock %}

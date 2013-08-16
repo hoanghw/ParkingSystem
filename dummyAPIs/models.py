@@ -17,6 +17,10 @@ class LicensePlate(models.Model):
     participant = models.ForeignKey(Participant)
     isActive = models.BooleanField()
 
+class FavoriteGarage(models.Model):
+    garageName = models.CharField(max_length=50)
+    participant = models.ForeignKey(Participant)
+
 class Garage(models.Model):
     garageId = models.IntegerField()
     isFPermit = models.BooleanField()

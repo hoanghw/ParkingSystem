@@ -6,6 +6,7 @@ var rate=17;
 var totalCost=17;
 var duration= DEFAULT_DURATION_HOUR;
 var granularity= PER_DAY;
+var isFavorite=false;
 
 function initialize() {
 	var myLatlng = new google.maps.LatLng(37.870296,-122.258995);
@@ -28,39 +29,41 @@ function initialize() {
 	kmlLayer.setMap(map);
 
 	google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
-		var text = '<div class="well well-sm" id="garage-info">'
-				+ '<span id="garage-name"><strong>'+kmlEvent.featureData.name+'</strong></span>'
-				+ '</div>'
+		var text = '<div class="well well-sm">'
+                +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span><br>'
+                +'<font color="#3366ff">Current Rate: </font>'
+                +'<strong><span id="rate">Fetching</span></strong>'
+                +'<hr>'
 
-				+ '<div class="well well-sm">'
-				+ kmlEvent.featureData.description
-				+ '</div>'
+                +'<form class="form-horizontal">'
+                +'<div class="form-group row" id="select-duration">'
+                +'<label for="duration" class="col-lg-3 col-md-3 col-sx-6  control-label">Enter Duration: </label>'
+                +'<div class="col-lg-3 col-md-3 col-sx-6">'
+                +'<input type="number" class="form-control" id="duration-value" value="2" min="0" max="24">'
+                +'</div>'
+                +'</div>'
+                +'<div class="form-group row" id="select-space">'
+                +'<label for="space" class="col-lg-3 col-md-3 col-sx-6 control-label">Enter Space # (Optional): </label>'
+                +'<div class="col-lg-3 col-md-3 col-sx-6">'
+                +'<input type="number" class="form-control" id="space-value" value="0" min="0">'
+                +'</div>'
+                +'</div>'
+
+                +'</div>'
+
 
 				+'<div class="well well-sm">'
-				+'<font color="#3366ff">Current Rate: </font>'
-				+'<span id="rate">Fetching</span>'
+				+'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>&nbsp &nbsp'
+                +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-warning" value="Change Garage"/>&nbsp &nbsp'
+                +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn" value="Mark as favorite"/>'
+				+'</div>'
 				+'<br/>'
 
-				+'<div id="select-duration" style="display:none;">'
-
-				+'<font color="#3366ff">Pick Duration: </font>'
-
-                +'<div id="slider-div">'
-                +'<input type="text" id="slider" value="" data-slider-min="1" data-slider-max="24" data-slider-step="1" data-slider-value="2" data-slider-orientation="horizontal" data-slider-selection="after"data-slider-tooltip="hide">'
-                +'</div>'
-
-                +'<div class="row">'
-                +'<div class="col-3"><input type="number" class="form-control" id="slider-value" value="2"></div><span class="help-block">hour(s)</span>'
-                +'</div>'
-
-                +'</div>'
-				+'</div>'
-
-				+'<div class="well well-sm">'
-				+'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>'
-				+'</div>'
-				+'<br/>' ;
+                + '<div class="well well-sm">'
+				+ kmlEvent.featureData.description
+				+ '</div>';
 		showInContentWindow(text);
+        $(".fav-garage").hide();
 		$('html,body').scrollTop(0);
 		$("#park-btn").attr("disabled","disabled");
 		garageName = kmlEvent.featureData.name;
@@ -70,65 +73,6 @@ function initialize() {
 	function showInContentWindow(text) {
 		var sidediv = document.getElementById('content-window');
 		sidediv.innerHTML = text;
-	}
-	function fetchPrice(){
-		var tempStorage = window.sessionStorage;
-		if (false){
-            //console.log('in tempStorage');
-			rate=tempStorage[garageName+"_rate"];
-			totalCost=tempStorage[garageName+"_totalCost"];
-		}else{
-			$.get(SERVER_URL+"getrate/", {data:JSON.stringify({garage:garageName, username: window.localStorage['username']})}, function(data, textStatus, jqXHR) {
-				var jsonObj = data;
-				if (jsonObj){
-					switch (jsonObj.granularity){
-						case PER_HOUR:
-							console.log('per hour');
-							$("#select-duration").show();
-                            $("#slider").width(width*60/100);
-                            rate = jsonObj.magnitude;
-                            granularity = PER_HOUR;
-                            duration = DEFAULT_DURATION_HOUR;
-		                    totalCost = duration*rate;
-                            $("#rate").text("$"+rate+"/hour");
-							setTimePicker(rate);
-							break
-						case PER_DAY:
-							console.log('per day');
-							rate = jsonObj.magnitude;
-							totalCost = jsonObj.magnitude;
-                            granularity = PER_DAY;
-                            duration = 1;
-                            $("#rate").text("$"+rate+"/day");
-							break;
-						default:
-							console.log('default');
-                            rate = jsonObj.magnitude;
-							totalCost = jsonObj.magnitude;
-                            granularity = PER_DAY;
-                            duration = 1;
-                            $("#rate").text("$"+rate+"/day");
-
-					}
-					tempStorage[garageName+"_rate"] = rate;
-					tempStorage[garageName+"_totalCost"] = totalCost;
-					tempStorage[garageName]="was fetched at...";
-
-                    //Quick hack
-                    window.localStorage['token']=jsonObj.token;
-				}
-				else {
-					console.log('cannot parse');
-            		rate = 10;
-					totalCost = 10;
-                    granularity = PER_DAY;
-                    duration = 1;
-                    $("#rate").text("$"+rate+"/day");
-            	}
-        	},"json").always(function(){
-		        $("#park-btn").removeAttr("disabled");
-                });
-		}
 	}
 
 	$('#confirming').on('show.bs.modal', function () {
@@ -140,8 +84,10 @@ function initialize() {
         $("#token-trans").val(window.localStorage['token']);
         $('#amount').val(""+totalCost);
 
-		$('#confirmed').click({rate: rate, garageName: garageName, totalCost: totalCost, duration: duration, granularity: granularity},confirmed);
+		$('#confirmed').click({rate: rate, garageName: garageName, totalCost: totalCost, duration: duration, granularity: granularity, isFavorite: isFavorite},confirmed);
 	});
+
+    //why changeGarage function is undefined if put here while setTimePicker works
 
 	google.maps.event.addListener(kmlLayer, 'metadata_changed', function () {
 		$(".main").css("visibility","visible");
@@ -149,17 +95,6 @@ function initialize() {
 	});
 }
 
-function setTimePicker(r){
-	$('#slider').slider().on('slide', function(ev){
-        $('#slider-value').val(ev.value);
-        duration = ev.value;
-        totalCost = parseInt(duration,10)*r;
-    });
-    $('#slider-value').on('keyup change', function(){
-        $('#slider').slider('setValue', this.value);
-        duration = this.value;
-        totalCost = parseInt(duration,10)*r;
-    });
-}
 google.maps.event.addDomListener(window, 'load', initialize);
+loadFavoriteAndToken()
 

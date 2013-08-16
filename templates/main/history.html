@@ -2,7 +2,7 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/table.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
 #header-brand{
@@ -32,7 +32,7 @@
     </button>
 
     <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Cal Parking</a>
+    <a class="navbar-brand" href="#">Welcome <span id="welcome-user">{{ i.username }}</span></a>
 
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <div class="nav-collapse collapse navbar-responsive-collapse">
@@ -51,38 +51,40 @@
   <div id="content-window">
   	<div class="well well-sm"><strong>This page is under construction</strong> </div>
   </div>
-  <div class="content-history well">
-    <table class="table table-striped table-hover">
-        <tr style="font-weight: bold;">
-            <td>ID</td>
-            <td>Garage</td>
-            <td>Space</td>
-            <td>Start Time</td>
-            <td>End Time</td>
-            <td>Rate</td>
-            <td>Total Cost</td>
-            <td>License Plate</td>
+  <div class="content-history well well-sm">
+    <table class="table table-hover" id="no-more-tables">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Garage</th>
+            <th>Space</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Rate</th>
+            <th>Total Cost</th>
+            <th>License Plate</th>
         </tr>
-
+    </thead>
+    <tbody>
         {% if history %}
         {% load print_stuff %}
         {% for i in history %}
             <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{i.garage}}</td>
-                <td>{{i.space}}</td>
-                <td>{{i.startTime|print_timestamp}}</td>
-                <td>{{i.endTime|print_timestamp}}</td>
-                <td>{{i.rate|print_rate:i.granularity}}</td>
-                <td>{{i.totalCost|print_cost}}</td>
-                <td>{{i.participant_id|print_lp }}</td>
+                <td data-title="ID">{{forloop.counter}}</td>
+                <td data-title="Garage">{{i.garage}}</td>
+                <td data-title="Space">{{i.space}}</td>
+                <td data-title="StartTime">{{i.startTime|print_timestamp}}</td>
+                <td data-title="EndTime">{{i.endTime|print_timestamp}}</td>
+                <td data-title="Rate">{{i.rate|print_rate:i.granularity}}</td>
+                <td data-title="Cost">{{i.totalCost|print_cost}}</td>
+                <td data-title="LP">{{i.participant_id|print_lp }}</td>
             </tr>
         {% endfor %}
         {% else %}
         <p>You don't have any parking history.</p>
         {% endif %}
+    </tbody>
     </table>
-
   </div>
 </div>
 
@@ -100,6 +102,9 @@ $(".main").css("visibility","visible");
 $("#logo").hide();
 function signOut(){
 	window.localStorage.removeItem("isLoggedIn");
+    window.localStorage.removeItem("username");
+    window.localStorage.removeItem("password");
+    window.localStorage.removeItem("token");
 	window.location.href= "ulogin";
 }
 </script>

@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.shortcuts import render_to_response
 from django.template import loader,Context,RequestContext
 from django.contrib.auth.models import User
-from dummyAPIs.models import HistoryTransaction, CurrentTransaction, Participant
+from dummyAPIs.models import HistoryTransaction, CurrentTransaction, Participant, FavoriteGarage
 from django.views.decorators.csrf import csrf_exempt
 
 import simplejson
@@ -57,8 +57,8 @@ def ucheckin(request):
             endTime = calEndTime(timestamp,duration,granularity)
             h = HistoryTransaction.objects.create(participant=u[0],garage=json['garage'],space="N/A",startTime=timestamp,endTime=endTime,rate=rate,totalCost=totalCost,granularity=granularity)
             h.save()
-            n = CurrentTransaction.objects.create(pointer=h)
-            n.save()
+            nTrans = CurrentTransaction.objects.create(pointer=h)
+            nTrans.save()
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json')
     res[ACCESS] = ALLOW
     return res
@@ -82,6 +82,11 @@ def getrate(request):
         u = Participant.objects.filter(username=json['username'])
         if u:
             message['token'] = u[0].cctoken
+            f = FavoriteGarage.objects.filter(participant=u[0],garageName=json['garage'])
+            if f:
+                message['isFavorite'] = True;
+            else:
+                message['isFavorite'] = False;
 
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json');
     res[ACCESS]= ALLOW
@@ -131,8 +136,8 @@ def ugethistory(request):
 
 @csrf_exempt
 def ureceipt(request):
-    if request.method =='POST' and request.POST['orderPage_transactionType'] == "subscription_authorization":
-            return render_to_response('main/close.html',context_instance=RequestContext(request))
+    #if request.method =='POST' and request.POST['orderPage_transactionType'] == "subscription_authorization":
+    #        return render_to_response('main/close.html',context_instance=RequestContext(request))
 
     if request.method == 'POST' and 'merchantDefinedData2' in request.POST :
         user = request.POST['merchantDefinedData2']
@@ -146,3 +151,33 @@ def ureceipt(request):
         return render_to_response('main/profile.html',context_instance=RequestContext(request))
     return HttpResponseRedirect('/uprofile/')
 
+def ugetfavandtoken(request):
+    message={}
+    if request.method == 'GET' and 'data' in request.GET:
+        json = simplejson.loads(request.GET['data'])
+        u = Participant.objects.filter(username=json['username'])
+        if u:
+            message['token'] = u[0].cctoken
+            message['favorite'] = [i.garageName for i in u[0].favoritegarage_set.all()]
+    res= HttpResponse(simplejson.dumps(message),mimetype='application/json')
+    res[ACCESS]= ALLOW
+    return res
+
+def uupdatefav(request):
+    message={}
+    if request.method == 'GET' and 'data' in request.GET:
+        json = simplejson.loads(request.GET['data'])
+        u = Participant.objects.filter(username=json['username'])
+        if u:
+            if json['isFavorite']:
+                f = FavoriteGarage.objects.create(participant=u[0], garageName=json['garage'])
+                f.save()
+            else:
+                f = FavoriteGarage.objects.filter(participant=u[0], garageName=json['garage'])
+                if f:
+                    for i in f:
+                        i.delete()
+
+    res= HttpResponse(simplejson.dumps(message),mimetype='application/json')
+    res[ACCESS]= ALLOW
+    return res
