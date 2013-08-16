@@ -26,6 +26,7 @@ def checkout(username):
             #currentTime = datetime.datetime.now()
             #h.endTime = currentTime.strftime('%s')
             h.endTime = int(time.time())
+            h.save()
             c[0].delete()
 
 def calEndTime(timestamp,duration,granularity):
@@ -117,7 +118,7 @@ def parkinghistory(request):
         if u:
             h = HistoryTransaction.objects.filter(participant=u[0])
             return render_to_response('main/history.html',{'history':h},context_instance=RequestContext(request))
-    #return HttpResponseRedirect('/ulogin')
+        #return HttpResponseRedirect('/ulogin')
         return HttpResponse("no user: " + request.POST.get('username',''))
     return HttpResponse("fail")
 
@@ -145,3 +146,4 @@ def ureceipt(request):
         u[0].save()
         return render_to_response('main/profile.html',context_instance=RequestContext(request))
     return HttpResponseRedirect('/uprofile/')
+
