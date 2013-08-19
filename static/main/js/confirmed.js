@@ -23,6 +23,7 @@ function confirmed(event){
 
 function changeGarage(){
     $("#content-window").html(changeToNotParked());
+    $('html,body').scrollTop($('#favorite').position().top);
 }
 
 function toggleFavorite(){
@@ -34,8 +35,8 @@ function toggleFavorite(){
     updateFavorite(favorite);
 }
 function markFavorite(toServer){
-    $("#mark-favorite-btn").attr("class", "btn btn-danger");
-    $("#mark-favorite-btn").val("Unmark as favorite");
+    $("#mark-favorite-btn").attr("class", "btn-red");
+    $("#mark-favorite-btn").val("Unfavorite");
     $(".fav-garage").show();
     if (favorite.indexOf(garageName) == -1)
         favorite.push(garageName);
@@ -45,8 +46,8 @@ function markFavorite(toServer){
     }
 }
 function unmarkFavorite(toServer){
-    $("#mark-favorite-btn").attr("class", "btn");
-    $("#mark-favorite-btn").val("Mark as favorite");
+    $("#mark-favorite-btn").attr("class", "btn-orange");
+    $("#mark-favorite-btn").val("Favorite");
     $(".fav-garage").hide();
     var index = favorite.indexOf(garageName);
     if (index != -1)
@@ -66,16 +67,6 @@ function updateFavToServer(isFavorite){
         .fail(function(){
 
         });
-}
-function signOut(){
-	window.localStorage.removeItem("isLoggedIn");
-    window.localStorage.removeItem("username");
-    window.localStorage.removeItem("password");
-    window.localStorage.removeItem("token");
-    window.localStorage.removeItem('parkingGarage');
-    window.localStorage.removeItem('parkingEndTime');
-    window.localStorage.removeItem('parkingRate');
-	window.location.href= "ulogin";
 }
 
 function checkOut(){

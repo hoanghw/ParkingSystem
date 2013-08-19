@@ -29,23 +29,24 @@ function loadFavoriteAndTokenAndStatus(){
 }
 
 function updateFavorite(garages){
-    var text = " ";
-    for (var i=0; i<garages.length; i++){
-        var g = garages[i];
-        text += '<input type="button" class="btn btn-warning" id="'
-            +g
-            +'" value="'
-            +g
-            +'" onclick="parkFav(this.id);"/>&nbsp';
-    }
-    if (garages.length == 0)
-        $("#favorite-list").html("None. Please pick your favorite garage and click 'Mark as favorite'");
-    else
+    if (garages.length == 0){
+        $("#favorite-list").html("None. Please pick your favorite garage and click 'Favorite'");
+    }else{
+        var text = " ";
+        for (var i=0; i<garages.length; i++){
+            var g = garages[i];
+            text += '<input type="button" class="btn-red" id="'
+                +g
+                +'" value="'
+                +g
+                +'" onclick="parkFav(this.id);"/>&nbsp';
+        }
         $("#favorite-list").html(text);
+    }
 }
 function parkFav(g){
     garageName=g;
-    $("#content-window").html(changeToParkFav(garageName));
+    $("#content-window").html(changeToParkingGarage(garageName));
     fetchPrice();
 }
 function fetchPrice(){

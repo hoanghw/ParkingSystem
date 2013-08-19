@@ -5,6 +5,9 @@ body{
 	background-color:#1b335f;
 }
 
+.container{
+    text-align: center;
+}
 .wrap {min-height: 100%;}
 
 .main {overflow:auto;

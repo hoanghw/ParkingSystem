@@ -3,6 +3,7 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
 .form-group {
@@ -14,10 +15,6 @@
 	text-align:center;
 	max-width:70%;
 	margin: auto;
-}
-.form-submit button {
-	background-color:#f4c446;
-	color:white;
 }
 #signIn {
 	position: absolute;
@@ -45,7 +42,7 @@
       <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
     </div>
     <div class="form-submit">
-      <button id="submitBtn" type="submit" class="btn btn-lg">Sign In</button>
+      <button id="submitBtn" type="submit" class="btn-big">Sign In</button>
     </div>
   </fieldset>
 </form>

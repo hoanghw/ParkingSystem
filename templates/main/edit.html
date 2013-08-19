@@ -2,7 +2,6 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/table.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
@@ -41,7 +40,12 @@
             <div class="col-lg-3 col-md-3 col-sx-6">
                 <button type="button" onclick="location.href='/uprofile';" class="btn btn-primary navbar-btn">Home</button>
             </div>
-            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" onclick="location.href='/uedit';" class="btn btn-primary navbar-btn">Edit Account</button></div>
+            <div class="col-lg-3 col-md-3 col-sx-6">
+                <form action="/uhistory" method="POST">{% csrf_token %}
+                    <input type="hidden" id="username" name="username" value="">
+                    <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
+                </form>
+            </div>
 		    <div class="col-lg-3 col-md-3 col-sx-6"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
         </div>
     </div><!-- /.nav-collapse -->
@@ -49,43 +53,16 @@
 </div><!-- /.navbar -->
 
 <div class="container">
-  <div id="content-window">
-  	<div class="well well-sm"><strong>This page is under construction</strong> </div>
+  <div id="row">
+        <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+            <input type="hidden" id="user-check" name="user" value="">
+            <button type="submit" class="btn-big">Register New Payment Method</button>
+        </form>
   </div>
-  <div class="content-history well well-sm">
-    <table class="table table-hover" id="no-more-tables">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Garage</th>
-            <th>Space</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Rate</th>
-            <th>Total Cost</th>
-            <th>License Plate</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if history %}
-        {% load print_stuff %}
-        {% for i in history %}
-            <tr>
-                <td data-title="ID">{{forloop.counter}}</td>
-                <td data-title="Garage">{{i.garage}}</td>
-                <td data-title="Space">{{i.space}}</td>
-                <td data-title="StartTime">{{i.startTime|print_timestamp}}</td>
-                <td data-title="EndTime">{{i.endTime|print_timestamp}}</td>
-                <td data-title="Rate">{{i.rate|print_rate:i.granularity}}</td>
-                <td data-title="Cost">{{i.totalCost|print_cost}}</td>
-                <td data-title="LP">{{i.participant_id|print_lp }}</td>
-            </tr>
-        {% endfor %}
-        {% else %}
-        <p>You don't have any parking history.</p>
-        {% endif %}
-    </tbody>
-    </table>
+  <hr>
+  <div id="row">
+        <input type="hidden" id="lp-btn" name="lp" value="">
+        <button type="submit" onclick="" class="btn-big">Change Licence Plate</button>
   </div>
 </div>
 
@@ -102,6 +79,12 @@ A product of xmobile.berkeley.edu
 <script>
 $(".main").css("visibility","visible");
 $("#logo").hide();
-$("#welcome-user").text(window.localStorage["username"]);
+var u = window.localStorage['username'];
+
+if (u && window.localStorage['isLoggedIn']){
+    $("#username").val(u);
+    $("#user-check").val(u);
+    $("#welcome-user").text(u);
+}
 </script>
 {% endblock %}

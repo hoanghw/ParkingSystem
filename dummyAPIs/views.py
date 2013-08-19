@@ -262,3 +262,6 @@ def uverifyreg(request):
             return HttpResponse(simplejson.dumps(error), mimetype='application/json')
 
     return HttpResponse(simplejson.dumps(error), mimetype='application/json')
+
+def uedit(request):
+    return render_to_response('main/edit.html', context_instance=RequestContext(request))

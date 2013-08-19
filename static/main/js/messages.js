@@ -52,22 +52,22 @@ function changeToError(){
     return text;
 }
 
-function changeToParkFav(garageName){
+function changeToParkingGarage(garageName){
     var text ='<div class="well well-sm">'
-            +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span><br>'
-            +'<font color="#3366ff">Current Rate: </font>'
+            +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span>'
+            +'<br><font color="#3366ff">Current Rate: </font>'
             +'<strong><span id="rate">Fetching</span></strong>'
             +'<hr>'
 
             +'<form class="form-horizontal">'
             +'<div class="form-group row" id="select-duration">'
-            +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label">Enter Duration (hour)</label>'
+            +'<label for="duration" class="col-lg-6 col-md-6 col-sx-6  control-label">Enter Duration (hour)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="number" class="form-control" id="duration-value" value="2" min="1" max="24">'
             +'</div>'
             +'</div>'
             +'<div class="form-group row" id="select-space">'
-            +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (optional)</label>'
+            +'<label for="space" class="col-lg-6 col-md-6 col-sx-6 control-label">Enter Space (optional)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="number" class="form-control" id="space-value" value="0" min="0">'
             +'</div>'
@@ -76,10 +76,11 @@ function changeToParkFav(garageName){
             +'</div>'
 
             +'<div class="well well-sm">'
-            +'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>&nbsp'
-            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-warning" value="Change Garage"/>&nbsp'
-            +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn" value="Mark as favorite"/>'
+            +'<input id="park-btn" class="btn-darkblue" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
+            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Change Garage"/>&nbsp'
+            +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>'
             +'</div>';
+    //$('html,body').scrollTop($('#favorite').position().top);
     $('html,body').scrollTop(0);
     return text;
 

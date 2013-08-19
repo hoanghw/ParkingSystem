@@ -30,40 +30,13 @@ function initialize() {
 	kmlLayer.setMap(map);
 
 	google.maps.event.addListener(kmlLayer, 'click', function(kmlEvent) {
-		var text = '<div class="well well-sm">'
-                +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+kmlEvent.featureData.name+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span><br>'
-                +'<font color="#3366ff">Current Rate: </font>'
-                +'<strong><span id="rate">Fetching</span></strong>'
-                +'<hr>'
+		var text = changeToParkingGarage(kmlEvent.featureData.name);
+        text += '<div class="well well-sm">'
+            + kmlEvent.featureData.description
+			+ '</div>';
 
-                +'<form class="form-horizontal">'
-                +'<div class="form-group row" id="select-duration">'
-                +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label">Enter Duration (hour)</label>'
-                +'<div class="col-lg-3 col-md-3 col-sx-6">'
-                +'<input type="number" class="form-control" id="duration-value" value="2" min="1" max="24">'
-                +'</div>'
-                +'</div>'
-                +'<div class="form-group row" id="select-space">'
-                +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (Optional)</label>'
-                +'<div class="col-lg-3 col-md-3 col-sx-6">'
-                +'<input type="number" class="form-control" id="space-value" value="0" min="0">'
-                +'</div>'
-                +'</div>'
-
-                +'</div>'
-
-				+'<div class="well well-sm">'
-				+'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park Here"/>&nbsp'
-                +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-warning" value="Change Garage"/>&nbsp'
-                +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn" value="Mark as favorite"/>'
-				+'</div>'
-
-                + '<div class="well well-sm">'
-				+ kmlEvent.featureData.description
-				+ '</div>';
 		showInContentWindow(text);
         $(".fav-garage").hide();
-		$('html,body').scrollTop(0);
 		$("#park-btn").attr("disabled","disabled");
 		garageName = kmlEvent.featureData.name;
 		fetchPrice();

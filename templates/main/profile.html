@@ -2,6 +2,7 @@
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
 #header-brand{
@@ -42,7 +43,7 @@
                     <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
                 </form>
             </div>
-            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" class="btn btn-primary navbar-btn">Edit Account</button></div>
+            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" onclick="location.href='/uedit';" class="btn btn-primary navbar-btn">Edit Account</button></div>
             <!--
             <div class="col-lg-3 col-md-3 col-sx-6">
                 <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
@@ -84,16 +85,16 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-default" class="close" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn-darkgreen" class="close" data-dismiss="modal">Cancel</button>
 
             <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
                 <input type="hidden" id="user-trans" name="user" value="">
                 <input type="hidden" id="token-trans" name="token" value="">
                 <input type="hidden" id="amount" name="amount" value="">
-                <button type="submit" id="confirmed1" class="btn btn-primary navbar-btn">Go to HOP</button>
+                <button type="submit" id="confirmed1" class="btn-darkblue">Go to HOP</button>
             </form>
 
-        <button type="button" class="btn btn-primary" id="confirmed">Confirm</button>
+        <button type="button" class="btn-darkblue" id="confirmed">Confirm</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -113,6 +114,7 @@ A product of xmobile.berkeley.edu
 <script type="text/javascript" src="{{STATIC_URL}}main/js/favorite.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/loadmap.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/confirmed.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}main/js/signout.js"></script>
 <script>
 var u = window.localStorage['username'];
 
@@ -121,6 +123,5 @@ if (u && window.localStorage['isLoggedIn']){
     $("#user-check").val(u);
     $("#welcome-user").text(u);
 }
-
 </script>
 {% endblock %}
