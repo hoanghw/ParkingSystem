@@ -17,7 +17,7 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
-	$('#map-canvas').height(height*50/100);
+	$('#map-canvas').height(height*60/100);
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
 
