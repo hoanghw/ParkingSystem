@@ -118,7 +118,10 @@ function fetchPrice(){
 
 function setTimePicker(r){
     $('#duration-value').on('keyup change', function(){
-        duration = parseInt(this.value,10);
+        duration = Math.abs(parseInt(this.value,10));
+        if (isNaN(duration)){
+            duration = DEFAULT_DURATION_HOUR;
+        }
         totalCost = duration*r;
     });
 }

@@ -53,17 +53,21 @@
 </div><!-- /.navbar -->
 
 <div class="container">
-  <div id="row">
-        <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+    <div class="well well-sm">
+    <strong>This page functionality is currently disabled</strong>
+    </div>
+    <hr>
+    <div class="row">
+        <form name="check-out">{% csrf_token %}
             <input type="hidden" id="user-check" name="user" value="">
             <button type="submit" class="btn-big">Register New Payment Method</button>
         </form>
-  </div>
-  <hr>
-  <div id="row">
-        <input type="hidden" id="lp-btn" name="lp" value="">
+    </div>
+    <hr>
+    <div class="row">
         <button type="submit" onclick="" class="btn-big">Change Licence Plate</button>
-  </div>
+    </div>
+    <hr>
 </div>
 
 </div>
