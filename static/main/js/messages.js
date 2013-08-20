@@ -78,6 +78,7 @@ function changeToParkingGarage(garageName){
             +'<div class="well well-sm">'
             +'<input id="park-btn" class="btn-darkblue" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>&nbsp'
+            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
             +'</div>';
     //$('html,body').scrollTop($('#parkingInput').position().top);
     $('html,body').scrollTop(0);
