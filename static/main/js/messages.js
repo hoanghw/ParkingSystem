@@ -62,16 +62,16 @@ function changeToParkingGarage(garageName){
             +'<form class="form-horizontal">'
 
             +'<div class="form-group row" id="select-duration">'
-            +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label">Enter Duration (hour)</label>'
+            +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label" >Enter Duration (hour)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
-            +'<input type="number" class="form-control" id="duration-value" value="2" min="1" max="24">'
+            +'<input type="text" class="form-control" id="duration-value" placeholder="2" value="" min="1" max="24">'
             +'</div>'
             +'</div>'
 
             +'<div class="form-group row" id="select-space">'
             +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (optional)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
-            +'<input type="number" class="form-control" id="space-value" value="0" min="0">'
+            +'<input type="text" class="form-control" id="space-value" placeholder="0" value="" min="0">'
             +'</div>'
             +'</div>'
 
