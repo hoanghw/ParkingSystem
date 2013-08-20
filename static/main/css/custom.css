@@ -1,43 +1,148 @@
 body {
-	background-image:url('../img/UC-Berkeley-151.jpg');
+    background-image: url(https://raw.github.com/subtlepatterns/SubtlePatterns/master/diagonal_waves.png);
+}
+
+.reg_form {
+    width: 65%;
+    background-image: url(https://raw.github.com/subtlepatterns/SubtlePatterns/master/subtle_dots.png);
+-webkit-box-shadow:rgba(64, 64, 64, 0.419608) 0px 0px 2px 2px inset;
+-moz-box-shadow:rgba(64, 64, 64, 0.419608) 0px 0px 2px 2px inset;
+box-shadow:rgba(64, 64, 64, 0.419608) 0px 0px 2px 2px inset;
+
+}
+
+/*header*/
+
+#top_bar{
+    padding-top: 3%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#continue {
+    font-size: 1.2em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 25%;
+    width:50%;
+    text-align: center;
+    /* margin-right: 87.5%; */
+}
+    
+ .btn-yellow{
+    display: inline-block;
+    background: #ffc835;
+    -webkit-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    -moz-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0px 1px 0px #ffe6a5;
+    padding: 6px 40px;
+    border-color: #ebae3e;
+    border-width: 1px;
+    border-style: solid;
+    font-family: Arial, Helvetica, Sans-serfi;
+    border-radius: 10px;
+    color: #4f2f2f;
+    font-weight: bold;
+    font-size: 110%;
+}
+.btn-yellow:hover {
+    background: #ffd200;
+    -webkit-box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
+    -moz-box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
+    box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
+    border-color: #ffc835;
+    border-radius: 10px;
+}
+
+.bottomrounded{
+ border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.toprounded{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+
+.form-control {
+    width: 85%;
+    margin: 0 auto;
 }
 
 .brand-logo {
 	height: 50px;
 }
 
-/*
-li #signup button .btn .btn-primary{
-    background-color: #428bca;
-    border-color: #357ebd;
+.mid{
+    width: 100%;
 }
-*/
-li #inactive{
-    background-color: #CCC;
-	opacity: 0.7;
-    border-color: #269abc;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: center;
-	margin-right: 2px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	border:2px solid #357ebd;
-	font-size: 20px;
+
+ol li{
+    font-size: 80%;
+
+}
+
+ li #inactive{
+
+     display: inline-block;
+     background: #16254e;
+     -webkit-box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
+     -moz-box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
+     box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
+     -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+     border-radius: 2px;
+     -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+     -o-transition: all 0.2s ease-in-out;
+     transition: all 0.2s ease-in-out;
+     text-shadow: 0px 1px 0px #737373;
+     padding: 6px 10px;
+     border: 1px solid #737373;
+     border-radius: 6px;
+     color: #897239;
+     margin-left: 0px !important;
 }
 
 li #active{
-	color: white;
-	background-color: #f0ad4e;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	border:2px solid #eea236;
-	font-size: 20px;
-	text-align: center;
+    display: inline-block;
+    background: #ffc835;
+    -webkit-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    -moz-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0px 1px 0px #ffe6a5;
+    padding-top: 6px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid #ebae3e;
+    color: #16254e;
+    font-weight: bold;
+
+}
+li #active p{
+        margin-right: 0;
+}
+li #inactive p{
+    margin-left: 0;
 }
 
 a{

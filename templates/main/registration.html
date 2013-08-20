@@ -1,114 +1,125 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-	<head>
-		<script type="text/javascript" src="{{STATIC_URL}}main/js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="{{STATIC_URL}}main/js/bootstrap.js"></script>
-        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/custom.css"/>
-		<title>Parking System Interface</title>
-	</head>
-	<body>
-		<div class="wrap">
-			<div class="main">
-					<div id="header-brand" class="navbar">
-							 <a class="navbar-brand col-lg-offset-2" href="#">VPP Project</a>
-							 <img class="pull-right brand-logo" src="{{STATIC_URL}}main/img/UCBerkeley-logo.jpg">
-					</div><!-- /.navbar -->
-			</div>
-		</div>
+<head>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <title>Parking System Interface</title>
+</head>
+<body>
 
-		<div class="container">
-            <div id="error-message">
-            </div>
-			<form class="form-horizontal" role="form" id="check-out" name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
-			  <fieldset>
+{#<div class="wrap">#}
+{#    <div class="main">#}
+{#        <div id="header-brand" class="navbar">#}
+{#            <a class="navbar-brand col-lg-offset-2" href="#">VPP Project</a>#}
+{#           #}
+{#        </div>#}
+{#        <!-- /.navbar -->#}
+{#    </div>#}
+{#</div>#}
+<div class="container mid">
+    <div id="error-message">
+    </div>
+    
+    
+    <div class="container">
+        <form class="form-horizontal" role="form" id="check-out" name="check-out"
+              action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+            <fieldset class="reg_form">
                 <input type="hidden" id="user" name="user" value="">
-				<div class="col-md-offset-1 col-md-11">  
-			    <legend><p><h1>Welcome to the Berkeley VPP Project!</h1></p>
-					<ol id="crumbs" class="list-inline">
-						<li class="col-md-2">
-							<div id="active">1.Sign Up</div>
-						</li>
-						<li class>
-							<div id="inactive" class="col-md-12">2. Payment Info</div>
-						</li>
-					</ol>
-				</legend>
-			</div>
-				<div class="form-group">
-					<label for="username" class="col-md-2 control-label">Username</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password1" class="col-md-2 control-label">Password</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="password1" id="password1" placeholder="Enter password">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password2" class="col-md-2 control-label">Verify Password</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="password2" id="password2" placeholder="Verify password">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="firstname" class="col-md-2 control-label">First Name/Last Name</label>
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
-					</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
-					</div>
-				</div>
-			    <div class="form-group">
-					<label for="email" class="col-md-2 control-label">Email address</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
-					</div>
-			    </div>
-			    <div class="form-group">
-					<label for="licenseplate" class="col-md-2 control-label">License Plate</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="licenseplate" id="licenseplate" placeholder="Enter License Plate">
-					</div>
-			    </div>
-		    
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-10">
-						<button id = "continue" class="btn btn-warning">Continue</button>
-					</div>
-				</div>
-			  </fieldset>
-			</form>
-		</div>
-		<div id="footer">
-		</div>
+                <div id="top_bar" class="text-center row">
+                <div>
+                    <legend class="col-md-11 text-center">
+                        <ol class="list-inline">
+                            <li>
+                                <p id="active" class="text-center">Registration</p>
+                            </li>
+                            <li>
+                                <p class="text-center" id="inactive">Payment Info</p>
+                            </li>
+                        </ol>
+                    </legend>
 
-    <script>
-        $("#continue").on('click',function(e){
-            e.preventDefault();
-            verify();
-        });
-        function verify(){
-            var username=$("#username").val();
-            var password1=$("#password1").val();
-            var password2=$("#password2").val();
-            var firstname=$("#firstname").val();
-            var lastname=$("#lastname").val();
-            var email=$("#email").val();
-            var licenseplate=$("#licenseplate").val();
-            $.get("/uverifyreg/",{username:username,password1:password1,password2:password2,firstname:firstname,lastname:lastname,email:email,licenseplate:licenseplate},function(data, textStatus, jqXHR) {
-                if ("noerror" in data){
-                    $("#user").val(username);
-                    $("#check-out").submit();
-                }else{
-                    //TODO:  FIX these display errors
-                    alert("ERROR: "+JSON.stringify(data));
-                }
-            },"json");
-        };
-    </script>
-	</body>
+                   </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control toprounded" name="username" id="username"
+                               placeholder="Enter username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control toprounded" name="password1" id="password1"
+                               placeholder="Enter password">
+                    </div>
+                    <div class="col-md-11">
+                        <input type="text" class="form-control bottomrounded" name="password2" id="password2"
+                               placeholder="Verify password">
+                    </div>
+                </div>
+                <div id="names" class="form-group">
+                    <div id="b_firstname" class="col-md-11">
+                        <input type="text" class="form-control toprounded" name="firstname" id="firstname"
+                               placeholder="First Name">
+                    </div>
+
+                    <div id="b_lastname" class="col-md-11">
+                        <input type="text" class="bottomrounded form-control" name="lastname" id="lastname"
+                               placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-md-11">
+                        <input type="text" class="form-control bottomrounded" name="licenseplate" id="licenseplate"
+                               placeholder="Enter License Plate">
+                    </div>
+                    <div class="col-md-11">
+                        <button id="continue" class="btn btn-yellow btn-md btn-block">Continue</button>
+                    </div>
+
+                </div>
+            </fieldset>
+        </form>
+        </div>
+    </div>
+
+        <div id="footer">
+        </div>
+
+        <script>
+            $("#continue").on('click', function (e) {
+                e.preventDefault();
+                verify();
+            });
+            function verify() {
+                var username = $("#username").val();
+                var password1 = $("#password1").val();
+                var password2 = $("#password2").val();
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                var email = $("#email").val();
+                var licenseplate = $("#licenseplate").val();
+                $.get("/uverifyreg/", {username: username, password1: password1, password2: password2, firstname: firstname, lastname: lastname, email: email, licenseplate: licenseplate}, function (data, textStatus, jqXHR) {
+                    if ("noerror" in data) {
+                        $("#user").val(username);
+                        $("#check-out").submit();
+                    } else {
+                        //TODO:  FIX these display errors
+                        alert(JSON.stringify(data));
+                    }
+                }, "json");
+            }
+            ;
+        </script>
+</body>
 </html>
