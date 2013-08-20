@@ -60,12 +60,14 @@ function changeToParkingGarage(garageName){
             +'<br><br>'
 
             +'<form class="form-horizontal">'
+
             +'<div class="form-group row" id="select-duration">'
             +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label">Enter Duration (hour)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="number" class="form-control" id="duration-value" value="2" min="1" max="24">'
             +'</div>'
             +'</div>'
+
             +'<div class="form-group row" id="select-space">'
             +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (optional)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
@@ -73,6 +75,7 @@ function changeToParkingGarage(garageName){
             +'</div>'
             +'</div>'
 
+            +'</form>'
             +'</div>'
 
             +'<div class="well well-sm">'
@@ -80,8 +83,8 @@ function changeToParkingGarage(garageName){
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>&nbsp'
             +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
             +'</div>';
-    //$('html,body').scrollTop($('#parkingInput').position().top);
-    $('html,body').scrollTop(0);
+    $('html,body').scrollTop($('#favorite').position().top);
+    //$('html,body').scrollTop(0);
     return text;
 
 }

@@ -38,6 +38,7 @@ $("#signIn").submit(function(e) {
     e.preventDefault();
 	//window.location.href= "profile.html";
 	handleLogin();
+    return false;
 });
 
 function handleLogin() {
@@ -47,7 +48,7 @@ function handleLogin() {
     var u = $("#inputUsername", form).val();
     var p = $("#inputPassword", form).val();
     console.log("click");
-    if(u != '' || p != '') {
+    if(u != '' && p != '') {
         $.get(SERVER_URL+"usignin/", {username:u,password:p}, function(data, textStatus, jqXHR) {
             if(data.user) {
                 window.localStorage["username"] = u;

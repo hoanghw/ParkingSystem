@@ -29,18 +29,28 @@ function loadFavoriteAndTokenAndStatus(){
 }
 
 function updateFavorite(garages){
-    if (garages.length == 0){
+    var l = garages.length;
+    if (l == 0){
         $("#favorite-list").html("None. Please pick your favorite garage and click 'Favorite'");
-    }else{
-        var text = " ";
-        for (var i=0; i<garages.length; i++){
-            var g = garages[i];
-            text += '<input type="button" class="btn-red" id="'
-                +g
+    }else if (l == 1){
+        var text = '<input type="button" class="btn-red" id="'
+                +garages[0]
                 +'" value="'
-                +g
-                +'" onclick="parkFav(this.id);"/>&nbsp';
+                +garages[0]
+                +'" onclick="parkFav(this.id);"/>';
+        $("#favorite-list").html(text);
+    }else{
+        var text ='<div class="btn-group"><button type="button" class="btn btn-darkgreen dropdown-toggle" data-toggle="dropdown">Click here ... <span class="caret"></span></button>'
+            +'<ul style="text-align: center;" class="dropdown-menu" role="menu">';
+        for (var i=0; i<l; i++){
+            text +='<li><input type="button" class="btn-red" id="'
+                +garages[i]
+                +'" onclick="parkFav(this.id);" value="'
+                +garages[i]
+                +'"></li>'
+                +'<li class="divider"></li>';
         }
+        text += '</ul></div>'
         $("#favorite-list").html(text);
     }
 }
@@ -119,7 +129,7 @@ function fetchPrice(){
 function setTimePicker(r){
     $('#duration-value').on('keyup change', function(){
         duration = Math.abs(parseInt(this.value,10));
-        if (isNaN(duration)){
+        if (isNaN(duration)&&(duration==0)){
             duration = DEFAULT_DURATION_HOUR;
         }
         totalCost = duration*r;

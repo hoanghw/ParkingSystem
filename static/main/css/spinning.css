@@ -14,7 +14,7 @@
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: -313px; /* negative value of footer height */
+	margin-top: -313px; /* 313 = 64+24+115 negative value of footer height */
 	height: 313px;
 	z-index:-7;
 }
