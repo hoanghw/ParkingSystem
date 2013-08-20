@@ -24,7 +24,7 @@ function loadFavoriteAndTokenAndStatus(){
             updateFavorite(favorite);
         })
         .fail(function(){
-
+            signOut();
         });
 }
 

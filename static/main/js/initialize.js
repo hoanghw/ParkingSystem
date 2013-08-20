@@ -59,7 +59,10 @@ function handleLogin() {
             	$("#loginMessages").text("Please enter correct username and password"); 
             }
          $("#submitBtn").removeAttr("disabled");
-        },"json");
+        },"json").fail(function(){
+                $("#loginMessages").text("Server Error. Please try again.");
+                $("#submitBtn").removeAttr("disabled");
+            });
     } else {
         $("#loginMessages").text("Please enter username and password");
         $("#submitBtn").removeAttr("disabled");
