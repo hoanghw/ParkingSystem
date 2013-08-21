@@ -55,6 +55,7 @@ urlpatterns = patterns('',
     url(r'^uregistration','dummyAPIs.views.uregistration'),
     url(r'^uverifyreg','dummyAPIs.views.uverifyreg'),
     url(r'^uedit','dummyAPIs.views.uedit'),
+    url(r'^uchangelp','dummyAPIs.views.uchangelp'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

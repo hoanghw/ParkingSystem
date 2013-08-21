@@ -17,6 +17,7 @@ class LicensePlate(models.Model):
     text = models.CharField(max_length=100)
     participant = models.ForeignKey(Participant)
     isActive = models.BooleanField()
+    timestamp = models.BigIntegerField()
 
 class FavoriteGarage(models.Model):
     garageName = models.CharField(max_length=50)

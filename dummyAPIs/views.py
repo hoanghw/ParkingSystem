@@ -6,6 +6,7 @@ from django.template import loader, Context, RequestContext
 from django.contrib.auth.models import User
 from dummyAPIs.models import HistoryTransaction, CurrentTransaction, Participant, FavoriteGarage, LicensePlate
 from django.views.decorators.csrf import csrf_exempt
+import datetime, time
 
 import simplejson
 
@@ -22,7 +23,7 @@ def verifyuser(request):
         message['user'] = True
     return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-import datetime, time
+
 
 def checkout(username):
     u = Participant.objects.filter(username=username)
@@ -181,6 +182,9 @@ def ugetfavandtokenandstatus(request):
         if u:
             message['token'] = u[0].cctoken
             message['favorite'] = [i.garageName for i in u[0].favoritegarage_set.all()]
+            lps = u[0].licenseplate_set.filter(isActive=True);
+            if lps:
+                message['lp'] = lps[0]
             message['isParking'] = {}
             c = CurrentTransaction.objects.filter(pointer__participant=u[0])
             if c:
@@ -202,15 +206,15 @@ def uupdatefav(request):
     if request.method == 'GET' and 'data' in request.GET:
         json = simplejson.loads(request.GET['data'])
         u = Participant.objects.filter(username=json['username'])
-        if u:
-            if json['isFavorite']:
-                f = FavoriteGarage.objects.create(participant=u[0], garageName=json['garage'])
-                f.save()
-            else:
-                f = FavoriteGarage.objects.filter(participant=u[0], garageName=json['garage'])
-                if f:
-                    for i in f:
-                        i.delete()
+    if u:
+        if json['isFavorite']:
+            f = FavoriteGarage.objects.create(participant=u[0], garageName=json['garage'])
+            f.save()
+        else:
+            f = FavoriteGarage.objects.filter(participant=u[0], garageName=json['garage'])
+            if f:
+                for i in f:
+                    i.delete()
 
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json')
     res[ACCESS] = ALLOW
@@ -256,7 +260,7 @@ def uverifyreg(request):
             u.lastName = request.GET.get('lastname','')
             u.email = request.GET.get('email','')
             u.save()
-            l = LicensePlate.objects.create(text=request.GET.get('licenseplate',''), participant= u, isActive=True)
+            l = LicensePlate.objects.create(text=request.GET.get('licenseplate',''), participant= u, isActive=True, timestamp = time.time())
             l.save()
             error['noerror'] = True
             return HttpResponse(simplejson.dumps(error), mimetype='application/json')
@@ -265,3 +269,21 @@ def uverifyreg(request):
 
 def uedit(request):
     return render_to_response('main/edit.html', context_instance=RequestContext(request))
+
+def uchangelp(request):
+    message = {}
+    if request.method == 'GET' and 'data' in request.GET:
+        json = simplejson.loads(request.GET['data'])
+        u = Participant.objects.filter(username=json['username'])
+        if u:
+            lps = u[0].licenseplate_set.all()
+            for i in lps:
+                i.isActive = False;
+            lp = LicensePlate.objects.create(participant=u[0],text=json['newlp'],isActive=True,timestamp=time.time())
+            lp.save()
+            message['error'] = "success"
+        else:
+            message['error'] = "no user"
+    else:
+        message['error'] = "wrong request"
+    return HttpResponse(simplejson.dumps(message), mimetype='application/json')

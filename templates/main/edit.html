@@ -49,7 +49,7 @@
 
 <div class="container">
     <div class="well well-sm">
-    <strong>This page functionality is currently disabled</strong>
+    <strong>Changing payment method is currently disabled</strong>
     </div>
     <hr>
     <div class="row">
@@ -59,8 +59,20 @@
         </form>
     </div>
     <hr>
+
+    <div class="well well-sm" id="message" style="display:none;"></div>
+
+    <div class="row" id="lpInput" style="display:none;">
+        <div class="input-group">
+            <input type="text" class="form-control" id="lp">
+            <span class="input-group-btn">
+                <button class="btn btn-red" type="button" onclick="changeLP();">Submit</button>
+            </span>
+        </div><!-- /input-group -->
+        <br>
+    </div>
     <div class="row">
-        <button type="submit" onclick="" class="btn-big">Change Licence Plate</button>
+        <button type="submit" onclick="$('#lpInput').show();$('#message').hide();" class="btn-big">Change Licence Plate</button>
     </div>
     <hr>
 </div>
@@ -83,6 +95,24 @@ var u = window.localStorage['username'];
 if (u && window.localStorage['isLoggedIn']){
     $("#username").val(u);
     $("#welcome-user").text(u);
+}else{
+    signOut();
+}
+
+function changeLP(){
+    var lp = $("#lp").val();
+    $.get(SERVER_URL+'uchangelp',{data:JSON.stringify({username: window.localStorage['username'], newlp: lp})}, function(data, textStatus, jqXHR){
+
+    },"json").done(function(){
+                $("#message").show();
+                $("#message").text("Your license plate has been changed.");
+                $("#lpInput").hide();
+                $("#lp").val("");
+            }).fail(function(){
+                $("#message").show();
+                $("#message").text("Error.  Please try again!");
+                $("#lp").val("");
+            });
 }
 </script>
 {% endblock %}
