@@ -1,8 +1,10 @@
-from qt.models import Qt_Message
 import simplejson
 from django.http import HttpResponse,HttpResponseForbidden
-from parkingsystem.local_settings import STATICFILES_DIRS as STATIC_DIRS
 from django.views.decorators.csrf import csrf_exempt
+
+from qt.models import Qt_Message
+from parkingsystem.local_settings import STATICFILES_DIRS as STATIC_DIRS
+
 
 def get_messages_id(request):
     if 'id' in request.GET and request.GET['id']:

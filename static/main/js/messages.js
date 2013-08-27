@@ -41,7 +41,7 @@ var formatTime = function(unixTimestamp) {
 }
 
 function changeToNotParked(){
-	var text = '<div class="well well-sm"><strong>Please pick a garage on the map</strong> - by tapping the P icon</div>';
+	var text = '<div class="well well-sm">Tap an icon to park</div>';
 	$('html,body').scrollTop(0);
 	return text;
 }
@@ -54,7 +54,7 @@ function changeToError(){
 
 function changeToParkingGarage(garageName){
     var text ='<div id="parkingInput" class="well well-sm">'
-            +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span>'
+            +'<span id="garage-name"><strong>'+garageName+'</strong></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
             +'<br><font color="#3366ff">Current Rate: </font>'
             +'<strong><span id="rate">Fetching</span></strong>'
             +'<br><br>'
@@ -76,12 +76,10 @@ function changeToParkingGarage(garageName){
             +'</div>'
 
             +'</form>'
-            +'</div>'
 
-            +'<div class="well well-sm">'
-            +'<input id="park-btn" class="btn-darkblue" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
-            +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>&nbsp'
-            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
+            +'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
+            +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn btn-warning" value="Favorite"/>&nbsp'
+ //           +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
             +'</div>';
     $('html,body').scrollTop($('#favorite').position().top);
     //$('html,body').scrollTop(0);

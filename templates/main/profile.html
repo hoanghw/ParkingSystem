@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
 .navbar-brand{
@@ -59,7 +60,7 @@
   </div>
 
   <div id="content-window">
-    <div class="well well-sm"><strong>Please pick a garage on the map</strong> - by zooming in and tapping the P icon</div>
+    <div class="well well-sm">Tap an icon to select a garage</div>
   </div>
   <div class="row">
   	<div id="map-canvas"></div>
@@ -71,15 +72,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Confirmation</h4>
       </div>
       <div class="modal-body">
-        Park at <strong id="conf-garage"></strong> for <strong id="conf-rate"></strong>.<br>
+        Park at <strong id="conf-garage"></strong> for <strong id="conf-rate"></strong>.
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn-darkgreen" class="close" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" class="close" data-dismiss="modal">Cancel</button>
             <!--
             <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
                 <input type="hidden" id="user-trans" name="user" value="">
@@ -88,7 +89,7 @@
                 <button type="submit" id="confirmed1" class="btn-darkblue">Go to HOP</button>
             </form>
             -->
-        <button type="button" class="btn-darkblue" id="confirmed">Confirm</button>
+        <button type="button" class="btn btn-primary" id="confirmed">Confirm</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
