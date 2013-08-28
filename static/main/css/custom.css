@@ -58,3 +58,12 @@ a:hover{
     color: red;
     opacity: 1;
 }
+
+.glyphicon-star{
+    color: goldenrod;
+    font-size: 14px;
+}
+
+input .favgarage .btn .btn-xs{
+    margin-bottom: 0px;
+}

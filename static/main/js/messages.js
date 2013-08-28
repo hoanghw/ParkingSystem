@@ -54,7 +54,7 @@ function changeToError(){
 
 function changeToParkingGarage(garageName){
     var text ='<div id="parkingInput" class="well well-sm">'
-            +'<span id="garage-name"><strong>'+garageName+'</strong></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
+            +'<span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage glyphicon glyphicon-star"></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
             +'<br><font color="#3366ff">Current Rate: </font>'
             +'<strong><span id="rate">Fetching</span></strong>'
             +'<br><br>'

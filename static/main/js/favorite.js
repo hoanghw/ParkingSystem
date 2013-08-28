@@ -33,7 +33,7 @@ function updateFavorite(garages){
     if (l == 0){
         $("#favorite-list").html("No favorite garages selected");
     }else if (l == 1){
-        var text = '<input type="button" class="btn btn-xs btn-danger" id="'
+        var text = '<input type="button" style="margin-bottom: 0px; padding-bottom: 0px;" class="btn btn-xs btn-danger" id="'
                 +garages[0]
                 +'" value="'
                 +garages[0]
