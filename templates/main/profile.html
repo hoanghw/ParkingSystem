@@ -1,127 +1,152 @@
 {% extends "main/base.html" %}
 {% block extrahead %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
-<style>
-#header-brand{
-
-}
-.navbar-brand{
-	color:#1b335f;
-	font-weight:bold;
-	font-size:24px;
-}
-
-</style>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/parking_map.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/server.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/signout.js"></script>
 {% endblock %}
 
 
 {% block content %}
-<div class="wrap">
-<div class="main">
-<div id="header-brand" class="navbar">
-  <div class="container">
-
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-
-    <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Welcome <span id="welcome-user"></span></a>
-
-    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
-    <div class="nav-collapse collapse navbar-responsive-collapse">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <form action="/uhistory" method="POST">{% csrf_token %}
-                    <input type="hidden" id="username" name="username" value="">
-                    <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
-                </form>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" onclick="location.href='/uedit';" class="btn btn-primary navbar-btn">Edit Account</button></div>
-            <!--
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
-                    <input type="hidden" id="user-check" name="user" value="">
-                    <button type="submit" class="btn btn-primary navbar-btn">Register Payment</button>
-                </form>
-            </div>
-            -->
-		    <div class="col-lg-3 col-md-3 col-sx-6"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="welcome-user" href="#"></a>
         </div>
-    </div><!-- /.nav-collapse -->
-  </div><!-- /.container -->
-</div><!-- /.navbar -->
+        <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+        <div class="navbar-collapse collapse navbar-ex1-collapse">
 
-<div class="container">
-  <div id="content-fav">
-    <div id="favorite" class="well well-sm"><strong>Your favorite parking lot(s): </strong><span id="favorite-list"></span>
+            <div id="navbtns">
+                {% csrf_token %}
+                <div onclick="signOut();">
+                    <form class="navbar-form navbar-right">
+                        <button id="signOut" type="button" class="btn navbar-btn">
+                            Sign out
+                        </button>
+                    </form>
+                </div>
+
+                <form id="parkingHistory" class="navbar-form navbar-right" action="/uhistory"
+                      method="POST">{% csrf_token %}
+                    <input type="hidden" id="username" name="username" value="">
+                    <button type="submit" class="btn btn-inverse navbar-btn">Parking History</button>
+                </form>
+
+                <form id="editAccount" class="navbar-form navbar-right" action="/uedit">
+                    <button type="button" onclick="location.href='/uedit';"
+                            class="btn btn-inverse navbar-btn">
+                        Edit Account
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </nav>
+    <!-- /.container -->
+    <!-- /.navbar -->
+    <div class="wrap">
+        <div class="main">
+            <div class="container">
+                <div id="content-fav">
+                    <div id="favorite" class="well well-sm"><strong>Your favorite parking lot(s): </strong><span
+                            id="favorite-list"></span>
+                    </div>
+                </div>
+
+                <div id="content-window">
+                    <div class="well well-sm"><strong>Please pick a garage on the map</strong> - by tapping the P icon
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="map-canvas"></div>
+                    <div id="floatingBarsG">
+                        <div class="blockG" id="rotateG_01">
+                        </div>
+                        <div class="blockG" id="rotateG_02">
+                        </div>
+                        <div class="blockG" id="rotateG_03">
+                        </div>
+                        <div class="blockG" id="rotateG_04">
+                        </div>
+                        <div class="blockG" id="rotateG_05">
+                        </div>
+                        <div class="blockG" id="rotateG_06">
+                        </div>
+                        <div class="blockG" id="rotateG_07">
+                        </div>
+                        <div class="blockG" id="rotateG_08">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="confirming">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                            Park at <strong id="conf-garage"></strong> for <strong id="conf-rate"></strong>.<br>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn-darkgreen" class="close" data-dismiss="modal">Cancel
+                            </button>
+
+                            <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
+                                <input type="hidden" id="user-trans" name="user" value="">
+                                <input type="hidden" id="token-trans" name="token" value="">
+                                <input type="hidden" id="amount" name="amount" value="">
+                                <button type="submit" id="confirmed1" class="btn-darkblue">Go to HOP</button>
+                            </form>
+                            <button type="button" class="btn-darkblue" id="confirmed">Confirm</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
     </div>
-  </div>
 
-  <div id="content-window">
-    <div class="well well-sm"><strong>Please pick a garage on the map</strong> - by tapping the P icon</div>
-  </div>
-  <div class="row">
-  	<div id="map-canvas"></div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="confirming">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Confirmation</h4>
-      </div>
-      <div class="modal-body">
-        Park at <strong id="conf-garage"></strong> for <strong id="conf-rate"></strong>.<br>
-      </div>
-      <div class="modal-footer">
 
-        <button type="button" class="btn-darkgreen" class="close" data-dismiss="modal">Cancel</button>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/messages.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/favorite.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/loadmap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/confirmed.js"></script>
 
-            <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
-                <input type="hidden" id="user-trans" name="user" value="">
-                <input type="hidden" id="token-trans" name="token" value="">
-                <input type="hidden" id="amount" name="amount" value="">
-                <button type="submit" id="confirmed1" class="btn-darkblue">Go to HOP</button>
-            </form>
-
-        <button type="button" class="btn-darkblue" id="confirmed">Confirm</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-</div>
-</div>
-<div id="logo">
-    <div id="icon"><img src="{{STATIC_URL}}main/img/icon.png" align="center" /></div>
-	<div id="spinning"><img src="{{STATIC_URL}}main/img/spinner.gif" align="center"/></div>
-</div>
-<div class="footer">
-A product of xmobile.berkeley.edu
-</div>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/messages.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/favorite.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/loadmap.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/confirmed.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/signout.js"></script>
-<script>
-var u = window.localStorage['username'];
-
-if (u && window.localStorage['isLoggedIn']){
-    $("#username").val(u);
-    $("#user-check").val(u);
-    $("#welcome-user").text(u);
-}
-</script>
+    <script>
+        function checkUser() {
+            var welcome_text = "Berkeley Parking App ";
+            var $welcome_user = $("#welcome-user");
+            var u = window.localStorage['username'];
+            if (u && window.localStorage['isLoggedIn']) {
+                welcome_text += "| Welcome " + u;
+                $("#username").val(u);
+                $("#user-check").val(u);
+            }
+            else {
+                welcome_text += " - Please Sign In";
+                $welcome_user.attr("href", "/ulogin");
+                $("#signOut").text("Sign In");
+                $("#editAccount").hide();
+                $("#parkingHistory").hide();
+            }
+            $welcome_user.text(welcome_text);
+        }
+        window.onload(checkUser());
+    </script>
 {% endblock %}

@@ -6,6 +6,6 @@ function signOut(){
     window.localStorage.removeItem('parkingGarage');
     window.localStorage.removeItem('parkingEndTime');
     window.localStorage.removeItem('parkingRate');
-	window.location.href= "ulogin";
+	window.location.href= "/ulogin";
 }
 

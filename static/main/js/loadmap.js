@@ -1,6 +1,6 @@
 // JavaScript Document
 var width = $(window).width();
-var height = $(window).height();
+var map_height = $(window).height() - $("#main").outerHeight()-20;
 var garageName="default";
 var rate=17;
 var totalCost=17;
@@ -8,8 +8,11 @@ var duration= DEFAULT_DURATION_HOUR;
 var granularity= PER_DAY;
 var isFavorite=false;
 var space=0;
+var loading_css = $('#floatingBarsG');
 
 function initialize() {
+    loading_css.show();
+
 	var myLatlng = new google.maps.LatLng(37.870296,-122.258995);
 	var mapOptions = {
 		zoom: 16,
@@ -17,7 +20,8 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
-	$('#map-canvas').height(height*3/4);
+    var map_canvas = $("#map-canvas");
+    map_canvas.height(map_height);
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
 
@@ -40,6 +44,7 @@ function initialize() {
 		$("#park-btn").attr("disabled","disabled");
 		garageName = kmlEvent.featureData.name;
 		fetchPrice();
+
 	});
 
 	function showInContentWindow(text) {
@@ -76,7 +81,8 @@ function initialize() {
 
 	google.maps.event.addListener(kmlLayer, 'metadata_changed', function () {
 		$(".main").css("visibility","visible");
-		$("#logo").hide();
+       loading_css.hide();
+
 	});
 }
 

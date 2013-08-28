@@ -1,114 +1,134 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-	<head>
-		<script type="text/javascript" src="{{STATIC_URL}}main/js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="{{STATIC_URL}}main/js/bootstrap.js"></script>
-        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/custom.css"/>
-		<title>Parking System Interface</title>
-	</head>
-	<body>
-		<div class="wrap">
-			<div class="main">
-					<div id="header-brand" class="navbar">
-							 <a class="navbar-brand col-lg-offset-2" href="#">VPP Project</a>
-							 <img class="pull-right brand-logo" src="{{STATIC_URL}}main/img/UCBerkeley-logo.jpg">
-					</div><!-- /.navbar -->
-			</div>
-		</div>
-
-		<div class="container">
-            <div id="error-message">
+<head>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
+    <title>Parking System Interface</title>
+</head>
+<body>
+<div id="error-message">
+</div>
+<div id="reg_form" class="page-curl shadow-bottom container">
+    <form class="form-horizontal" role="form" id="check-out" name="check-out"
+          action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+        <fieldset class="panel panel-default">
+            <input type="hidden" id="user" name="user" value="">
+            <div id="top_bar" class="nav-top">
+                <ul id="pills" class="nav nav-pills nav-justified">
+                    <li><a class="left-active" href="#">Registration</a></li>
+                    <li><a class="right" href="#">Payment</a></li>
+                </ul>
             </div>
-			<form class="form-horizontal" role="form" id="check-out" name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
-			  <fieldset>
-                <input type="hidden" id="user" name="user" value="">
-				<div class="col-md-offset-1 col-md-11">  
-			    <legend><p><h1>Welcome to the Berkeley VPP Project!</h1></p>
-					<ol id="crumbs" class="list-inline">
-						<li class="col-md-2">
-							<div id="active">1.Sign Up</div>
-						</li>
-						<li class>
-							<div id="inactive" class="col-md-12">2. Payment Info</div>
-						</li>
-					</ol>
-				</legend>
-			</div>
-				<div class="form-group">
-					<label for="username" class="col-md-2 control-label">Username</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password1" class="col-md-2 control-label">Password</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="password1" id="password1" placeholder="Enter password">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="password2" class="col-md-2 control-label">Verify Password</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="password2" id="password2" placeholder="Verify password">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="firstname" class="col-md-2 control-label">First Name/Last Name</label>
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
-					</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
-					</div>
-				</div>
-			    <div class="form-group">
-					<label for="email" class="col-md-2 control-label">Email address</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
-					</div>
-			    </div>
-			    <div class="form-group">
-					<label for="licenseplate" class="col-md-2 control-label">License Plate</label>
-					<div class="col-md-4">
-						<input type="text" class="form-control" name="licenseplate" id="licenseplate" placeholder="Enter License Plate">
-					</div>
-			    </div>
-		    
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-10">
-						<button id = "continue" class="btn btn-warning">Continue</button>
-					</div>
-				</div>
-			  </fieldset>
-			</form>
-		</div>
-		<div id="footer">
-		</div>
+            <div class="col-md-12">
+                <h1 class="text-left">Registration Form
+                    <small>Berkeley VPP Project</small>
+                </h1>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <p class="text-muted userinfo">Login Information</p>
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Username</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="username" id="username"
+                               placeholder="Enter username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control " name="password1" id="password1"
+                               placeholder="Enter password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="col-md-3 control-label">Verify</label>
 
-    <script>
-        $("#continue").on('click',function(e){
-            e.preventDefault();
-            verify();
-        });
-        function verify(){
-            var username=$("#username").val();
-            var password1=$("#password1").val();
-            var password2=$("#password2").val();
-            var firstname=$("#firstname").val();
-            var lastname=$("#lastname").val();
-            var email=$("#email").val();
-            var licenseplate=$("#licenseplate").val();
-            $.get("/uverifyreg/",{username:username,password1:password1,password2:password2,firstname:firstname,lastname:lastname,email:email,licenseplate:licenseplate},function(data, textStatus, jqXHR) {
-                if ("noerror" in data){
-                    $("#user").val(username);
-                    $("#check-out").submit();
-                }else{
-                    //TODO:  FIX these display errors
-                    alert(JSON.stringify(data));
-                }
-            },"json");
-        };
-    </script>
-	</body>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control " name="password2" id="password2"
+                               placeholder="Verify password">
+                        <hr/>
+
+                    </div>
+                </div>
+
+                <p class="text-muted userinfo">User Information</p>
+                <div id="names" class="form-group">
+                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control " name="firstname" id="firstname"
+                               placeholder="First Name">
+                    </div>
+                    <label for="lastname" class="col-md-2 control-label">Last Name</label>
+                    <div id="b_lastname" class="col-md-3">
+                        <input type="text" class=" form-control" name="lastname" id="lastname"
+                               placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control  " name="email" id="email"
+                               placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="licenseplate" class="col-md-3 control-label">License Plate</label>
+                    <div class="col-md-8 ">
+
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown">Permit Type <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Type B</a></li>
+                                    <li><a href="#">Type C</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control " name="licenseplate"
+                                   id="licenseplate"
+                                   placeholder="Enter License Plate Number">
+                        </div>
+                        <hr>
+                    </div>
+
+                </div>
+                <input type="button" id="continue" class="col-md-offset-4 btn visible-sm visible-xs btn-yellow btn-block" value="Continue"/>
+                <input type="button" id="continue" class="col-md-offset-4 col-md-8 btn btn-yellow visible-lg visible-md btn-lg" value="Continue">
+
+
+
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script>
+    $("#continue").on('click', function (e) {
+        e.preventDefault();
+        verify();
+    });
+    function verify() {
+        var username = $("#username").val();
+        var password1 = $("#password1").val();
+        var password2 = $("#password2").val();
+        var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
+        var email = $("#email").val();
+        var licenseplate = $("#licenseplate").val();
+        $.get("/uverifyreg/", {username: username, password1: password1, password2: password2, firstname: firstname, lastname: lastname, email: email, licenseplate: licenseplate}, function (data, textStatus, jqXHR) {
+            if ("noerror" in data) {
+                $("#user").val(username);
+                $("#check-out").submit();
+            } else {
+                //TODO:  FIX these display errors
+                alert(JSON.stringify(data));
+            }
+        }, "json");
+    }
+</script>
+</body>
 </html>

@@ -1,62 +1,56 @@
 {% extends "main/base.html" %}
 
 {% block extrahead %}
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/spinning.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
-<style>
-.form-group {
-	color:#f4c446;
-	max-width:70%;
-	margin: 4% auto;
-}
-.form-submit {
-	text-align:center;
-	max-width:70%;
-	margin: auto;
-}
-#signIn {
-	position: absolute;
-	width:100%;
-    padding: 0;
-	margin: 0 auto;
-}
-</style>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/server.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
+    <style>
+
+    </style>
 {% endblock %}
 
 {% block content %}
-<div class="wrap">
-<div class="main">
-<form id="signIn">
-    <fieldset>
- 	<div class="form-group">
-  		<span id="loginMessages"></span>
+    <div id="login_form" class="page-curl shadow-bottom container">
+        <form role="form" class="form-horizontal" id="signIn" action="">
+            <fieldset class="panel panel-default">
+                <div class="col-sm-12">
+                    <h1 class="text-left">Login
+                        <small class="">Berkeley VPP Project</small>
+                    </h1>
+                        <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-8">
+                        <input type="text" name="username" class="form-control" id="inputUsername"
+                               placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label col-sm-2">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" name="password" class="form-control" id="inputPassword"
+                                   placeholder="Enter password">
+                            <hr>
+                        </div>
+                    </div>
+                    <div id="alertBox" hidden="hidden" class="alert alert-danger">
+                        Please enter correct username and password
+                    </div>
+                    <div class="form-submit col-md-12">
+                        <button id="submitButton" type="submit" class="btn-block btn-yellow">Sign In</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail">Username</label>
-      <input type="text" class="form-control" id="inputUsername" placeholder="Enter username">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword">Password</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
-    </div>
-    <div class="form-submit">
-      <button id="submitBtn" type="submit" class="btn-big">Sign In</button>
-    </div>
-  </fieldset>
-</form>
-</div>
-</div>
-<div id="logo">
-    <div id="icon"><img src="{{STATIC_URL}}main/img/icon.png" align="center" /></div>
-	<div id="spinning"><img src="{{STATIC_URL}}main/img/spinner.gif" align="center" /></div>
-</div>
-<div class="footer">
-A product of xmobile.berkeley.edu
-</div>
-	<script type="text/javascript" src="{{STATIC_URL}}main/js/websql-store.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}main/js/initialize.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/websql-store.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/initialize.js"></script>
 {% endblock %}
 
 
