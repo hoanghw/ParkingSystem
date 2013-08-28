@@ -31,9 +31,9 @@ function loadFavoriteAndTokenAndStatus(){
 function updateFavorite(garages){
     var l = garages.length;
     if (l == 0){
-        $("#favorite-list").html("None. Please pick your favorite garage and click 'Favorite'");
+        $("#favorite-list").html("No favorite garages selected");
     }else if (l == 1){
-        var text = '<input type="button" class="btn-red" id="'
+        var text = '<input type="button" style="margin-bottom: 0px; padding-bottom: 0px;" class="btn btn-xs btn-danger" id="'
                 +garages[0]
                 +'" value="'
                 +garages[0]

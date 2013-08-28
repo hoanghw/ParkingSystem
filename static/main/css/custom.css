@@ -1,205 +1,43 @@
 body {
-    background-image: url(https://raw.github.com/subtlepatterns/SubtlePatterns/master/polonez_car.png);
-}
-
-.reg_form {
-    width: 65%;
--webkit-box-shadow:rgb(64, 64, 64) 0px 0px 10px 1px;
--moz-box-shadow:rgb(64, 64, 64) 0px 0px 10px 1px;
-box-shadow:rgb(64, 64, 64) 0px 0px 10px 1px;
-}
-
-/*header*/
-
-
-
-#top_bar{
-
-    padding-top:0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    overflow: hidden;
-    border-bottom: 3px ridge #ccc;
-    -webkit-box-shadow: 0 0 1px 1px #666;
-    box-shadow: 0 0 1px 1px #666;
-    position: relative;
-    overflow: hidden;
-    background-color: #d4d4d4;
-
-}
-
-#title{
-    margin-left: 7.5%;
-}
-
-#continue {
-    display: inline-block;
-    font-size: 1.2em;
-    margin-top: 5%;
-    margin-bottom: 15px;
-    margin-left: 7.5%;
-    width:85%;
-    /* margin-right: 87.5%; */
-}
-    
- .btn-yellow{
-    display: inline-block;
-    background: #ffc835;
-    -webkit-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    -moz-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    text-shadow: 0px 1px 0px #ffe6a5;
-    border-color: #ebae3e;
-    border-width: 1px;
-    border-style: solid;
-    font-family: Arial, Helvetica, Sans-serfi;
-    border-radius: 10px;
-    color: #4f2f2f;
-    font-weight: bold;
-    font-size: 110%;
-}
-
-.btn-yellow:hover {
-    background: #ffd200;
-    -webkit-box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
-    -moz-box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
-    box-shadow: 0px 1px 0px 0px #ffe04f inset, 0px 0px 0px 4px #ffed99;
-    border-color: #ffc835;
-    border-radius: 10px;
-}
-
-.btn-top-yellow{
-
-    background: #ffc835;
- 
-    padding-top: 6px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 6px;
-    border: 1px solid #ebae3e;
-    color: #16254e;
-    font-weight: bold;
-    width: 45%;
-    margin-left:5% !important;
-}
-
-
-.btn-top-blue{
-     
-
-     background: #16254e;
-     text-shadow: 0px 1px 0px #737373;
-     padding: 6px 10px;
-     border: 1px solid #737373;
-     color: #737373;
-     width: 45%;
-     
-}
-
-.btn-top-blue:hover{
-     text-shadow: 0px 1px 0px #737373;
-     padding: 6px 10px;
-     border: 1px solid #737373;
-    color: #737373;
-    width: 45%;
-}
-
-
-.bottomrounded{
- border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.toprounded{
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-#username{
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
-#password{
-    margin-top:0px;
-}
-
-.form-control {
-    width: 85%;
-    margin: 0 auto;
+	background-image:url('../img/UC-Berkeley-151.jpg');
 }
 
 .brand-logo {
 	height: 50px;
 }
 
-.mid{
-    width: 100%;
+/*
+li #signup button .btn .btn-primary{
+    background-color: #428bca;
+    border-color: #357ebd;
 }
-
-ol li{
-    font-size: 80%;
-
-}
-
- li #inactive{
-
-     display: inline-block;
-     background: #16254e;
-     -webkit-box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
-     -moz-box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
-     box-shadow: 0px 1px 0px 0px #16254e inset, 0px 0px 0px 4px #e6e6e6;
-     -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-     border-radius: 2px;
-     -webkit-transition: all 0.2s ease-in-out;
-     -moz-transition: all 0.2s ease-in-out;
-     -o-transition: all 0.2s ease-in-out;
-     transition: all 0.2s ease-in-out;
-     text-shadow: 0px 1px 0px #737373;
-     padding: 6px 10px;
-     border: 1px solid #737373;
-     border-radius: 6px;
-     color: #897239;
-     margin-left: 0px !important;
+*/
+li #inactive{
+    background-color: #CCC;
+	opacity: 0.7;
+    border-color: #269abc;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	margin-right: 2px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:2px solid #357ebd;
+	font-size: 20px;
 }
 
 li #active{
-    display: inline-block;
-    background: #ffc835;
-    -webkit-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    -moz-box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    box-shadow: 0px 1px 0px 0px #ffd564 inset, 0px 0px 0px 4px #e6e6e6;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    text-shadow: 0px 1px 0px #ffe6a5;
-    padding-top: 6px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 6px;
-    border-radius: 6px;
-    border: 1px solid #ebae3e;
-    color: #16254e;
-    font-weight: bold;
-
-}
-li #active p{
-        margin-right: 0;
-}
-li #inactive p{
-    margin-left: 0;
+	color: white;
+	background-color: #f0ad4e;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:2px solid #eea236;
+	font-size: 20px;
+	text-align: center;
 }
 
 a{
@@ -209,4 +47,23 @@ a{
 a:hover{
 	color: #ed9c28;
 	text-decoration: none;
+}
+
+.close-modal{
+    color: red;
+    opacity: 0.7;
+}
+
+.close-modal:hover{
+    color: red;
+    opacity: 1;
+}
+
+.glyphicon-star{
+    color: goldenrod;
+    font-size: 14px;
+}
+
+input .favgarage .btn .btn-xs{
+    margin-bottom: 0px;
 }

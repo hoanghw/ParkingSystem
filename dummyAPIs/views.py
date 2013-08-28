@@ -184,7 +184,7 @@ def ugetfavandtokenandstatus(request):
             message['favorite'] = [i.garageName for i in u[0].favoritegarage_set.all()]
             lps = u[0].licenseplate_set.filter(isActive=True);
             if lps:
-                message['lp'] = lps[0]
+                message['lp'] = lps[0].text
             message['isParking'] = {}
             c = CurrentTransaction.objects.filter(pointer__participant=u[0])
             if c:

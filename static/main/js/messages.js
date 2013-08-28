@@ -41,7 +41,7 @@ var formatTime = function(unixTimestamp) {
 }
 
 function changeToNotParked(){
-	var text = '<div class="well well-sm"><strong>Please pick a garage on the map</strong> - by tapping the P icon</div>';
+	var text = '<div class="well well-sm">Tap an icon to park</div>';
 	$('html,body').scrollTop(0);
 	return text;
 }
@@ -54,7 +54,7 @@ function changeToError(){
 
 function changeToParkingGarage(garageName){
     var text ='<div id="parkingInput" class="well well-sm">'
-            +'<span class="fav-garage">&#9733;&#9733; </span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage"> &#9733;&#9733;</span>'
+            +'<span class="fav-garage glyphicon glyphicon-star"></span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage glyphicon glyphicon-star"></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
             +'<br><font color="#3366ff">Current Rate: </font>'
             +'<strong><span id="rate">Fetching</span></strong>'
             +'<br><br>'
