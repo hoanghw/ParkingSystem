@@ -73,7 +73,7 @@ function initialize() {
         //HOP
         $("#user-trans").val(window.localStorage['username']);
         $("#token-trans").val(window.localStorage['token']);
-        $('#amount').val(""+totalCost);
+        $("#amount").val(""+totalCost);
 
 		$('#confirmed').click({rate: rate, garageName: garageName, totalCost: totalCost, duration: duration, granularity: granularity, space: space},confirmed);
 	});

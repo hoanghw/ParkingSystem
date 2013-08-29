@@ -39,9 +39,9 @@ def checkout(username):
 def calEndTime(timestamp, duration, granularity):
     currentTime = datetime.datetime.fromtimestamp(timestamp)
     if granularity == PER_DAY:
-        currentTime.replace(hour=23)
-        currentTime.replace(minute=59)
-        currentTime.replace(second=59)
+        currentTime = currentTime.replace(hour=23)
+        currentTime = currentTime.replace(minute=59)
+        currentTime = currentTime.replace(second=59)
     elif granularity == PER_HOUR:
         currentTime += datetime.timedelta(hours=duration)
     return time.mktime(currentTime.timetuple())
