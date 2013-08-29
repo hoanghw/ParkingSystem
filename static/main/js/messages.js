@@ -62,15 +62,15 @@ function changeToParkingGarage(garageName){
             +'<form class="form-horizontal">'
 
             +'<div class="form-group row" id="select-duration">'
-            +'<label for="duration" class="col-lg-5 col-md-5 col-sx-6  control-label" >Enter Duration (hour)</label>'
-            +'<div class="col-lg-3 col-md-3 col-sx-6">'
+            +'<label for="duration" class="col-lg-5 col-md-5 col-xs-6  control-label" >Enter Duration (hour)</label>'
+            +'<div class="col-lg-3 col-md-3 col-xs-6">'
             +'<input type="text" class="form-control" id="duration-value" placeholder="2" value="" min="1" max="24">'
             +'</div>'
             +'</div>'
 
-            +'<div class="form-group row" id="select-space">'
-            +'<label for="space" class="col-lg-5 col-md-5 col-sx-6 control-label">Enter Space (optional)</label>'
-            +'<div class="col-lg-3 col-md-3 col-sx-6">'
+            +'<div class="form-group" id="select-space">'
+            +'<label for="space" class="col-lg-5 col-md-5 col-xs-7 control-label">Enter Space (optional):</label>'
+            +'<div class="col-lg-3 col-md-3 col-xs-4">'
             +'<input type="text" class="form-control" id="space-value" placeholder="0" value="" min="0">'
             +'</div>'
             +'</div>'
@@ -81,7 +81,6 @@ function changeToParkingGarage(garageName){
             +'<div class="well well-sm">'
             +'<input id="park-btn" class="btn btn-primary" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn btn-warning" value="Favorite"/>&nbsp'
-            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn btn-default" value="Cancel"/>'
             +'</div>';
     //$('html,body').scrollTop($('#favorite').position().top);
     $('html,body').scrollTop(0);
