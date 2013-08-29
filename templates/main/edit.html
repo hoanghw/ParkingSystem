@@ -66,17 +66,17 @@
         </div>
         <hr>
 
-        <div class="well well-sm" id="message" style="display:none;"></div>
-
-        <div class="row input-group" id="lpInput" style="display:none;">
-            <input type="text" class="form-control" id="lp" placeholder="Enter new license plate">
-            <span class="input-group-btn">
-                <button class="btn btn-red" type="button" onclick="changeLP();">Submit</button>
-            </span>
-        </div>
         <br>
         <div class="row">
         <button id="edit_license" type="submit" onclick="$('#lpInput').show();$('#message').hide();" class="form-control btn btn-yellow btn-block">Change Licence Plate</button>
+        </div>
+        <div id="message" style="display:none;"></div>
+
+        <div class="row col-xs-12 input-group" id="lpInput" style="display:none; margin-left:1%; margin-top: 1%;">
+            <input type="text" class="form-control" id="lp" placeholder="Enter new license plate">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" onclick="changeLP();">Submit</button>
+            </span>
         </div>
         <br>
 </div>
