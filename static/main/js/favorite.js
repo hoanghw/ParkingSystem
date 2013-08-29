@@ -43,7 +43,7 @@ function updateFavorite(garages){
         var text ='<div class="btn-group"><button type="button" class="btn btn-darkgreen dropdown-toggle" data-toggle="dropdown">Click here ... <span class="caret"></span></button>'
             +'<ul style="text-align: center;" class="dropdown-menu" role="menu">';
         for (var i=0; i<l; i++){
-            text +='<li><input type="button" class="btn-red" id="'
+            text +='<li><input type="button" class="btn-warning" id="'
                 +garages[i]
                 +'" onclick="parkFav(this.id);" value="'
                 +garages[i]

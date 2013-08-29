@@ -17,7 +17,7 @@ import os
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "parkingsystem.local_settings")
 
-SITE_DIR = '/opt/django-trunk/parking_system'
+SITE_DIR = '/Users/macbookair/PycharmProjects/ParkingSystem/'
 import site
 site.addsitedir(SITE_DIR) 
 import sys
