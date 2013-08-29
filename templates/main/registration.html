@@ -84,13 +84,11 @@
                 <div class="form-group">
                     <label for="permit" class="col-md-3 control-label">Permit</label>
                     <div class="col-md-8">
-                        <button type="button" class="btn btn-default dropdown-toggle"
-                                        data-toggle="dropdown">Permit Type <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="">F</a></li>
-                                    <li><a href="">C</a></li>
-                                    <li><a href="">Other</a></li>
-                                </ul>
+                        <select id="permit" class="form-control">
+                        <option value="other">Other</option>
+                        <option value="f">F</option>
+                        <option value="c">C</option>
+                        </select>
                     </div>
                 </div>
                 <input type="button" id="continue1" class="col-md-offset-4 btn visible-sm visible-xs btn-yellow btn-block" value="Continue"/>
@@ -112,7 +110,8 @@
         var lastname = $("#lastname").val();
         var email = $("#email").val();
         var licenseplate = $("#licenseplate").val();
-        $.get("/uverifyreg/", {username: username, password1: password1, password2: password2, firstname: firstname, lastname: lastname, email: email, licenseplate: licenseplate}, function (data, textStatus, jqXHR) {
+        var permit = $("#permit :selected").val();
+        $.get("/uverifyreg/", {username: username, password1: password1, password2: password2, firstname: firstname, lastname: lastname, email: email, licenseplate: licenseplate, permit: permit }, function (data, textStatus, jqXHR) {
             if ("noerror" in data) {
                 $("#user").val(username);
                 $("#check-out").submit();

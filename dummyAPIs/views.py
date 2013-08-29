@@ -255,6 +255,10 @@ def uverifyreg(request):
             hasError = True
             error['lpEmpty'] = "Please enter your license plate"
 
+        if not request.GET.get('permit',''):
+            hasError = True
+            error['pmEmpty'] = "Please select a permit"
+
         if hasError:
             return HttpResponse(simplejson.dumps(error), mimetype='application/json')
         else:
@@ -263,6 +267,7 @@ def uverifyreg(request):
             u.firstName = request.GET.get('firstname','')
             u.lastName = request.GET.get('lastname','')
             u.email = request.GET.get('email','')
+            u.permit = request.GET.get('permit','')
             u.save()
             l = LicensePlate.objects.create(text=request.GET.get('licenseplate',''), participant= u, isActive=True, timestamp = time.time())
             l.save()

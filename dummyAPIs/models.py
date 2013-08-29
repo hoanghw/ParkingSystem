@@ -12,6 +12,7 @@ class Participant(models.Model):
     parkingStatus = models.BooleanField(default=False)
     wwtoken = models.CharField(max_length=22, blank=True, null=True)
     cctoken = models.CharField(max_length=22, blank=True, null=True)
+    permit = models.CharField(max_length=10)
 
 class LicensePlate(models.Model):
     text = models.CharField(max_length=100)
