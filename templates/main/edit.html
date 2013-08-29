@@ -5,84 +5,82 @@
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
 <script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
 <style>
-
-.navbar-brand{
-	color:#1b335f;
-	font-weight:bold;
-	font-size:24px;
+.btn-block{
+    width: 70%;
 }
 </style>
 {% endblock %}
 
 
 {% block content %}
-<div class="wrap">
-<div class="main">
-<div class="navbar navbar-default">
-  <div class="container">
+<nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="welcome-user" href="#"></a>
+        </div>
+        <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+        <div class="navbar-collapse collapse navbar-ex1-collapse">
 
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-      <span>MENU</span>
-    </button>
+            <div id="navbtns">
+                {% csrf_token %}
+                <div onclick="signOut();">
+                    <form class="navbar-form navbar-right">
+                        <button id="signOut" type="button" class="btn navbar-btn">
+                            Sign out
+                        </button>
+                    </form>
+                </div>
 
-    <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Welcome <span id="welcome-user"></span></a>
-
-    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
-    <div class="nav-collapse collapse navbar-collapse">
-		 <div class="row">
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <button type="button" onclick="location.href='/uprofile';" class="btn btn-primary navbar-btn">Home</button>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <form action="/uhistory" method="POST">{% csrf_token %}
+                <form id="parkingHistory" class="navbar-form navbar-right" action="/uhistory"
+                      method="POST">{% csrf_token %}
                     <input type="hidden" id="username" name="username" value="">
-                    <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
+                    <button type="submit" class="btn btn-inverse navbar-btn">Parking History</button>
+                </form>
+
+                <form id="profile" class="navbar-form navbar-right" action="/uprofile"
+                      method="POST">{% csrf_token %}
+                    <input type="hidden" id="username" name="username" value="">
+                    <button type="submit" class="btn btn-inverse navbar-btn">Parking Profile</button>
                 </form>
             </div>
-		    <div class="col-lg-3 col-md-3 col-sx-6"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
-        </div>
-    </div><!-- /.nav-collapse -->
-  </div><!-- /.container -->
-</div><!-- /.navbar -->
 
-<div class="container">
-    <div class="well well-sm">
-    <strong>Changing payment method is currently disabled</strong>
-    </div>
-    <hr>
-    <div class="row">
+        </div>
+    </nav>
+
+<div class="container page-curl shadow-bottom">
+
+        <div>
+        <strong>Changing payment method is currently disabled</strong>
+        </div>
+
+        <div class="row">
         <form name="check-out">{% csrf_token %}
             <input type="hidden" id="user-check" name="user" value="">
-            <button type="submit" class="btn-big">Register New Payment Method</button>
+            <button id="register_payment" type="submit" class="form-control btn-yellow btn btn-block">Register New Payment Method</button>
         </form>
-    </div>
-    <hr>
+        </div>
+        <hr>
 
-    <div class="well well-sm" id="message" style="display:none;"></div>
+        <div class="well well-sm" id="message" style="display:none;"></div>
 
-    <div class="row" id="lpInput" style="display:none;">
-        <div class="input-group">
-            <input type="text" class="form-control" id="lp">
+        <div class="row input-group" id="lpInput" style="display:none;">
+            <input type="text" class="form-control" id="lp" placeholder="Enter new license plate">
             <span class="input-group-btn">
                 <button class="btn btn-red" type="button" onclick="changeLP();">Submit</button>
             </span>
-        </div><!-- /input-group -->
+        </div>
         <br>
-    </div>
-    <div class="row">
-        <button type="submit" onclick="$('#lpInput').show();$('#message').hide();" class="btn-big">Change Licence Plate</button>
-    </div>
-    <hr>
+        <div class="row">
+        <button id="edit_license" type="submit" onclick="$('#lpInput').show();$('#message').hide();" class="form-control btn btn-yellow btn-block">Change Licence Plate</button>
+        </div>
+        <br>
 </div>
 
-</div>
-</div>
-<div id="logo">
-    <div id="icon"><img src="{{STATIC_URL}}main/img/icon.png" align="center" /></div>
-	<div id="spinning"><img src="{{STATIC_URL}}main/img/spinner.gif" align="center"/></div>
-</div>
 <div class="footer">
 A product of xmobile.berkeley.edu
 </div>
@@ -90,20 +88,23 @@ A product of xmobile.berkeley.edu
 <script>
 $(".main").css("visibility","visible");
 $("#logo").hide();
+var welcome_text = "VPP Parking App | ";
 var u = window.localStorage['username'];
 
 if (u && window.localStorage['isLoggedIn']){
     $("#username").val(u);
-    $("#welcome-user").text(u);
+    $("#user-check").val(u);
+    $("#welcome-user").text(welcome_text + u);
 }else{
     signOut();
 }
 
 function changeLP(){
     var lp = $("#lp").val();
-    $.get(SERVER_URL+'uchangelp',{data:JSON.stringify({username: window.localStorage['username'], newlp: lp})}, function(data, textStatus, jqXHR){
+    if (lp){
+        $.get(SERVER_URL+'uchangelp',{data:JSON.stringify({username: window.localStorage['username'], newlp: lp})}, function(data, textStatus, jqXHR){
 
-    },"json").done(function(){
+        },"json").done(function(){
                 $("#message").show();
                 $("#message").text("Your license plate has been changed.");
                 $("#lpInput").hide();
@@ -113,6 +114,10 @@ function changeLP(){
                 $("#message").text("Error.  Please try again!");
                 $("#lp").val("");
             });
+    }else{
+        $("#message").show();
+        $("#message").text("Please enter your license plate");
+    }
 }
 </script>
 {% endblock %}

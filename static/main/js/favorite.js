@@ -85,6 +85,7 @@ function fetchPrice(){
 							break
 						case PER_DAY:
 							console.log('per day');
+                            $("#select-duration").hide();
                             $("#select-space").show();
 							rate = jsonObj.magnitude;
 							totalCost = jsonObj.magnitude;

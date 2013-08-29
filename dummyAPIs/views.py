@@ -23,8 +23,6 @@ def verifyuser(request):
         message['user'] = True
     return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
-
-
 def checkout(username):
     u = Participant.objects.filter(username=username)
     if u:
@@ -95,7 +93,7 @@ def ucheckout(request):
 def getrate(request):
     message = {}
     message['magnitude'] = 7
-    message['granularity'] = PER_HOUR
+    message['granularity'] = PER_DAY
 
     #Quick hack
     if request.method == 'GET' and 'data' in request.GET:
@@ -122,13 +120,19 @@ def changebilling(request):
 
 def usignin(request):
     message = {}
+    # if request.method == 'GET' and 'username' in request.GET and 'password' in request.GET:
+    #     if not Participant.objects.filter(username=request.GET['username']):
+    #         u = Participant.objects.create(username=request.GET['username'], uid=7777)
+    #         u.save()
+    #     message['user'] = True
+    # else:
+    #     message['user'] = False
     if request.method == 'GET' and 'username' in request.GET and 'password' in request.GET:
-        if not Participant.objects.filter(username=request.GET['username']):
-            u = Participant.objects.create(username=request.GET['username'], uid=7777)
-            u.save()
-        message['user'] = True
-    else:
-        message['user'] = False
+        u=Participant.objects.filter(username=request.GET['username'])
+        if u and u[0].password == request.GET['password']:
+            message['user'] = True
+        else:
+            message['user'] = False
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json')
     res[ACCESS] = ALLOW
     return res

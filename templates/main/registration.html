@@ -6,109 +6,101 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/custom.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <title>Parking System Interface</title>
 </head>
 <body>
+<div id="error-message">
+</div>
+<div id="reg_form" class="page-curl shadow-bottom container">
+    <form class="form-horizontal" role="form" id="check-out" name="check-out"
+          action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
+        <fieldset class="panel panel-default">
+            <input type="hidden" id="user" name="user" value="">
+            <div id="top_bar" class="nav-top">
+                <ul id="pills" class="nav nav-pills nav-justified">
+                    <li><a class="left-active" href="#">Registration</a></li>
+                    <li><a class="right" href="#">Payment</a></li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <h1 class="text-left">Registration Form
+                    <small>Berkeley VPP Project</small>
+                </h1>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <p class="text-muted userinfo">Login Information</p>
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Username</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="username" id="username"
+                               placeholder="Enter username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" name="password1" id="password1"
+                               placeholder="Enter password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="col-md-3 control-label">Verify</label>
 
-{#<div class="wrap">#}
-{#    <div class="main">#}
-{#        <div id="header-brand" class="navbar">#}
-{#            <a class="navbar-brand col-lg-offset-2" href="#">VPP Project</a>#}
-{#           #}
-{#        </div>#}
-{#        <!-- /.navbar -->#}
-{#    </div>#}
-{#</div>#}
-<div class="container mid">
-    <div id="error-message">
-    </div>
-
-
-    <div class="container">
-        <form class="form-horizontal" role="form" id="check-out" name="check-out"
-              action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
-            <fieldset class="panel panel-default reg_form ">
-                <input type="hidden" id="user" name="user" value="">
-
-                <div id="top_bar" class="navbar">
-                    <div class="btn-group btn-group-large col-md-11">
-
-
-                                    <button type="button" id="active" class="btn navbar-btn btn-top-yellow text-center">Registration</button>
-
-                                    <button type="button" class="btn disabled btn-top-blue navbar-btn text-center" id="inactive">Payment Info</button>
-
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" name="password2" id="password2"
+                               placeholder="Verify password">
+                        <hr/>
 
                     </div>
                 </div>
 
-<div id="title" class="row col-md-11">
-    <h1 class="text-left page-title">Registration Form <small>Berkeley VPP Project</small></h1>
-    
-
-</div>
-
-                <div class="panel-body">
-                    <div class="form-group">
-                     <div class="col-md-11">
-<hr>
-                            <input type="text" class="form-control toprounded bottomrounded" name="username" id="username"
-                                   placeholder="Enter username">
-                        </div>   
+                <p class="text-muted userinfo">User Information</p>
+                <div id="names" class="form-group">
+                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="firstname" id="firstname"
+                               placeholder="First Name">
                     </div>
-                    <div class="form-group">
-                        
-                        <div class="col-md-11">
-                            <input type="text" class="form-control toprounded" name="password1" id="password1"
-                                   placeholder="Enter password">
-                        </div>
-                        <div class="col-md-11">
-                            <input type="text" class="form-control bottomrounded" name="password2" id="password2"
-                                   placeholder="Verify password">
-                        </div>
-                    </div>
-                    <hr/>
-                    <div id="names" class="form-group">
-                        <div id="b_firstname" class="col-md-11">
-                            <input type="text" class="form-control toprounded" name="firstname" id="firstname"
-                                   placeholder="First Name">
-                        </div>
-
-                        <div id="b_lastname" class="col-md-11">
-                            <input type="text" class="bottomrounded form-control" name="lastname" id="lastname"
-                                   placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-11">
-                            <input type="text" class="form-control toprounded bottomrounded" name="email" id="email" placeholder="Enter email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <div class="col-md-11">
-                            <input type="text" class="form-control toprounded bottomrounded" name="licenseplate" id="licenseplate"
-                                   placeholder="Enter License Plate">
-                            <hr>
-                        </div>
-
-                        <div class="col-md-11">
-                            <button id="continue" class="btn btn-yellow btn-md btn-block">Continue</button>
-                        </div>
-
+                    <label for="lastname" class="col-md-2 control-label">Last Name</label>
+                    <div id="b_lastname" class="col-md-3">
+                        <input type="text" class=" form-control" name="lastname" id="lastname"
+                               placeholder="Last Name">
                     </div>
                 </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+                <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="licenseplate" class="col-md-3 control-label">License Plate</label>
+                    <div class="col-md-8 ">
+                        <input type="text" class="form-control " name="licenseplate" id="licenseplate"  placeholder="Enter License Plate Number">
+                    </div>
+                </div>
 
-<div id="footer">
+                <div class="form-group">
+                    <label for="permit" class="col-md-3 control-label">Permit</label>
+                    <div class="col-md-8">
+                        <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown">Permit Type <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="">F</a></li>
+                                    <li><a href="">C</a></li>
+                                    <li><a href="">Other</a></li>
+                                </ul>
+                    </div>
+                </div>
+                <input type="button" id="continue1" class="col-md-offset-4 btn visible-sm visible-xs btn-yellow btn-block" value="Continue"/>
+                <input type="button" id="continue2" class="col-md-offset-4 col-md-8 btn btn-yellow visible-lg visible-md btn-lg" value="Continue">
+            </div>
+        </fieldset>
+    </form>
 </div>
-
 <script>
-    $("#continue").on('click', function (e) {
+    $("#continue1,#continue2").on('click', function (e) {
         e.preventDefault();
         verify();
     });
@@ -134,7 +126,6 @@
             }
         }, "json");
     }
-    ;
 </script>
 </body>
 </html>

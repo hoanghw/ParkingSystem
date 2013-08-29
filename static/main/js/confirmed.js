@@ -23,7 +23,8 @@ function confirmed(event){
 
 function changeGarage(){
     $("#content-window").html(changeToNotParked());
-    $('html,body').scrollTop($('#favorite').position().top);
+    //$('html,body').scrollTop($('#favorite').position().top);
+    $('html,body').scrollTop(0);
 }
 
 function toggleFavorite(){

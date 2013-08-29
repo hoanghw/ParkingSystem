@@ -83,8 +83,8 @@ function changeToParkingGarage(garageName){
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>&nbsp'
             +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
             +'</div>';
-    $('html,body').scrollTop($('#favorite').position().top);
-    //$('html,body').scrollTop(0);
+    //$('html,body').scrollTop($('#favorite').position().top);
+    $('html,body').scrollTop(0);
     return text;
 
 }

@@ -1,70 +1,88 @@
 {% extends "main/base.html" %}
 {% block extrahead %}
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}main/css/buttons.css"/>
-<script type="text/javascript" src="{{STATIC_URL}}main/js/server.js"></script>
-<style>
-.navbar-brand{
-	color:#1b335f;
-	font-weight:bold;
-	font-size:24px;
-}
-</style>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/spinning.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/parking_map.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main/css/buttons.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/server.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}main/js/signout.js"></script>
 {% endblock %}
 
 
 {% block content %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="welcome-user" href="#"></a>
+        </div>
+        <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+        <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+            <div id="navbtns">
+                {% csrf_token %}
+                <div onclick="signOut();">
+                    <form class="navbar-form navbar-right">
+                        <button id="signOut" type="button" class="btn navbar-btn">
+                            Sign out
+                        </button>
+                    </form>
+                </div>
+
+                <form id="parkingHistory" class="navbar-form navbar-right" action="/uhistory"
+                      method="POST">{% csrf_token %}
+                    <input type="hidden" id="username" name="username" value="">
+                    <button type="submit" class="btn btn-inverse navbar-btn">Parking History</button>
+                </form>
+
+                <form id="editAccount" class="navbar-form navbar-right" action="/uedit">
+                    <button type="button" onclick="location.href='/uedit';"
+                            class="btn btn-inverse navbar-btn">
+                        Edit Account
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </nav>
+
 <div class="wrap">
 <div class="main">
-<nav class="navbar navbar-default">
   <div class="container">
+    <div id="content-fav">
+        <div id="favorite" class="well well-sm"><strong>Your favorite(s): </strong><span id="favorite-list"></span></div>
+    </div>
 
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-      <span>MENU</span>
-    </button>
+    <div id="content-window">
+    <div class="well well-sm">Tap an icon to select a garage</div>
+    </div>
 
-    <!-- Be sure to leave the brand out there if you want it shown -->
-    <a class="navbar-brand" href="#">Welcome <span id="welcome-user"></span></a>
-
-    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
-    <div class="nav-collapse collapse navbar-collapse">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <form action="/uhistory" method="POST">{% csrf_token %}
-                    <input type="hidden" id="username" name="username" value="">
-                    <button type="submit" class="btn btn-primary navbar-btn">Parking History</button>
-                </form>
+    <div class="row">
+  	    <div id="map-canvas"></div>
+        <div id="floatingBarsG">
+            <div class="blockG" id="rotateG_01">
             </div>
-            <div class="col-lg-3 col-md-3 col-sx-6"><button type="button" onclick="location.href='/uedit';" class="btn btn-primary navbar-btn">Edit Account</button></div>
-            <!--
-            <div class="col-lg-3 col-md-3 col-sx-6">
-                <form name="check-out" action="http://54.224.3.167:81/checkout.php" method="POST">{% csrf_token %}
-                    <input type="hidden" id="user-check" name="user" value="">
-                    <button type="submit" class="btn btn-primary navbar-btn">Register Payment</button>
-                </form>
+            <div class="blockG" id="rotateG_02">
             </div>
-            -->
-		    <div class="col-lg-3 col-md-3 col-sx-6"><button onclick="signOut();" id="signOut" type="button" class="btn btn-danger navbar-btn">Sign out</button></div>
+            <div class="blockG" id="rotateG_03">
+            </div>
+            <div class="blockG" id="rotateG_04">
+            </div>
+            <div class="blockG" id="rotateG_05">
+            </div>
+            <div class="blockG" id="rotateG_06">
+            </div>
+            <div class="blockG" id="rotateG_07">
+            </div>
+            <div class="blockG" id="rotateG_08">
+            </div>
         </div>
-    </div><!-- /.nav-collapse -->
-  </div><!-- /.container -->
-</nav><!-- /.navbar -->
-
-<div class="container">
-  <div id="content-fav">
-    <div id="favorite" class="well well-sm"><strong>Your favorite(s): </strong><span id="favorite-list"></span>
     </div>
   </div>
-
-  <div id="content-window">
-    <div class="well well-sm">Tap an icon to select a garage</div>
-  </div>
-  <div class="row">
-  	<div id="map-canvas"></div>
-  </div>
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="confirming">
@@ -95,10 +113,8 @@
 
 </div>
 </div>
-<div id="logo">
-    <div id="icon"><img src="{{STATIC_URL}}main/img/icon.png" align="center" /></div>
-	<div id="spinning"><img src="{{STATIC_URL}}main/img/spinner.gif" align="center"/></div>
-</div>
+
+
 <div class="footer">
 A product of xmobile.berkeley.edu
 </div>
@@ -110,11 +126,16 @@ A product of xmobile.berkeley.edu
 <script type="text/javascript" src="{{STATIC_URL}}main/js/signout.js"></script>
 <script>
 var u = window.localStorage['username'];
+var welcome_text = "VPP Parking App | ";
+var $welcome_user = $("#welcome-user");
 
 if (u && window.localStorage['isLoggedIn']){
+    welcome_text += u;
     $("#username").val(u);
     $("#user-check").val(u);
-    $("#welcome-user").text(u);
+    $welcome_user.text(welcome_text);
+}else{
+    signOut();
 }
 </script>
 {% endblock %}

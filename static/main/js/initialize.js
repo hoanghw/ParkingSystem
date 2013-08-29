@@ -1,5 +1,4 @@
 var app = {
-	
 	findLoggedInUser: function() {
 		console.log("app.findLoggedInUser() called");
 		this.store.findLoggedInUser(function (result) {
@@ -33,6 +32,7 @@ if ((storage.getItem("isLoggedIn") != null) && storage.getItem("username")) {
 	$(".main").css("visibility","visible");
 	$("#spinning").hide();
 }
+var $alertBox = $("#alertBox");
 
 $("#signIn").submit(function(e) {
     e.preventDefault();
@@ -44,7 +44,7 @@ $("#signIn").submit(function(e) {
 function handleLogin() {
     var form = $("#signIn");    
     //disable the button so we can't resubmit while we wait
-    $("#submitBtn",form).attr("disabled","disabled");
+    $("#submitButton").attr("class", "btn-yellow disabled btn-block");
     var u = $("#inputUsername", form).val();
     var p = $("#inputPassword", form).val();
     console.log("click");
@@ -57,16 +57,22 @@ function handleLogin() {
 				window.localStorage["isLoggedIn"] = true;            
                 window.location.href="/uprofile";
             } else {
-            	$("#loginMessages").text("Please enter correct username and password"); 
+                $alertBox.show();
+                $alertBox.text("Please enter correct username and password");
             }
-         $("#submitBtn").removeAttr("disabled");
+            $("#submitBtn").removeAttr("disabled");
         },"json").fail(function(){
-                $("#loginMessages").text("Server Error. Please try again.");
+                $alertBox.show();
+                $alertBox.text("Server Error. Please try again.");
                 $("#submitBtn").removeAttr("disabled");
             });
     } else {
-        $("#loginMessages").text("Please enter username and password");
-        $("#submitBtn").removeAttr("disabled");
+        $alertBox.show();
+        $alertBox.text("Please enter correct username and password");
+        $('#submitButton').attr("class", "btn-yellow btn-block");
+
+
+
     }
 }
 
