@@ -89,7 +89,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Confirmation</h4>
       </div>
       <div class="modal-body">
@@ -98,11 +98,11 @@
       <div class="modal-footer">
         <div class = "btn-group">
             <form name="transaction" action="http://54.224.3.167:81/transaction.php" method="POST">
-                <button type="button" class="btn-darkgreen" class="close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" class="close" data-dismiss="modal">Cancel</button>
                 <input type="hidden" id="user-trans" name="user" value="">
                 <input type="hidden" id="token-trans" name="token" value="">
                 <input type="hidden" id="amount" name="amount" value="">
-                <button type="submit" id="confirmed" class="btn-darkblue">Go to Payment Gateway</button>
+                <button type="submit" id="confirmed" class="btn btn-primary">Go to Payment Gateway</button>
             <!--<button type="button" class="btn-darkblue" id="confirmed">Confirm</button> -->
             </form>
         </div>
