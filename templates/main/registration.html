@@ -103,14 +103,14 @@
         verify();
     });
     function verify() {
-        var username = $("#username").val();
-        var password1 = $("#password1").val();
-        var password2 = $("#password2").val();
-        var firstname = $("#firstname").val();
-        var lastname = $("#lastname").val();
-        var email = $("#email").val();
+        var username = $("#username").val().trim();
+        var password1 = $("#password1").val().trim();
+        var password2 = $("#password2").val().trim();
+        var firstname = $("#firstname").val().trim();
+        var lastname = $("#lastname").val().trim();
+        var email = $("#email").val().trim();
         var licenseplate = $("#licenseplate").val();
-        var permit = $("#permit :selected").val();
+        var permit = $("#permit :selected").val().trim();
         $.get("/uverifyreg/", {username: username, password1: password1, password2: password2, firstname: firstname, lastname: lastname, email: email, licenseplate: licenseplate, permit: permit }, function (data, textStatus, jqXHR) {
             if ("noerror" in data) {
                 $("#user").val(username);

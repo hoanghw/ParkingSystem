@@ -45,8 +45,8 @@ function handleLogin() {
     var form = $("#signIn");    
     //disable the button so we can't resubmit while we wait
     $("#submitButton").attr("class", "btn-yellow disabled btn-block");
-    var u = $("#inputUsername", form).val();
-    var p = $("#inputPassword", form).val();
+    var u = $("#inputUsername", form).val().trim();
+    var p = $("#inputPassword", form).val().trim();
     console.log("click");
     if(u != '' && p != '') {
         $.get(SERVER_URL+"usignin/", {username:u,password:p}, function(data, textStatus, jqXHR) {
