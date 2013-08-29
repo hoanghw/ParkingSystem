@@ -151,8 +151,8 @@ def parkinghistory(request):
             h = HistoryTransaction.objects.filter(participant=u[0])
             return render_to_response('main/history.html', {'history': h}, context_instance=RequestContext(request))
             #return HttpResponseRedirect('/ulogin')
-        return HttpResponse("no user: " + request.POST.get('username', ''))
-    return HttpResponse("fail")
+
+    return render_to_response('main/profile.html', context_instance=RequestContext(request))
 
 def ugethistory(request):
     message = {}
@@ -199,7 +199,8 @@ def ugetfavandtokenandstatus(request):
                 else:
                     for i in c:
                         i.delete()
-
+        else:
+            message['error'] = True
     res = HttpResponse(simplejson.dumps(message), mimetype='application/json')
     res[ACCESS] = ALLOW
     return res

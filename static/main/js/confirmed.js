@@ -36,7 +36,7 @@ function toggleFavorite(){
     updateFavorite(favorite);
 }
 function markFavorite(toServer){
-    $("#mark-favorite-btn").attr("class", "btn btn-danger");
+    $("#mark-favorite-btn").attr("class", "btn-red");
     $("#mark-favorite-btn").val("Unfavorite");
     $(".fav-garage").show();
     if (favorite.indexOf(garageName) == -1)
@@ -47,7 +47,7 @@ function markFavorite(toServer){
     }
 }
 function unmarkFavorite(toServer){
-    $("#mark-favorite-btn").attr("class", "btn btn-warning");
+    $("#mark-favorite-btn").attr("class", "btn-orange");
     $("#mark-favorite-btn").val("Favorite");
     $(".fav-garage").hide();
     var index = favorite.indexOf(garageName);

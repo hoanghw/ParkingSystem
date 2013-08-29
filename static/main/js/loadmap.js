@@ -25,6 +25,7 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
 
+    //var kmlLayer = new google.maps.KmlLayer('https://dl.dropboxusercontent.com/u/12960227/UCBerkeleyParkingLotsGarages.kml',
 	var kmlLayer = new google.maps.KmlLayer('https://dl.dropboxusercontent.com/u/63704802/UCBerkeleyParkingLotsGarages-noimg.kml',
 	//var kmlLayer = new google.maps.KmlLayer('http://localhost:8080/UCBerkeleyParkingLotsGarages.kml',
 	{

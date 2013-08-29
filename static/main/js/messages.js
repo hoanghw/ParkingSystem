@@ -54,7 +54,7 @@ function changeToError(){
 
 function changeToParkingGarage(garageName){
     var text ='<div id="parkingInput" class="well well-sm">'
-            +'<span class="fav-garage glyphicon glyphicon-star"></span><span id="garage-name"><strong>'+garageName+'</strong></span><span class="fav-garage glyphicon glyphicon-star"></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
+            +'<span id="garage-name"><strong>'+garageName+'&nbsp</strong></span><span class="fav-garage glyphicon glyphicon-star"></span><button onclick="changeGarage();" type="button" class="close close-modal" aria-hidden="true">&times;</button>'
             +'<br><font color="#3366ff">Current Rate: </font>'
             +'<strong><span id="rate">Fetching</span></strong>'
             +'<br><br>'
@@ -62,14 +62,14 @@ function changeToParkingGarage(garageName){
             +'<form class="form-horizontal">'
 
             +'<div class="form-group row" id="select-duration">'
-            +'<label for="duration" class="col-lg-2 col-md-3 col-sx-6  control-label" >Enter Duration (hour)</label>'
+            +'<label for="duration" class="col-lg-5 col-md-5 col-sx-6  control-label" >Enter Duration (hour)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="text" class="form-control" id="duration-value" placeholder="2" value="" min="1" max="24">'
             +'</div>'
             +'</div>'
 
             +'<div class="form-group row" id="select-space">'
-            +'<label for="space" class="col-lg-2 col-md-3 col-sx-6 control-label">Enter Space (optional)</label>'
+            +'<label for="space" class="col-lg-5 col-md-5 col-sx-6 control-label">Enter Space (optional)</label>'
             +'<div class="col-lg-3 col-md-3 col-sx-6">'
             +'<input type="text" class="form-control" id="space-value" placeholder="0" value="" min="0">'
             +'</div>'
@@ -81,7 +81,7 @@ function changeToParkingGarage(garageName){
             +'<div class="well well-sm">'
             +'<input id="park-btn" class="btn-darkblue" type="button" data-toggle="modal" data-target="#confirming" value="Park"/>&nbsp'
             +'<input onclick="toggleFavorite();" id="mark-favorite-btn" type="button" class="btn-orange" value="Favorite"/>&nbsp'
-            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Go Back"/>'
+            +'<input onclick="changeGarage();" id="change-garage-btn" type="button" class="btn-darkgreen" value="Cancel"/>'
             +'</div>';
     //$('html,body').scrollTop($('#favorite').position().top);
     $('html,body').scrollTop(0);

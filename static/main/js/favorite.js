@@ -2,21 +2,25 @@ var favorite = new Array();
 function loadFavoriteAndTokenAndStatus(){
     $.get(SERVER_URL+"ugetfav/", {data:JSON.stringify({username: window.localStorage['username']})}, function(data, textStatus, jqXHR) {
         if (data){
-            window.localStorage['token'] = data.token;
-            $("#favorite-list").html("");
-            for (var i=0; i<data.favorite.length; i++){
-                favorite.push(data.favorite[i]);
-            }
-            if (Object.keys(data.isParking).length != 0){
-                window.localStorage['parkingGarage'] = data.isParking.garage;
-                window.localStorage['parkingEndTime'] = data.isParking.endTime;
-                window.localStorage['parkingRate'] = data.isParking.rate;
-                $('#content-window').html(changeToParked(data.isParking.garage,data.isParking.endTime));
+            if (data.error){
+                signOut();
             }else{
-                window.localStorage.removeItem('parkingGarage');
-                window.localStorage.removeItem('parkingEndTime');
-                window.localStorage.removeItem('parkingRate');
-                $('#content-window').html(changeToNotParked());
+                window.localStorage['token'] = data.token;
+                $("#favorite-list").html("");
+                for (var i=0; i<data.favorite.length; i++){
+                    favorite.push(data.favorite[i]);
+                }
+                if (Object.keys(data.isParking).length != 0){
+                    window.localStorage['parkingGarage'] = data.isParking.garage;
+                    window.localStorage['parkingEndTime'] = data.isParking.endTime;
+                    window.localStorage['parkingRate'] = data.isParking.rate;
+                    $('#content-window').html(changeToParked(data.isParking.garage,data.isParking.endTime));
+                }else{
+                    window.localStorage.removeItem('parkingGarage');
+                    window.localStorage.removeItem('parkingEndTime');
+                    window.localStorage.removeItem('parkingRate');
+                    $('#content-window').html(changeToNotParked());
+                }
             }
         }
         },"json")
@@ -43,7 +47,7 @@ function updateFavorite(garages){
         var text ='<div class="btn-group"><button type="button" class="btn btn-darkgreen dropdown-toggle" data-toggle="dropdown">Click here ... <span class="caret"></span></button>'
             +'<ul style="text-align: center;" class="dropdown-menu" role="menu">';
         for (var i=0; i<l; i++){
-            text +='<li><input type="button" class="btn-warning" id="'
+            text +='<li><input type="button" class="btn-red" id="'
                 +garages[i]
                 +'" onclick="parkFav(this.id);" value="'
                 +garages[i]
