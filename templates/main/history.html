@@ -76,7 +76,7 @@
     <tbody>
         {% if history %}
         {% load print_stuff %}
-        {% for i in history %}
+        {% for i in history reversed %}
             <tr>
                 <td data-title="ID">{{forloop.counter}}</td>
                 <td data-title="Garage">{{i.garage}}</td>
