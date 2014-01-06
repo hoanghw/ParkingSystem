@@ -24,14 +24,6 @@ class FavoriteGarage(models.Model):
     garageName = models.CharField(max_length=50)
     participant = models.ForeignKey(Participant)
 
-class Garage(models.Model):
-    garageId = models.IntegerField()
-    isFPermit = models.BooleanField()
-    isCPermit = models.BooleanField()
-    priceDaily = models.FloatField(default=10)
-    priceHourly = models.FloatField(default=2)
-    priceQuarterly = models.FloatField(default=0.5)
-
 class HistoryTransaction(models.Model):
     participant = models.ForeignKey(Participant)
     garage = models.CharField(max_length=100)

@@ -16,7 +16,6 @@ PER_DAY = 1
 PER_HOUR = 2
 PER_QUARTER = 3
 
-
 def verifyuser(request):
     message = {}
     if request.method == 'GET' and 'username' in request.GET and 'password' in request.GET:
