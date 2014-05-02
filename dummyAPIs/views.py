@@ -22,6 +22,7 @@ def verifyuser(request):
         message['user'] = True
     return HttpResponse(simplejson.dumps(message), mimetype='application/json')
 
+
 def checkout(username):
     u = Participant.objects.filter(username=username)
     if u:
@@ -44,6 +45,7 @@ def calEndTime(timestamp, duration, granularity):
     elif granularity == PER_HOUR:
         currentTime += datetime.timedelta(hours=duration)
     return time.mktime(currentTime.timetuple())
+
 
 def ucheckin(request):
     message = {}
@@ -72,9 +74,14 @@ def ucheckin(request):
 
             endTime = calEndTime(timestamp, duration, granularity)
 
-            h = HistoryTransaction.objects.create(participant=u[0], garage=garage, space=str(space),
-                                                  startTime=int(time.time()), endTime=endTime, rate=rate,
-                                                  totalCost=totalCost, granularity=granularity)
+            h = HistoryTransaction.objects.create(participant=u[0],
+                                                  garage=garage,
+                                                  space=str(space),
+                                                  startTime=int(time.time()),
+                                                  endTime=endTime,
+                                                  rate=rate,
+                                                  totalCost=totalCost,
+                                                  granularity=granularity)
             h.save()
             nTrans = CurrentTransaction.objects.create(pointer=h)
             nTrans.save()
@@ -114,8 +121,10 @@ def getrate(request):
 def changelp(request):
     return HttpResponse('success')
 
+
 def changebilling(request):
     return HttpResponse('success')
+
 
 def usignin(request):
     message = {}
@@ -136,12 +145,14 @@ def usignin(request):
     res[ACCESS] = ALLOW
     return res
 
+
 def ulogin(request):
     return render_to_response('main/login.html', context_instance=RequestContext(request))
 
 
 def uprofile(request):
     return render_to_response('main/profile.html', context_instance=RequestContext(request))
+
 
 def parkinghistory(request):
     if request.method == 'POST':
@@ -153,12 +164,14 @@ def parkinghistory(request):
 
     return render_to_response('main/profile.html', context_instance=RequestContext(request))
 
+
 def ugethistory(request):
     message = {}
     if request.method == 'GET' and 'username' in request.GET:
         u = Participant.objects.filter(username=request.GET['username'])
         if u:
             h = HistoryTransaction.objects.filter(participant=u[0])
+
 
 @csrf_exempt
 def ureceipt(request):
@@ -176,6 +189,7 @@ def ureceipt(request):
             u[0].save()
             return render_to_response('main/login.html', context_instance=RequestContext(request))
     return HttpResponseRedirect('/uregistration/')
+
 
 def ugetfavandtokenandstatus(request):
     message = {}
@@ -224,8 +238,10 @@ def uupdatefav(request):
     res[ACCESS] = ALLOW
     return res
 
+
 def uregistration(request):
     return render_to_response('main/registration.html', context_instance=RequestContext(request))
+
 
 def uverifyreg(request):
     error = {}
@@ -276,8 +292,10 @@ def uverifyreg(request):
 
     return HttpResponse(simplejson.dumps(error), mimetype='application/json')
 
+
 def uedit(request):
     return render_to_response('main/edit.html', context_instance=RequestContext(request))
+
 
 def uchangelp(request):
     message = {}

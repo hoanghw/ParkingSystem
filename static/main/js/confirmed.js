@@ -9,8 +9,15 @@ function confirmed(event){
     var today = new Date();
     var timestamp = today.getTime();
 
-	$.get(SERVER_URL+"ucheckin/", {data:JSON.stringify({garage:garageName,rate:rate,totalCost:totalCost,username:u,timestamp:timestamp,granularity:granularity,duration:duration,space:space})}, function(data, textStatus, jqXHR) {
-        },"json")
+	$.get(SERVER_URL+"ucheckin/", {data:JSON.stringify({garage:garageName,
+        rate:rate,
+        totalCost:totalCost,
+        username:u,
+        timestamp:timestamp,
+        granularity:granularity,
+        duration:duration,
+        space:space})},
+        function(data, textStatus, jqXHR) {},"json")
         .done(function(){
             $('#confirming').modal('hide');
 	        $('#content-window').html(changeToParked(garageName,null));
@@ -20,13 +27,11 @@ function confirmed(event){
 	        $('#content-window').html(changeToError());
         });
 }
-
 function changeGarage(){
     $("#content-window").html(changeToNotParked());
     //$('html,body').scrollTop($('#favorite').position().top);
     $('html,body').scrollTop(0);
 }
-
 function toggleFavorite(){
     if (isFavorite){
         unmarkFavorite(true);
@@ -69,7 +74,6 @@ function updateFavToServer(isFavorite){
 
         });
 }
-
 function checkOut(){
     window.localStorage.removeItem('parkingRate');
     window.localStorage.removeItem('parkingGarage');
